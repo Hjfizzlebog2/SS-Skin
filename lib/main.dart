@@ -17,7 +17,7 @@ class AddUser extends StatelessWidget {
   final String password;
 
   const AddUser(this.fName, this.lName, this.email, this.password);
-git
+
   @override
   Widget build(BuildContext context) {
     // Create a CollectionReference called users that references the firestore collection
