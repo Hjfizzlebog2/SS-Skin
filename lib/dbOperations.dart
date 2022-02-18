@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore Firestore = FirebaseFirestore.instance;
+FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
 Future<void> uploadingData(String fName, String lName,
     String email, String password) async {
@@ -13,14 +13,14 @@ Future<void> uploadingData(String fName, String lName,
 }
 
 Future<void> editProduct(bool _isFavourite,String id) async {
-  await FirebaseFirestore.instance
+  FirebaseFirestore.instance
       .collection("User");
       //.document(id)
       //.updateData({"isFavourite": !_isFavourite});
 }
 
 Future<void> deleteProduct(DocumentSnapshot doc) async {
-  await FirebaseFirestore.instance
+  FirebaseFirestore.instance
       .collection("User");
       //.document(doc.documentID)
       //.delete();

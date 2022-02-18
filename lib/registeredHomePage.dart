@@ -27,9 +27,7 @@ class RegisteredHomePage extends StatelessWidget {
                     fontSize: 50),
               ),
             ),
-            Container(
-                child: Image.asset('assets/homepagepic.jpg')
-            ),
+            Image.asset('assets/homepage.jpg'),
             Container(
               padding: const EdgeInsets.all(50.0),
               color: Colors.cyan,
