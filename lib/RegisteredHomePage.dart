@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'ScreeningBreakdown.dart';
+import 'LogHistory.dart';
 
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
@@ -17,45 +19,63 @@ class RegisteredHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
                 "Welcome Back!",
                 style: TextStyle(
                     color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 50),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34),
               ),
             ),
-            Image.asset('assets/homepage.jpg'),
+            Image.asset('images/registeredhomepage.jpg'),
             Container(
-              padding: const EdgeInsets.all(50.0),
-              color: Colors.cyan,
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                  );
+                },
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("Create new entry"),
+                label: const Text("Create new entry",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(50.0),
-              color: Colors.cyan,
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LogHistory()),
+                  );
+                },
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("View log history"),
+                label: const Text("View log history",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
-            )
+            ),
           ],
         )
     );
