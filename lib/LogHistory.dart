@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-// class for the registered home page screen
-class RegisteredHomePage extends StatelessWidget {
-  const RegisteredHomePage({Key? key}) : super(key: key);
+// class for the log history screen
+class LogHistory extends StatelessWidget {
+  const LogHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,47 +17,53 @@ class RegisteredHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              alignment: Alignment.center,
+              alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                "Welcome Back!",
+                "Log History",
                 style: TextStyle(
                     color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 50),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 34),
               ),
             ),
+            Image.asset('images/loghistory.jpg'),
             Container(
-                child: Image.asset('assets/homepagepic.jpg')
-            ),
-            Container(
-              padding: const EdgeInsets.all(50.0),
-              color: Colors.cyan,
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("Create new entry"),
+                label: const Text("View previous photos",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(50.0),
-              color: Colors.cyan,
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("View log history"),
+                label: const Text("View past results",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
-            )
+            ),
           ],
         )
     );
