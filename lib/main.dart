@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       //FIXME: Change back the below to RegisteredHomePage()
-      home: ResetPassword(),
-    ); // Material App
+      home: RegisteredHomePage(),
+    );
   }
 }
