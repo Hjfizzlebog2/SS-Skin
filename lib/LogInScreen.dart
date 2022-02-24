@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skin_safety_scanner/CreateAccount.dart';
+import 'package:skin_safety_scanner/ResetPassword.dart';
 import 'RegisteredHomePage.dart';
+import 'ResetPassword.dart';
 
 //class for the log in screen
 class LogInScreen extends StatefulWidget {
@@ -65,7 +68,10 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             TextButton(
               onPressed: () {
-                //forgot password screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ResetPassword()), // go to reset password
+                );
               },
               child: const Text('Forgot Password?',),
             ),
@@ -91,7 +97,10 @@ class _LogInScreenState extends State<LogInScreen> {
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    //signup screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateAccount()), // go to homepage
+                    );
                   },
                 )
               ],
