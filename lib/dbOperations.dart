@@ -1,25 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore fireStore = FirebaseFirestore.instance;
-CollectionReference users = fireStore.collection('User');
 
-Future<void> uploadingData(
+Future createUser(
     String fName, String lName, String email, String password) async {
-  return users
-      .add({
+      final docUser = FirebaseFirestore.instance.collection("User").doc('test');
+      final json = {
         'Fname': fName,
         'Lname': lName,
         'Email': email,
         'Password': password,
-      })
-      .then((value) => print("User Added"))
-      .catchError((error) => print("Failed to add user: $error"));
+      };
+
+      await docUser.set(json);
 }
 
 Future<void> editProduct(bool _isFavourite, String id) async {
   FirebaseFirestore.instance.collection("User");
-  //.document(id)
-  //.updateData({"isFavourite": !_isFavourite});
+  //var fireBaseUser = FirebaseAuth.instance.currentUser;
 }
 
 Future<void> deleteProduct(DocumentSnapshot doc) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skin_safety_scanner/RegisteredHomePage.dart';
+import 'RegisteredHomePage.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
