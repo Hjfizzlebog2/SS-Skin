@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Questionnaire.dart';
-
 
 // class for the screening breakdown screen
-class ScreeningBreakdown extends StatelessWidget {
-  const ScreeningBreakdown({Key? key}) : super(key: key);
+class Questionnaire extends StatelessWidget {
+  const Questionnaire({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class ScreeningBreakdown extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                "\n\nScreening Breakdown",
+                "\nFirst, a bit about you:",
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
@@ -30,15 +28,35 @@ class ScreeningBreakdown extends StatelessWidget {
               ),
             ),
             Container(
+              alignment: Alignment.centerLeft,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                "• This screening includes a brief questionnaire\n\n"
-                "• You will then submit a photo for analyzation\n\n"
-                "• Your image will be compared to an extensive database to generate your report\n\n"
-                "DISCLAIMER:\n\n"
-                "• Please note that this is NOT an official diagnosis\n\n"
-                "• If necessary, please seek help from a medical expert\n",
+                "• What is your age?",
+                style: TextStyle(fontSize: 17),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                "• What is your gender?",
+                style: TextStyle(fontSize: 17),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                  "• What is your condition?",
                   style: TextStyle(fontSize: 17),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                "• Has anyone else in your family experienced this?",
+                style: TextStyle(fontSize: 17),
               ),
             ),
             Container(
@@ -46,12 +64,7 @@ class ScreeningBreakdown extends StatelessWidget {
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Questionnaire()),
-                  );
-                },
+                onPressed: () {},
                 icon: const Icon(
                     Icons.add
                 ),
