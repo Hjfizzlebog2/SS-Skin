@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'package:ss_skin_project/dbOperations.dart';
 
 // class for the registered home page screen
 class CreateAccount extends StatelessWidget {
-  String Fname = "";
-  String Lname = "";
+  String firstName = "";
+  String lastName = "";
   String email = "";
   String pass = "";
 
@@ -30,107 +28,110 @@ class CreateAccount extends StatelessWidget {
             child: const Text(
               "Create Account",
               style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.black54,
                   fontWeight: FontWeight.bold,
                   fontSize: 34),
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: TextField(
               maxLength: 20,
               onChanged: (text) {
-                Fname = text;
+                firstName = text;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'First Name',
-                hintText: 'Enter Your First Name',
+                hintText: 'Enter First Name',
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: TextField(
               maxLength: 20,
               onChanged: (text) {
-                Lname = text;
+                lastName = text;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Last Name',
-                hintText: 'Enter Your Last Name',
+                hintText: 'Enter Last Name',
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: TextField(
               maxLength: 25,
               //inputFormatters: [
               //  FilteringTextInputFormatter.allow(RegExp(r'^(.+)@(.+)$'))
-            //  ],
+              //  ],
               onChanged: (text) {
                 email = text;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Email',
-                hintText: 'Enter Your Email',
+                hintText: 'Enter Email',
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(10),
             child: TextField(
               maxLength: 20,
               //obscureText: true,
               onChanged: (text) {
                 pass = text;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Password',
-                hintText: 'Enter a Password',
+                hintText: 'Create Password',
               ),
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(15),
-            width: 270,
+            padding: const EdgeInsets.all(10),
+            width: 240,
             height: 90,
             child: ElevatedButton.icon(
               onPressed: () {
-                uploadingData(Fname, Lname, email, pass);
+                // uploadingData(firstName, lastName, email, pass);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go back to homepage
+                );
               },
               icon: const Icon(Icons.add),
               label: const Text("Sign Up",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blueGrey)),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(15),
-            width: 270,
-            height: 90,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisteredHomePage()),
-                );
-              },
-              icon: const Icon(Icons.add),
-              label: const Text("Skip to homepage(For testing navigation)",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-              style: ButtonStyle(
-                  backgroundColor:
                   MaterialStateProperty.all<Color>(Colors.blueGrey)),
             ),
           ),
+          // Container(
+          //   padding: const EdgeInsets.all(10),
+          //   width: 270,
+          //   height: 90,
+          //   child: ElevatedButton.icon(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go homepage
+          //       );
+          //     },
+          //     icon: const Icon(Icons.add),
+          //     label: const Text("Skip to homepage(For testing navigation)",
+          //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          //     style: ButtonStyle(
+          //         backgroundColor:
+          //         MaterialStateProperty.all<Color>(Colors.blueGrey)),
+          //   ),
+          // ),
         ],
       ),
     );
