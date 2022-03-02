@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
-Future<void> uploadingData(String fName, String lName,
+Future<void> uploadingData(String firstName, String lastName,
     String email, String password) async {
   await FirebaseFirestore.instance.collection("User").add({
-    'Fname': fName,
-    'Lname': lName,
+    'firstName': firstName,
+    'lastName': lastName,
     'Email': email,
     'Password': password,
   });

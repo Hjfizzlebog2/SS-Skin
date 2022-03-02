@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'Questionnaire.dart';
+
 
 // class for the screening breakdown screen
 class ScreeningBreakdown extends StatelessWidget {
@@ -22,7 +24,7 @@ class ScreeningBreakdown extends StatelessWidget {
               child: const Text(
                 "\n\nScreening Breakdown",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
@@ -44,7 +46,12 @@ class ScreeningBreakdown extends StatelessWidget {
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Questionnaire()),
+                  );
+                },
                 icon: const Icon(
                     Icons.add
                 ),
