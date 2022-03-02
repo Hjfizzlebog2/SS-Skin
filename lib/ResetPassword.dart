@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skin_safety_scanner/RegisteredHomePage.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
@@ -53,10 +53,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                    MaterialStateProperty.all<Color>(Colors.blueGrey)),
                 label: const Text("Back",
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               ),
             ),
             Container(
@@ -65,45 +65,45 @@ class _ResetPasswordState extends State<ResetPassword> {
               child: const Text(
                 "Reset\nPassword",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
             ),
             Container(
                 child: ListView(padding: EdgeInsets.all(32), children: [
-              buildEmail(),
-              const SizedBox(height: 24),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-                label: const Text("Reset Password",
-                    style:
+                  buildEmail(),
+                  const SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add),
+                    label: const Text("Reset Password",
+                        style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                style: ButtonStyle(
-                    backgroundColor:
+                    style: ButtonStyle(
+                        backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.blueGrey)),
-              ),
-            ])),
+                  ),
+                ])),
           ],
         ));
   }
 
   Widget buildEmail() => TextField(
-      controller: emailController,
-        decoration: InputDecoration(
-          hintText: 'name@example.com',
-          labelText: 'Email',
-          prefixIcon: Icon(Icons.mail),
-          suffixIcon: emailController.text.isEmpty
+    controller: emailController,
+    decoration: InputDecoration(
+      hintText: 'name@example.com',
+      labelText: 'Email',
+      prefixIcon: Icon(Icons.mail),
+      suffixIcon: emailController.text.isEmpty
           ? Container(width: 0)
           : IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () => emailController.clear(),
-          ),
-          border: OutlineInputBorder(),
-        ),
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.done,
-      );
+        icon: Icon(Icons.close),
+        onPressed: () => emailController.clear(),
+      ),
+      border: OutlineInputBorder(),
+    ),
+    keyboardType: TextInputType.emailAddress,
+    textInputAction: TextInputAction.done,
+  );
 }
