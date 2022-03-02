@@ -24,7 +24,7 @@ class ScreeningBreakdown extends StatelessWidget {
               child: const Text(
                 "\n\nScreening Breakdown",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),

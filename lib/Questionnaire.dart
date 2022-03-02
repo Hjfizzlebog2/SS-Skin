@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 // class for the screening breakdown screen
-class Questionnaire extends StatelessWidget {
+class Questionnaire extends StatefulWidget {
   const Questionnaire({Key? key}) : super(key: key);
+
+  @override
+  QuestionnaireState createState() => QuestionnaireState();
+}
+
+class QuestionnaireState extends State<Questionnaire> {
+  int group = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class Questionnaire extends StatelessWidget {
               child: const Text(
                 "\nFirst, a bit about you:",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
@@ -34,6 +41,33 @@ class Questionnaire extends StatelessWidget {
                 "• What is your age?",
                 style: TextStyle(fontSize: 17),
               ),
+            ),
+            Radio(
+              value: 1,
+              groupValue: group,
+              onChanged: (T) {
+                // setState(() {
+                //   group = T;
+                // });
+              },
+            ),
+            Radio(
+              value: 2,
+              groupValue: group,
+              onChanged: (T) {
+                // setState(() {
+                //   group = T;
+                // });
+              },
+            ),
+            Radio(
+              value: 3,
+              groupValue: group,
+              onChanged: (T) {
+                // setState(() {
+                //   group = T;
+                // });
+              },
             ),
             Container(
               alignment: Alignment.centerLeft,
@@ -47,8 +81,8 @@ class Questionnaire extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                  "• What is your condition?",
-                  style: TextStyle(fontSize: 17),
+                "• What is your condition?",
+                style: TextStyle(fontSize: 17),
               ),
             ),
             Container(

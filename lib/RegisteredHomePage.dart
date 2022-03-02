@@ -24,7 +24,7 @@ class RegisteredHomePage extends StatelessWidget {
               child: const Text(
                 "Welcome Back!",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
