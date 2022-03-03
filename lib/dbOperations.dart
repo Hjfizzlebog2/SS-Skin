@@ -1,27 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-FirebaseFirestore fireStore = FirebaseFirestore.instance;
+Future createUser (
+    String userName, String name, String email, String password) async {
+  await Firebase.initializeApp();
+  final docUser = FirebaseFirestore.instance.collection("User").doc('test');
+  final json = {
+    'userName': userName,
+    'name': name,
+    'email': email,
+    'password': password,
+  };
 
-Future<void> uploadingData(String firstName, String lastName,
-    String email, String password) async {
-  await FirebaseFirestore.instance.collection("User").add({
-    'firstName': firstName,
-    'lastName': lastName,
-    'Email': email,
-    'Password': password,
-  });
+  await docUser.set(json);
 }
 
-Future<void> editProduct(bool _isFavourite,String id) async {
-  FirebaseFirestore.instance
-      .collection("User");
-      //.document(id)
-      //.updateData({"isFavourite": !_isFavourite});
+Future<void> editProduct(bool _isFavourite, String id) async {
+  FirebaseFirestore.instance.collection("User");
+  //var fireBaseUser = FirebaseAuth.instance.currentUser;
 }
 
 Future<void> deleteProduct(DocumentSnapshot doc) async {
-  FirebaseFirestore.instance
-      .collection("User");
-      //.document(doc.documentID)
-      //.delete();
+  FirebaseFirestore.instance.collection("User");
+  //.document(doc.documentID)
+  //.delete();
 }
