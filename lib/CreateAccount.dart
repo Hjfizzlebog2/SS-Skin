@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
@@ -38,12 +39,24 @@ class CreateAccount extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(8),
                 child: TextField(
+                  onChanged: (text) async {
+                    try {
+                      var collectionRef = FirebaseFirestore.instance.collection("User");
+                      var doc = await collectionRef.doc(text).get();
+
+                       doc.exists;
+
+                    } catch(e) {
+                      throw e;
+                    }
+                  },
                   controller: controller.elementAt(0),
                   maxLength: 20,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'First Name',
-                    hintText: 'Enter Your First Name',
+                    labelText: 'Username',
+                    hintText: 'Enter a Username',
+                   // errorText: docExists ? true: "Username Taken"
                   ),
                 ),
               ),
@@ -55,7 +68,7 @@ class CreateAccount extends StatelessWidget {
                   maxLength: 20,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Last Name',
+                    labelText: 'Full Name',
                     hintText: 'Enter Your Last Name',
                   ),
                 ),
@@ -100,12 +113,12 @@ class CreateAccount extends StatelessWidget {
             height: 90,
             child: ElevatedButton.icon(
               onPressed: () {
-                final fName = controller.elementAt(0).text;
-                final lName = controller.elementAt(0).text;
-                final email = controller.elementAt(0).text;
-                final pass = controller.elementAt(0).text;
+                final userName = controller.elementAt(0).text;
+                final name = controller.elementAt(1).text;
+                final email = controller.elementAt(2).text;
+                final pass = controller.elementAt(3).text;
 
-                createUser(fName, lName, email, pass);
+                createUser(userName, name, email, pass);
               },
               icon: const Icon(Icons.add),
               label: const Text("Sign Up",
