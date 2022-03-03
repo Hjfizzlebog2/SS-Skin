@@ -9,7 +9,7 @@ class Questionnaire extends StatefulWidget {
 }
 
 class QuestionnaireState extends State<Questionnaire> {
-  int group = 1;
+  Object? group = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -29,70 +29,212 @@ class QuestionnaireState extends State<Questionnaire> {
               child: const Text(
                 "\nFirst, a bit about you:",
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(8),
               child: const Text(
-                "• What is your age?",
-                style: TextStyle(fontSize: 17),
+                "What is your age?",
+                style: TextStyle(fontSize: 20, decoration: TextDecoration.underline),
               ),
             ),
-            Radio(
-              value: 1,
-              groupValue: group,
-              onChanged: (T) {
-                // setState(() {
-                //   group = T;
-                // });
-              },
-            ),
-            Radio(
-              value: 2,
-              groupValue: group,
-              onChanged: (T) {
-                // setState(() {
-                //   group = T;
-                // });
-              },
-            ),
-            Radio(
-              value: 3,
-              groupValue: group,
-              onChanged: (T) {
-                // setState(() {
-                //   group = T;
-                // });
-              },
-            ),
+            Row(children: const [
+              SizedBox(width: 15),
+              Text(
+                  "18-29",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 28),
+              Text(
+                  "30-49",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 28),
+              Text(
+                  "50-69",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 28),
+              Text(
+                  "70+",
+                  style: TextStyle(fontSize: 15)),
+            ],),
+            Row(children: [
+              const SizedBox(width: 11),
+              Radio(
+                value: 1,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 19),
+              Radio(
+                value: 2,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 17),
+              Radio(
+                value: 3,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 11),
+              Radio(
+                value: 4,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+            ],),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(8),
               child: const Text(
-                "• What is your gender?",
-                style: TextStyle(fontSize: 17),
+                "What is your gender?",
+                style: TextStyle(fontSize: 20, decoration: TextDecoration.underline),
               ),
             ),
+            Row(children: const [
+              SizedBox(width: 19),
+              Text(
+                  "Male",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 25),
+              Text(
+                  "Female",
+                  style: TextStyle(fontSize: 15)),
+            ],),
+            Row(children: [
+              const SizedBox(width: 11),
+              Radio(
+                value: 1,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 19),
+              Radio(
+                value: 2,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+            ],),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(8),
               child: const Text(
-                "• What is your condition?",
-                style: TextStyle(fontSize: 17),
+                "What is your condition?",
+                style: TextStyle(fontSize: 20, decoration: TextDecoration.underline),
               ),
             ),
+            Row(children: const [
+              SizedBox(width: 20),
+              Text(
+                  "Mole",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 31),
+              Text(
+                  "Rash",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 31),
+              Text(
+                  "Burn",
+                  style: TextStyle(fontSize: 15)),
+            ],),
+            Row(children: [
+              const SizedBox(width: 11),
+              Radio(
+                value: 1,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 19),
+              Radio(
+                value: 2,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 17),
+              Radio(
+                value: 3,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+            ],),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(8),
               child: const Text(
-                "• Has anyone else in your family experienced this?",
-                style: TextStyle(fontSize: 17),
+                "Has anyone else in your family experienced this?",
+                style: TextStyle(fontSize: 20, decoration: TextDecoration.underline),
               ),
             ),
+            Row(children: const [
+              SizedBox(width: 22),
+              Text(
+                  "Yes",
+                  style: TextStyle(fontSize: 15)),
+              SizedBox(width: 47),
+              Text(
+                  "No",
+                  style: TextStyle(fontSize: 15)),
+            ],),
+            Row(children: [
+              const SizedBox(width: 11),
+              Radio(
+                value: 1,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+              const SizedBox(width: 22),
+              Radio(
+                value: 2,
+                groupValue: group,
+                onChanged: (T) {
+                  setState(() {
+                    group = T;
+                  });
+                },
+              ),
+            ],),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,

@@ -28,7 +28,6 @@ class CreateAccount extends StatelessWidget {
             child: const Text(
               "Create Account",
               style: TextStyle(
-                  color: Colors.black54,
                   fontWeight: FontWeight.bold,
                   fontSize: 34),
             ),
