@@ -5,7 +5,7 @@ import 'package:ss_skin_project/dbOperations.dart';
 // class for the registered home page screen
 class CreateAccount extends StatelessWidget {
   List<TextEditingController> controller = [TextEditingController(), TextEditingController(),
-    TextEditingController(), TextEditingController()];
+  TextEditingController(), TextEditingController()];
   CreateAccount({Key? key}) : super(key: key);
 
   @override
@@ -33,79 +33,79 @@ class CreateAccount extends StatelessWidget {
           ),
           Flexible (
             child: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    onChanged: (text) async {
-                      try {
-                        var collectionRef = FirebaseFirestore.instance.collection("User");
-                        var doc = await collectionRef.doc(text).get();
+            shrinkWrap: true,
+            padding: EdgeInsets.fromLTRB(5, 5, 5, 0),
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  onChanged: (text) async {
+                    try {
+                      var collectionRef = FirebaseFirestore.instance.collection("User");
+                      var doc = await collectionRef.doc(text).get();
 
-                        doc.exists;
+                       doc.exists;
 
-                      } catch(e) {
-                        throw e;
-                      }
-                    },
-                    controller: controller.elementAt(0),
-                    maxLength: 20,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Username',
-                      hintText: 'Enter a Username',
-                      // errorText: docExists ? true: "Username Taken"
-                    ),
+                    } catch(e) {
+                      throw e;
+                    }
+                  },
+                  controller: controller.elementAt(0),
+                  maxLength: 20,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Username',
+                    hintText: 'Enter a Username',
+                   // errorText: docExists ? true: "Username Taken"
                   ),
                 ),
-                Divider(),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    controller: controller.elementAt(1),
-                    maxLength: 20,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Full Name',
-                      hintText: 'Enter Your Last Name',
-                    ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  controller: controller.elementAt(1),
+                  maxLength: 20,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Full Name',
+                    hintText: 'Enter Your Last Name',
                   ),
                 ),
-                Divider(),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    controller: controller.elementAt(2),
-                    maxLength: 25,
-                    //inputFormatters: [
-                    //  FilteringTextInputFormatter.allow(RegExp(r'^(.+)@(.+)$'))
-                    //  ],
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      hintText: 'Enter Your Email',
-                    ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  controller: controller.elementAt(2),
+                  maxLength: 25,
+                  //inputFormatters: [
+                  //  FilteringTextInputFormatter.allow(RegExp(r'^(.+)@(.+)$'))
+                  //  ],
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter Your Email',
                   ),
                 ),
-                Divider(),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: TextField(
-                    controller: controller.elementAt(3),
-                    maxLength: 20,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      hintText: 'Enter a Password',
-                    ),
+              ),
+              Divider(),
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: TextField(
+                  controller: controller.elementAt(3),
+                  maxLength: 20,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter a Password',
                   ),
                 ),
-                Divider(),
-              ],
-            ),
+              ),
+              Divider(),
+            ],
+          ),
           ),
           Container(
             padding: const EdgeInsets.all(15),
@@ -125,7 +125,7 @@ class CreateAccount extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
               style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                      MaterialStateProperty.all<Color>(Colors.blueGrey)),
             ),
           ),
         ],
