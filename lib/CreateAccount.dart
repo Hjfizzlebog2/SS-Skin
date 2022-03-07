@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:skin_safety_scanner/LogInScreen.dart';
-import 'package:skin_safety_scanner/RegisteredHomePage.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 // class for the registered home page screen
 class CreateAccount extends StatelessWidget {
-  String Fname = "";
-  String Lname = "";
+  String firstName = "";
+  String lastName = "";
   String email = "";
   String pass = "";
 
@@ -30,7 +28,7 @@ class CreateAccount extends StatelessWidget {
             child: const Text(
               "Create Account",
               style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.black54,
                   fontWeight: FontWeight.bold,
                   fontSize: 34),
             ),
@@ -40,12 +38,12 @@ class CreateAccount extends StatelessWidget {
             child: TextField(
               maxLength: 20,
               onChanged: (text) {
-                Fname = text;
+                firstName = text;
               },
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'First Name',
-                hintText: 'Enter Your First Name',
+                hintText: 'Enter First Name',
               ),
             ),
           ),
@@ -54,12 +52,12 @@ class CreateAccount extends StatelessWidget {
             child: TextField(
               maxLength: 20,
               onChanged: (text) {
-                Lname = text;
+                lastName = text;
               },
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Last Name',
-                hintText: 'Enter Your Last Name',
+                hintText: 'Enter Last Name',
               ),
             ),
           ),
@@ -76,7 +74,7 @@ class CreateAccount extends StatelessWidget {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Email',
-                hintText: 'Enter Your Email',
+                hintText: 'Enter Email',
               ),
             ),
           ),
@@ -91,7 +89,7 @@ class CreateAccount extends StatelessWidget {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Password',
-                hintText: 'Enter a Password',
+                hintText: 'Create Password',
               ),
             ),
           ),
@@ -101,7 +99,7 @@ class CreateAccount extends StatelessWidget {
             height: 90,
             child: ElevatedButton.icon(
               onPressed: () {
-                // uploadingData(Fname, Lname, email, pass);
+                // uploadingData(firstName, lastName, email, pass);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go back to homepage

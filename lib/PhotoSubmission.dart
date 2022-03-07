@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'Questionnaire.dart';
 
+// class for the photo submission screen
+class PhotoSubmission extends StatelessWidget {
+   late File imageFile;
 
-// class for the screening breakdown screen
-class ScreeningBreakdown extends StatelessWidget {
-  const ScreeningBreakdown({Key? key}) : super(key: key);
+  PhotoSubmission({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,30 +18,39 @@ class ScreeningBreakdown extends StatelessWidget {
           backgroundColor: Colors.redAccent,
         ),
         body: Column (
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(10),
               child: const Text(
-                "\n\nScreening Breakdown",
+                "Lets take a photo!",
                 style: TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
             ),
+            Image.asset('images/photosubmission.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
-              child: const Text(
-                "• This screening includes a brief questionnaire\n\n"
-                "• You will then submit a photo for analyzation\n\n"
-                "• Your image will be compared to an extensive database to generate your report\n\n"
-                "DISCLAIMER:\n\n"
-                "• Please note that this is NOT an official diagnosis\n\n"
-                "• If necessary, please seek help from a medical expert\n",
-                  style: TextStyle(fontSize: 17),
+              width: 270,
+              height: 90,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // take photo with camera function
+                },
+                icon: const Icon(
+                    Icons.add
+                ),
+                label: const Text("Use camera",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+                ),
               ),
             ),
             Container(
@@ -47,15 +59,12 @@ class ScreeningBreakdown extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Questionnaire()),
-                  );
+                  // pick from device camera roll function
                 },
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("Continue",
+                label: const Text("Choose from device",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18)),
@@ -63,9 +72,10 @@ class ScreeningBreakdown extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
-            )
+            ),
           ],
         )
     );
   }
+
 }

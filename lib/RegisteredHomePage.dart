@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skin_safety_scanner/LogHistory.dart';
 import 'ScreeningBreakdown.dart';
+import 'LogHistory.dart';
 
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
@@ -24,21 +24,18 @@ class RegisteredHomePage extends StatelessWidget {
               child: const Text(
                 "Welcome Back!",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
-                    fontSize: 36),
+                    fontSize: 34),
               ),
             ),
-            Container(
-                child: Image.asset('images/homepagepic.jpg')
-            ),
+            Image.asset('images/registeredhomepage.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
-              width: 240,
+              width: 270,
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  //TODO: This is how to navigate to a new route (screen). Simply replace 'ScreeningBreakdown()' with whatever route you want to navigate to.
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
@@ -58,7 +55,7 @@ class RegisteredHomePage extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(15),
-              width: 240,
+              width: 270,
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
