@@ -39,6 +39,7 @@ class PhotoSubmission extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  _getFromCamera();
                   // take photo with camera function
                 },
                 icon: const Icon(
@@ -59,6 +60,7 @@ class PhotoSubmission extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  _getFromGallery();
                   // pick from device camera roll function
                 },
                 icon: const Icon(
@@ -78,4 +80,34 @@ class PhotoSubmission extends StatelessWidget {
     );
   }
 
+   // get from gallery function
+   _getFromGallery() async {
+     PickedFile? pickedFile = await ImagePicker().getImage(
+       source: ImageSource.gallery,
+       maxWidth: 1800,
+       maxHeight: 1800,
+     );
+     if (pickedFile != null) {
+       setState(() {
+         imageFile = File(pickedFile.path);
+       });
+     }
+   }
+
+   // get from camera function
+   _getFromCamera() async {
+     PickedFile? pickedFile = await ImagePicker().getImage(
+       source: ImageSource.camera,
+     );
+     if (pickedFile != null) {
+       setState(() {
+         imageFile = File(pickedFile.path);
+       });
+     }
+   }
+
+  void setState(Null Function() param0) {
+    imageFile = File(imageFile.path);
+  }
+  
 }
