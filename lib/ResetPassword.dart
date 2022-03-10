@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'ScreeningBreakdown.dart';
-import 'LogHistory.dart';
 
 // class for the reset password screen
 class ResetPassword extends StatefulWidget {
@@ -65,7 +62,6 @@ class _ResetPasswordState extends State<ResetPassword> {
               child: const Text(
                 "Reset\nPassword",
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),

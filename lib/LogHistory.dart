@@ -22,7 +22,6 @@ class LogHistory extends StatelessWidget {
               child: const Text(
                 "Log History",
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),

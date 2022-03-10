@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Questionnaire.dart';
 
-
 // class for the screening breakdown screen
 class ScreeningBreakdown extends StatelessWidget {
   const ScreeningBreakdown({Key? key}) : super(key: key);
@@ -24,7 +23,6 @@ class ScreeningBreakdown extends StatelessWidget {
               child: const Text(
                 "\n\nScreening Breakdown",
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
