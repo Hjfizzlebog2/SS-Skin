@@ -6,10 +6,10 @@ class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
 
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  ResetPasswordState createState() => ResetPasswordState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class ResetPasswordState extends State<ResetPassword> {
   // TODO: Figure out how to emulate this page
   // TODO: Figure out how to make a proper back button
   final emailController = TextEditingController();
@@ -25,7 +25,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Skin Safety Scanner"),
+          title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
@@ -51,36 +51,44 @@ class _ResetPasswordState extends State<ResetPassword> {
                 style: ButtonStyle(
                     backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.blueGrey)),
-                label: const Text("Back",
-                    style:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                label: const Text(
+                    'Back',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
               ),
             ),
             Container(
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                "Reset\nPassword",
+                'Reset\nPassword',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 34),
+                    fontSize: 34
+                ),
               ),
             ),
-            Container(
-                child: ListView(padding: EdgeInsets.all(32), children: [
-                  buildEmail(),
-                  const SizedBox(height: 24),
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                    label: const Text("Reset Password",
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blueGrey)),
-                  ),
-                ])),
+            ListView(padding: const EdgeInsets.all(32), children: [
+              buildEmail(),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+                label: const Text(
+                    'Reset Password',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+                style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.blueGrey)),
+              ),
+            ]),
           ],
         ));
   }
@@ -90,14 +98,14 @@ class _ResetPasswordState extends State<ResetPassword> {
     decoration: InputDecoration(
       hintText: 'name@example.com',
       labelText: 'Email',
-      prefixIcon: Icon(Icons.mail),
+      prefixIcon: const Icon(Icons.mail),
       suffixIcon: emailController.text.isEmpty
           ? Container(width: 0)
           : IconButton(
-        icon: Icon(Icons.close),
+        icon: const Icon(Icons.close),
         onPressed: () => emailController.clear(),
       ),
-      border: OutlineInputBorder(),
+      border: const OutlineInputBorder(),
     ),
     keyboardType: TextInputType.emailAddress,
     textInputAction: TextInputAction.done,
