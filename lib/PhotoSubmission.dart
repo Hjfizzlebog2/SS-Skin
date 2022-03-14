@@ -1,10 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'ScreeningBreakdown.dart';
-import 'LogHistory.dart';
+import 'package:image_picker/image_picker.dart';
 
-// class for the registered home page screen
-class RegisteredHomePage extends StatelessWidget {
-  const RegisteredHomePage({Key? key}) : super(key: key);
+// class for the photo submission screen
+class PhotoSubmission extends StatelessWidget {
+  late File imageFile;
+
+  PhotoSubmission({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,30 +24,32 @@ class RegisteredHomePage extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Welcome Back!',
+                'Lets Take a Photo!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
             ),
-            Image.asset('assets/images/registered_homepage.jpg'),
+            Image.asset(
+                'assets/images/photo_submission.jpg',
+                height: 160,
+                width: 160
+            ),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
-                  );
+                  _getFromCamera();
+                  // take photo with camera function
                 },
                 icon: const Icon(
                     Icons.add
                 ),
                 label: const Text(
-                    'Create New Entry',
+                    'Use Camera',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -62,16 +66,14 @@ class RegisteredHomePage extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LogHistory()),
-                  );
+                  _getFromGallery();
+                  // pick from device camera roll function
                 },
                 icon: const Icon(
                     Icons.add
                 ),
                 label: const Text(
-                    'View Log History',
+                    'Choose From Device',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -85,5 +87,35 @@ class RegisteredHomePage extends StatelessWidget {
           ],
         )
     );
+  }
+
+  // get from gallery function
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  // get from camera function
+  _getFromCamera() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.camera,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  void setState(Null Function() param0) {
+    imageFile = File(imageFile.path);
   }
 }
