@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
 // class for the registered home page screen
@@ -124,6 +125,8 @@ class _CreateAccountState extends State<CreateAccount> {
                 final pass = controller.elementAt(3).text;
 
                 createUser(userName, name, email, pass);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RegisteredHomePage()));
               },
               icon: const Icon(Icons.add),
               label: const Text(

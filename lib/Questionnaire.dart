@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/dbOperations.dart';
 import 'PhotoSubmission.dart';
 
 // class for the questionnaire screen
@@ -10,10 +11,15 @@ class Questionnaire extends StatefulWidget {
 }
 
 class QuestionnaireState extends State<Questionnaire> {
-  Object? group1 = 1;
-  Object? group2 = 1;
-  Object? group3 = 1;
-  Object? group4 = 1;
+  int group1 = 1;
+  int group2 = 1;
+  int group3 = 1;
+  int group4 = 1;
+
+  var g1Vals = ['18-29', '30-49', '50-69', '70+'];
+  var g2Vals = ['Male', 'Female'];
+  var g3Vals = ['Mole', 'Rash', 'Burn'];
+  var g4Vals = [true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +94,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T;
+                      group1 = T.toString() as int;
                     });
                   },
                 ),
@@ -98,7 +104,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T;
+                      group1 = T.toString() as int;
                     });
                   },
                 ),
@@ -108,7 +114,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T;
+                      group1 = T.toString() as int;
                     });
                   },
                 ),
@@ -118,7 +124,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T;
+                      group1 = T.toString() as int;
                     });
                   },
                 ),
@@ -161,7 +167,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group2,
                   onChanged: (T) {
                     setState(() {
-                      group2 = T;
+                      group2 = T.toString() as int;
                     });
                   },
                 ),
@@ -171,7 +177,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group2,
                   onChanged: (T) {
                     setState(() {
-                      group2 = T;
+                      group2 = T.toString() as int;
                     });
                   },
                 ),
@@ -221,7 +227,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T;
+                      group3 = T.toString() as int;
                     });
                   },
                 ),
@@ -231,7 +237,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T;
+                      group3 = T.toString() as int;
                     });
                   },
                 ),
@@ -241,7 +247,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T;
+                      group3 = T.toString() as int;
                     });
                   },
                 ),
@@ -284,7 +290,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group4,
                   onChanged: (T) {
                     setState(() {
-                      group4 = T;
+                      group4 = T.toString() as int;
                     });
                   },
                 ),
@@ -294,7 +300,7 @@ class QuestionnaireState extends State<Questionnaire> {
                   groupValue: group4,
                   onChanged: (T) {
                     setState(() {
-                      group4 = T;
+                      group4 = T.toString() as int;
                     });
                   },
                 ),
@@ -306,6 +312,7 @@ class QuestionnaireState extends State<Questionnaire> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  enterQuestionData('test', g1Vals[group1 - 1], g2Vals[group2 - 1], g3Vals[group3 - 1], g4Vals[group4 - 1]);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PhotoSubmission()),
