@@ -10,7 +10,7 @@ class RegisteredHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Skin Safety Scanner"),
+          title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
@@ -22,14 +22,14 @@ class RegisteredHomePage extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                "Welcome Back!",
+                'Welcome Back!',
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
-                    fontSize: 34),
+                    fontSize: 34
+                ),
               ),
             ),
-            Image.asset('images/registeredhomepage.jpg'),
+            Image.asset('assets/images/registered_homepage.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,
@@ -44,10 +44,13 @@ class RegisteredHomePage extends StatelessWidget {
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("Create new entry",
+                label: const Text(
+                    'Create New Entry',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18)),
+                        fontSize: 18
+                    )
+                ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
@@ -67,10 +70,13 @@ class RegisteredHomePage extends StatelessWidget {
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("View log history",
+                label: const Text(
+                    'View Log History',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18)),
+                        fontSize: 18
+                    )
+                ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),

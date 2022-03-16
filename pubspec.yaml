@@ -48,6 +48,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+  places_service: ^0.1.0
+
+  google_place: ^0.4.7
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -59,7 +63,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/
+    - assets/images/log_history.jpg
+    - assets/images/photo_submission.jpg
+    - assets/images/registered_homepage.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
