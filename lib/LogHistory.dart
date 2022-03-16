@@ -8,7 +8,7 @@ class LogHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Skin Safety Scanner"),
+          title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
@@ -20,14 +20,17 @@ class LogHistory extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                "Log History",
+                'Log History',
                 style: TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
-                    fontSize: 34),
+                    fontSize: 34
+                ),
               ),
             ),
-            Image.asset('images/loghistory.jpg'),
+            Image.asset(
+              'assets/images/log_history.jpg',
+              width: 300
+            ),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,
@@ -37,10 +40,13 @@ class LogHistory extends StatelessWidget {
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("View previous photos",
+                label: const Text(
+                    'View Previous Photos',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18)),
+                        fontSize: 18
+                    )
+                ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
@@ -55,10 +61,13 @@ class LogHistory extends StatelessWidget {
                 icon: const Icon(
                     Icons.add
                 ),
-                label: const Text("View past results",
+                label: const Text(
+                    'View Past Results',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18)),
+                        fontSize: 18
+                    )
+                ),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
