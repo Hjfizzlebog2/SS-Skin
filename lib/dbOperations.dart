@@ -1,8 +1,9 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/CreateAccount.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 Future createUser(
@@ -40,6 +41,19 @@ Future enterQuestionData(String userName, String age, String gender,
   };
 
   await docUser.set(json);
+}
+
+Future uploadImage(File imageFile, String filePathName) async {
+  final storeRef = FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/$filePathName');
+  await storeRef.putFile(imageFile);
+
+}
+
+Future getUserImages() async {
+  Image image;
+  final storeRef = FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
+  final url = storeRef.getDownloadURL();
+
 }
 
 Future<void> editProduct(bool _isFavourite, String id) async {

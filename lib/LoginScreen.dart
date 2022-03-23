@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/CreateAccount.dart';
-import 'package:ss_skin_project/ResetPassword.dart';
+import 'CreateAccount.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
-// class for the login screen
+//class for the log in screen
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => LogInScreenState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class LogInScreenState extends State<LogInScreen> {
+class _LogInScreenState extends State<LogInScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -20,7 +19,7 @@ class LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
+          title: const Text("Skin Safety Scanner"),
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
@@ -32,13 +31,19 @@ class LogInScreenState extends State<LogInScreen> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Log In',
+                  'Skin Safety Scanner',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 34
-                  ),
-                )
-            ),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 30),
+                )),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'Log in',
+                  style: TextStyle(fontSize: 20),
+                )),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
@@ -64,87 +69,41 @@ class LogInScreenState extends State<LogInScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ResetPassword()),
+                  MaterialPageRoute(builder: (context) => const ResetPassword()), // go to reset password
                 );
               },
-              child: const Text(
-                'Forgot Password?',
-                style: TextStyle(
-                    fontSize: 18
-                ),
-              ),
+              child: const Text('Forgot Password?',),
+            ),
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                  child: const Text('Login'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go to homepage
+                    );
+                  },
+                )
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  width: 160,
-                  height: 60,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
-                      );
-                    },
-                    icon: const Icon(
-                        Icons.add
-                    ),
-                    label: const Text(
-                        'Log In',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18
-                        )
-                    ),
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                    ),
-                  )
+                const Text('Dont not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateAccount()), // go to homepage
+                    );
+                  },
                 )
               ],
-            ),
-            const Text(
-                'or',
-                style: TextStyle(
-                    fontSize: 18
-                ),
-            ),
-            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(5),
-                  width: 160,
-                  height: 60,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CreateAccount()
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                          Icons.add
-                      ),
-                      label: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18
-                          )
-                      ),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                      ),
-                    )
-                )
-              ],
             ),
           ],
         ));

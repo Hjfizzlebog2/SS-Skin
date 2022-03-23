@@ -37,6 +37,7 @@ dependencies:
   image_picker:
   cloud_firestore: ^3.1.8
   firebase_auth:
+  firebase_storage:
   crypt:
 
 dev_dependencies:
