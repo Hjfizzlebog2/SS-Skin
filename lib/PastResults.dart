@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/PastResults.dart';
 
-// class for the log history screen
-class LogHistory extends StatelessWidget {
-  const LogHistory({Key? key}) : super(key: key);
+
+// class for the past results screen
+class PastResults extends StatefulWidget {
+  const PastResults({Key? key}) : super(key: key);
+
+  @override
+  _PastResultsState createState() => _PastResultsState();
+}
+
+class _PastResultsState extends State<PastResults> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,42 +20,37 @@ class LogHistory extends StatelessWidget {
           backgroundColor: Colors.redAccent,
         ),
         body: Column (
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(15),
               child: const Text(
-                'Log History',
+                '\n\nPast Results',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
             ),
-            Image.asset(
-              'assets/images/log_history.jpg',
-              width: 300
-            ),
             Container(
               padding: const EdgeInsets.all(15),
-              width: 270,
-              height: 90,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(
-                    Icons.add
-                ),
-                label: const Text(
-                    'View Previous Photos',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+              child: const Text(
+                'Date: 07/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 75.1%\n\n'
+                    'Date: 08/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 70.8%\n\n'
+                    'Date: 09/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 68.2%\n\n'
+                    'Date: 10/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 66.8%\n\n',
+                style: TextStyle(
+                    fontSize: 17
                 ),
               ),
             ),
@@ -59,16 +60,13 @@ class LogHistory extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PastResults()),
-                  );
+                  // go to graph screen
                 },
                 icon: const Icon(
                     Icons.add
                 ),
                 label: const Text(
-                    'View Past Results',
+                    'View Graph',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -78,9 +76,10 @@ class LogHistory extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
-            ),
+            )
           ],
         )
     );
   }
+
 }
