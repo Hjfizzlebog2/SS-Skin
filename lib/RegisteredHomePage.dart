@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
+  static User? user;
+
   const RegisteredHomePage({Key? key}) : super(key: key);
 
   @override

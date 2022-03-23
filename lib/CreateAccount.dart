@@ -60,8 +60,8 @@ class _CreateAccountState extends State<CreateAccount> {
                     maxLength: 20,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Username',
-                      hintText: 'Enter a Username',
+                      labelText: 'First Name',
+                      hintText: 'Enter your First Name',
                      // errorText: docExists ? true: 'Username Taken'
                     ),
                   ),
@@ -74,7 +74,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     maxLength: 20,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Full Name',
+                      labelText: 'Last Name',
                       hintText: 'Enter Your Last Name',
                     ),
                   ),
@@ -119,10 +119,10 @@ class _CreateAccountState extends State<CreateAccount> {
             height: 90,
             child: ElevatedButton.icon(
               onPressed: () {
-                final userName = controller.elementAt(0).text;
-                final name = controller.elementAt(1).text;
-                final email = controller.elementAt(2).text;
-                final pass = controller.elementAt(3).text;
+                final userName = controller.elementAt(0);
+                final name = controller.elementAt(1);
+                final email = controller.elementAt(2);
+                final pass = controller.elementAt(3);
 
                 createUser(userName, name, email, pass);
                 Navigator.push(context,
