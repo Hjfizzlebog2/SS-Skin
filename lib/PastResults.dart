@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/PreviousPhoto.dart';
 
 
 // class for the past results screen
@@ -27,56 +28,137 @@ class _PastResultsState extends State<PastResults> {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                '\n\nPast Results',
+                'Past Results',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 34
+                    fontSize: 18
                 ),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                'Date: 07/01/2021\n'
+                    'Date: 07/01/2021\n'
                     'Skin condition: Psoriasis\n'
-                    'Probability: 75.1%\n\n'
-                    'Date: 08/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 70.8%\n\n'
-                    'Date: 09/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 68.2%\n\n'
-                    'Date: 10/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 66.8%\n\n',
+                    'Probability: 75.1%',
                 style: TextStyle(
                     fontSize: 17
                 ),
               ),
             ),
             Container(
+                padding: const EdgeInsets.all(5),
+                width: 120,
+                height: 60,
+                child: TextButton(
+                  child: const Text(
+                      'View Photo',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                    );
+                  },
+                )
+            ),
+            Container(
               padding: const EdgeInsets.all(15),
-              width: 270,
-              height: 90,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  // go to graph screen
-                },
-                icon: const Icon(
-                    Icons.add
-                ),
-                label: const Text(
-                    'View Graph',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+              child: const Text(
+                    'Date: 08/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 70.8%',
+                style: TextStyle(
+                    fontSize: 17
                 ),
               ),
-            )
+            ),
+            Container(
+                padding: const EdgeInsets.all(5),
+                width: 120,
+                height: 60,
+                child: TextButton(
+                  child: const Text(
+                      'View Photo',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                    );
+                  },
+                )
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                    'Date: 09/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 68.2%',
+                style: TextStyle(
+                    fontSize: 17
+                ),
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.all(5),
+                width: 120,
+                height: 60,
+                child: TextButton(
+                  child: const Text(
+                      'View Photo',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                    );
+                  },
+                )
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                    'Date: 10/01/2021\n'
+                    'Skin condition: Psoriasis\n'
+                    'Probability: 66.8%',
+                style: TextStyle(
+                    fontSize: 17
+                ),
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.all(5),
+                width: 120,
+                height: 60,
+                child: TextButton(
+                  child: const Text(
+                      'View Photo',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                    );
+                  },
+                )
+            ),
           ],
         )
     );
