@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'CreateAccount.dart';
+import 'package:skin_safety_scanner/CreateAccount.dart';
+import 'package:skin_safety_scanner/ResetPassword.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
