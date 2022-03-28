@@ -38,6 +38,8 @@ dependencies:
   cloud_firestore: ^3.1.8
   firebase_auth:
   firebase_storage:
+  firebase_core:
+  email_validator:
   crypt:
 
 dev_dependencies:

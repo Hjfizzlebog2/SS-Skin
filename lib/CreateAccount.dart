@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
 // class for the registered home page screen
 class CreateAccount extends StatefulWidget {
-
   const CreateAccount({Key? key}) : super(key: key);
 
   @override
@@ -15,10 +15,15 @@ class CreateAccount extends StatefulWidget {
 class _CreateAccountState extends State<CreateAccount> {
   List<TextEditingController> controller = [TextEditingController(), TextEditingController(),
   TextEditingController(), TextEditingController()];
+  final formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Form(
+      key: formKey,
+     child:
+     Scaffold(
       appBar: AppBar(
         title: const Text('Skin Safety Scanner'),
         centerTitle: true,
@@ -62,7 +67,6 @@ class _CreateAccountState extends State<CreateAccount> {
                       border: OutlineInputBorder(),
                       labelText: 'First Name',
                       hintText: 'Enter your First Name',
-                     // errorText: docExists ? true: 'Username Taken'
                     ),
                   ),
                 ),
@@ -82,31 +86,40 @@ class _CreateAccountState extends State<CreateAccount> {
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: TextField(
+                  child: TextFormField(
                     controller: controller.elementAt(2),
                     maxLength: 25,
-                    //inputFormatters: [
-                    //  FilteringTextInputFormatter.allow(RegExp(r'^(.+)@(.+)$'))
-                    //  ],
+                    textInputAction: TextInputAction.next,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
                       hintText: 'Enter Your Email',
+                      //errorText: 'Enter a valid email',
                     ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (email) => email != null && !EmailValidator.validate(email)
+                      ? 'Enter a valid email'
+                      : null,
                   ),
                 ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: TextField(
+                  child: TextFormField(
                     controller: controller.elementAt(3),
+                    textInputAction: TextInputAction.next,
                     maxLength: 20,
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                       hintText: 'Enter a Password',
+                      //errorText: 'Enter min. 6 characters'
                     ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) => value != null && value.length < 6
+                        ? 'Enter min. 6 characters'
+                        : null,
                   ),
                 ),
                 const Divider(),
@@ -124,9 +137,11 @@ class _CreateAccountState extends State<CreateAccount> {
                 final email = controller.elementAt(2);
                 final pass = controller.elementAt(3);
 
-                createUser(userName, name, email, pass);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+                if(formKey.currentState!.validate()) {
+                  createUser(userName, name, email, pass, context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+                }
               },
               icon: const Icon(Icons.add),
               label: const Text(
@@ -143,6 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
         ],
       ),
+     ),
     );
   }
 }
