@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:skin_safety_scanner/CreateAccount.dart';
-import 'package:skin_safety_scanner/ResetPassword.dart';
+//import 'package:skin_safety_scanner/CreateAccount.dart'; //<- These two depend on the name of your project, I think
+//import 'package:skin_safety_scanner/ResetPassword.dart'; //
+import 'package:ss_skin_project/CreateAccount.dart';
+import 'package:ss_skin_project/ResetPassword.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
@@ -90,7 +92,7 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             Row(
               children: <Widget>[
-                const Text('Dont not have account?'),
+                const Text('Don\'t have an account?'),
                 TextButton(
                   child: const Text(
                     'Sign Up',
