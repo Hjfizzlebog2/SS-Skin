@@ -6,7 +6,7 @@ import 'ResetPassword.dart';
 
 // class for the login screen
 class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+  const LogInScreen({Key? key}) : super(key: key);`
 
   @override
   State<LogInScreen> createState() => LogInScreenState();
