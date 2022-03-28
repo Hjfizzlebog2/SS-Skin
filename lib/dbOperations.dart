@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/CreateAccount.dart';
-import 'package:ss_skin_project/LoginScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 Future signInUser(
