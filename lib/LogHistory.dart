@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PastResults.dart';
+import 'package:ss_skin_project/PreviousPhoto.dart';
 
 // class for the log history screen
 class LogHistory extends StatelessWidget {
@@ -37,7 +38,12 @@ class LogHistory extends StatelessWidget {
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                  );
+                },
                 icon: const Icon(
                     Icons.add
                 ),

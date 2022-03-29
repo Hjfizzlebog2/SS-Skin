@@ -21,7 +21,7 @@ class PreviousPhoto extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Previous Photo',
+                'Previous Photos',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
