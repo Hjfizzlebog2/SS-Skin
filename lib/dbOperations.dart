@@ -69,10 +69,10 @@ Future createUser(
   // }
 }
 
-Future enterQuestionData(String userName, String age, String gender,
+Future enterQuestionData(String age, String gender,
     String condition, bool genetic) async {
   final docUser =
-      FirebaseFirestore.instance.collection('UserData').doc(userName);
+      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.toString());
   final json = {
     'age': age,
     'gender': gender,
@@ -97,13 +97,3 @@ Future getUserImages() async {
   final url = storeRef.getDownloadURL();
 }
 
-Future<void> editProduct(bool _isFavourite, String id) async {
-  FirebaseFirestore.instance.collection('User');
-  //var fireBaseUser = FirebaseAuth.instance.currentUser;
-}
-
-Future<void> deleteProduct(DocumentSnapshot doc) async {
-  FirebaseFirestore.instance.collection('User');
-  //.document(doc.documentID)
-  //.delete();
-}
