@@ -1,6 +1,4 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/dbOperations.dart';
 import 'CreateAccount.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
@@ -14,9 +12,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class _LogInScreenState extends State<LogInScreen> {
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
-        body: Column(
+        body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -49,46 +46,33 @@ class _LogInScreenState extends State<LogInScreen> {
                 )),
             Container(
               padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                controller: emailController,
+              child: TextField(
+                controller: nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'User Name',
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? 'Enter a valid email'
-                        : null,
               ),
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: TextFormField(
+              child: TextField(
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => value != null && value.length < 6
-                    ? 'Enter min. 6 characters'
-                    : null,
               ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const ResetPassword()), // go to reset password
+                  MaterialPageRoute(builder: (context) => const ResetPassword()), // go to reset password
                 );
               },
-              child: const Text(
-                'Forgot Password?',
-              ),
+              child: const Text('Forgot Password?',),
             ),
             Container(
                 height: 50,
@@ -96,11 +80,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      signInUser(emailController, passwordController, context);
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go to homepage
+                    );
                   },
-                )),
+                )
+            ),
             Row(
               children: <Widget>[
                 const Text('Dont not have account?'),
@@ -112,9 +98,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              CreateAccount()), // go to homepage
+                      MaterialPageRoute(builder: (context) => CreateAccount()), // go to homepage
                     );
                   },
                 )
