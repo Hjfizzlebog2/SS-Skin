@@ -4,6 +4,8 @@ import 'package:ss_skin_project/CreateAccount.dart';
 import 'package:ss_skin_project/LoginScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
+import 'dbOperations.dart';
+
 // class for the reset password screen
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   TextEditingController emailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  bool emailNotFound = false;
 
   // TODO: Figure out how to make a proper back button
   @override
@@ -24,7 +28,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
-        body: Column (
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -33,15 +37,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                 padding: const EdgeInsets.all(10),
                 child: const Text(
                   'Reset Password',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 34),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
                 )),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: TextField(
+              child: TextFormField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) => value != null && emailNotFound == true
+                    ? 'Email not Found'
+                    : null,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
@@ -54,16 +60,21 @@ class _ResetPasswordState extends State<ResetPassword> {
                 child: ElevatedButton(
                   child: const Text('Send Reset Password Email'),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LogInScreen()), // go to homepage
-                    );
+                    resetPassword(emailController).then((value) {
+                      emailNotFound = value;
+                    });
+                    formKey.currentState?.validate();
+
+                    if (!emailNotFound) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LogInScreen()),
+                      );
+                    }
                   },
-                )
-            ),
+                )),
           ],
         ));
   }
-
-
 }

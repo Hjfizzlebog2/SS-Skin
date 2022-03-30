@@ -97,3 +97,13 @@ Future getUserImages() async {
   final url = storeRef.getDownloadURL();
 }
 
+Future<bool> resetPassword(TextEditingController emailController) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+    return false;
+  } catch(e) {
+    print(e);
+    return true;
+  }
+}
+
