@@ -52,6 +52,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: TextField(
+                    //TO DELETE
                     onChanged: (text) async {
                       try {
                         var collectionRef = FirebaseFirestore.instance.collection('User');

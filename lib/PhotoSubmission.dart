@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'ReviewPhotoScreen.dart';
+
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
 
@@ -75,6 +77,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 onPressed: () {
                   _getFromGallery();
                   // pick from device camera roll function
+                 // Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path)));
                 },
                 icon: const Icon(
                     Icons.add
@@ -107,6 +110,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)));
       });
     }
   }

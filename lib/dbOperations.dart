@@ -83,10 +83,16 @@ Future enterQuestionData(String userName, String age, String gender,
 }
 
 Future uploadImage(File imageFile, String filePathName) async {
-  final storeRef = FirebaseStorage.instance
-      .ref()
-      .child('$RegisteredHomePage.user/$filePathName');
-  await storeRef.putFile(imageFile);
+
+  try {
+    final storeRef = FirebaseStorage.instance
+        .ref()
+        .child('$RegisteredHomePage.user/$filePathName');
+    await storeRef.putFile(imageFile);
+  } catch(e) {
+    print(e);
+  }
+
 }
 
 Future getUserImages() async {

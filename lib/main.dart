@@ -11,6 +11,7 @@ void main() async {
       messagingSenderId: "121689515063",
       projectId: "skin-safety-scanner",
       appId: '1:121689515063:android:3f3fb5bee8296b028e8bb2',
+      storageBucket: 'gs://skin-safety-scanner'
     ),
   );
   runApp(const MyApp());
