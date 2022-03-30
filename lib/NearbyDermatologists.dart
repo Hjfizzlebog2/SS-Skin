@@ -90,6 +90,17 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                               )
                           );
                         }
+                      itemCount: snapshot.data!.results.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                            child: Text(
+                              snapshot.data!.results[index]['name'] + '\n\n'
+                                + snapshot.data!.results[index]['formatted_address'],
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25
+                              )
+                            ));
+                      }
                     );
                   } else if (snapshot.hasError) {
                     return Text('${snapshot.error}');
@@ -99,6 +110,7 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                 })
         )
     );
+                })));
   }
 }
 
