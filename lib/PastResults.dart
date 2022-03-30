@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 // class for the past results screen
@@ -11,6 +13,7 @@ class PastResults extends StatefulWidget {
 }
 
 class _PastResultsState extends State<PastResults> {
+  final firestoreInstance = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -31,121 +34,34 @@ class _PastResultsState extends State<PastResults> {
                 'Past Results',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18
+                    fontSize: 30
                 ),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15),
-              child: const Text(
-                    'Date: 07/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 75.1%',
-                style: TextStyle(
-                    fontSize: 17
-                ),
-              ),
-            ),
-            Container(
-                padding: const EdgeInsets.all(5),
-                width: 120,
-                height: 60,
-                child: TextButton(
-                  child: const Text(
-                      'View Photo',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                      )
-                  ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
-                    );
-                  },
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection("results").snapshots(),
+                        builder: (context, snapshot) {
+                          if(!snapshot.hasData){
+                            return const LinearProgressIndicator();
+                          } else {
+                            return _buildList(snapshot.data as QuerySnapshot);
+                          }
+                        }
+                    )
+                  ],
                 )
             ),
             Container(
-              padding: const EdgeInsets.all(15),
-              child: const Text(
-                    'Date: 08/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 70.8%',
-                style: TextStyle(
-                    fontSize: 17
-                ),
-              ),
-            ),
-            Container(
                 padding: const EdgeInsets.all(5),
-                width: 120,
-                height: 60,
+                width: 180,
+                height: 70,
                 child: TextButton(
                   child: const Text(
-                      'View Photo',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                      )
-                  ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
-                    );
-                  },
-                )
-            ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: const Text(
-                    'Date: 09/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 68.2%',
-                style: TextStyle(
-                    fontSize: 17
-                ),
-              ),
-            ),
-            Container(
-                padding: const EdgeInsets.all(5),
-                width: 120,
-                height: 60,
-                child: TextButton(
-                  child: const Text(
-                      'View Photo',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                      )
-                  ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PreviousPhoto()),
-                    );
-                  },
-                )
-            ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: const Text(
-                    'Date: 10/01/2021\n'
-                    'Skin condition: Psoriasis\n'
-                    'Probability: 66.8%',
-                style: TextStyle(
-                    fontSize: 17
-                ),
-              ),
-            ),
-            Container(
-                padding: const EdgeInsets.all(5),
-                width: 120,
-                height: 60,
-                child: TextButton(
-                  child: const Text(
-                      'View Photo',
+                      'View Photos',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18
@@ -161,6 +77,22 @@ class _PastResultsState extends State<PastResults> {
             ),
           ],
         )
+    );
+  }
+
+  // function that returns a list view
+  Widget _buildList(QuerySnapshot snapshot) {
+    return ListView.builder(
+        itemCount: snapshot.docs.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          final doc = snapshot.docs[index];
+          return ListTile(
+              title: Text("Date: " + doc["Date"] + "\n\n"
+                  + "Condition: " + doc["Condition"] + "\n\n" +
+                  "Probability: " + doc["Probability"] + "\n")
+          );
+        }
     );
   }
 

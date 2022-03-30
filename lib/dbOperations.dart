@@ -72,7 +72,7 @@ Future createUser(
 Future enterQuestionData(String age, String gender,
     String condition, bool genetic) async {
   final docUser =
-      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.toString());
+      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
   final json = {
     'age': age,
     'gender': gender,
