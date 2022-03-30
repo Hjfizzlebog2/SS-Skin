@@ -18,7 +18,7 @@ class NextStepsMelanoma extends StatelessWidget {
             children: <Widget>[
               Container(
                   alignment: Alignment.topCenter,
-                  padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
                   child: const Text(
                       'Melanoma',
                       style: TextStyle(
@@ -41,7 +41,7 @@ class NextStepsMelanoma extends StatelessWidget {
               ),
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
+                  padding: const EdgeInsets.fromLTRB(35, 15, 35, 5),
                   child: const Text(
                     'See a doctor if you:',
                     style: TextStyle(
@@ -64,7 +64,7 @@ class NextStepsMelanoma extends StatelessWidget {
                 ),
               ),
               Container(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: ElevatedButton.icon(
                     onPressed: () {

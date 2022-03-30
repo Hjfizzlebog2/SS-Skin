@@ -1,23 +1,26 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/CreateAccount.dart';
+import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
-Future signInUser(TextEditingController email, TextEditingController password, BuildContext context) async {
+Future signInUser(
+
+    TextEditingController email, TextEditingController password, BuildContext context) async {
   try {
-    RegisteredHomePage.user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+
+    RegisteredHomePage.user = (await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
         email: email.text, password: password.text));
 
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const RegisteredHomePage())
-    );
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => RegisteredHomePage()));
   } catch (e) {
-    if (kDebugMode) {
-      print(e);
-    }
+    print(e);
   }
 }
 
@@ -26,18 +29,18 @@ Future createUser(
     TextEditingController lName,
     TextEditingController email,
     TextEditingController password,
-    BuildContext context
-    ) async {
+    BuildContext context) async {
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   //try {
-  firebaseAuth.createUserWithEmailAndPassword(
-      email: email.text,
-      password: password.text
-  ).then((result) {
-    final docUser = FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
-    RegisteredHomePage.user = result.user as UserCredential;
+  firebaseAuth
+      .createUserWithEmailAndPassword(
+      email: email.text, password: password.text)
+      .then((result) {
+    final docUser =
+    FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
+    RegisteredHomePage.user = result;
     final json = {
       'firstName': fName.text,
       'lastName': lName.text,
@@ -66,8 +69,10 @@ Future createUser(
   // }
 }
 
-Future enterQuestionData(String userName, String age, String gender, String condition, bool genetic) async {
-  final docUser = FirebaseFirestore.instance.collection('UserData').doc(userName);
+Future enterQuestionData(String age, String gender,
+    String condition, bool genetic) async {
+  final docUser =
+  FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
   final json = {
     'age': age,
     'gender': gender,
@@ -79,23 +84,25 @@ Future enterQuestionData(String userName, String age, String gender, String cond
 }
 
 Future uploadImage(File imageFile, String filePathName) async {
-  final storeRef = FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/$filePathName');
+  final storeRef = FirebaseStorage.instance
+      .ref()
+      .child('$RegisteredHomePage.user/$filePathName');
   await storeRef.putFile(imageFile);
 }
 
 Future getUserImages() async {
   Image image;
-  final storeRef = FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
+  final storeRef =
+  FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
   final url = storeRef.getDownloadURL();
 }
 
-Future<void> editProduct(bool _isFavourite, String id) async {
-  FirebaseFirestore.instance.collection('User');
-  //var fireBaseUser = FirebaseAuth.instance.currentUser;
-}
-
-Future<void> deleteProduct(DocumentSnapshot doc) async {
-  FirebaseFirestore.instance.collection('User');
-  //.document(doc.documentID)
-  //.delete();
+Future<bool> resetPassword(TextEditingController emailController) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+    return false;
+  } catch(e) {
+    print(e);
+    return true;
+  }
 }

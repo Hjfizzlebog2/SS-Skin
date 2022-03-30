@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/GeneratedReport.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
@@ -41,7 +42,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
                   );
                 },
                 icon: const Icon(

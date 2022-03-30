@@ -66,17 +66,23 @@ class QuestionnaireState extends State<Questionnaire> {
                 SizedBox(width: 28),
                 Text(
                     '30-49',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
                 SizedBox(width: 28),
                 Text(
                     '50-69',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
                 SizedBox(width: 28),
                 Text(
                     '70+',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
               ],
             ),
@@ -193,17 +199,23 @@ class QuestionnaireState extends State<Questionnaire> {
                 SizedBox(width: 20),
                 Text(
                     'Mole',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
                 SizedBox(width: 31),
                 Text(
                     'Rash',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
                 SizedBox(width: 31),
                 Text(
                     'Burn',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
               ],
             ),
@@ -257,12 +269,16 @@ class QuestionnaireState extends State<Questionnaire> {
                 SizedBox(width: 22),
                 Text(
                     'Yes',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
                 SizedBox(width: 47),
                 Text(
                     'No',
-                    style: TextStyle(fontSize: 15)
+                    style: TextStyle(
+                        fontSize: 15
+                    )
                 ),
               ],
             ),
@@ -296,19 +312,15 @@ class QuestionnaireState extends State<Questionnaire> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  enterQuestionData(
-                      'test',
-                      g1Vals[group1 - 1],
-                      g2Vals[group2 - 1],
-                      g3Vals[group3 - 1],
-                      g4Vals[group4 - 1]
-                  );
+                  enterQuestionData(g1Vals[group1 - 1], g2Vals[group2 - 1], g3Vals[group3 - 1], g4Vals[group4 - 1]);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PhotoSubmission()),
                   );
                 },
-                icon: const Icon(Icons.add),
+                icon: const Icon(
+                    Icons.add
+                ),
                 label: const Text(
                     'Continue',
                     style: TextStyle(

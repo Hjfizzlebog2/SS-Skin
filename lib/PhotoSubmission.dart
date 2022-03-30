@@ -1,11 +1,6 @@
 import 'dart:io';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:googleapis/ml/v1.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
-import 'package:googleapis_auth/googleapis_auth.dart' as auth show AuthClient;
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -44,7 +39,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Let\'s take a photo!',
+                'Lets Take a Photo!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
@@ -75,7 +70,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.blueGrey)
+                ),
               ),
             ),
             Container(
@@ -98,7 +96,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                     )
                 ),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.blueGrey)
                 ),
               ),
             ),
@@ -127,9 +126,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
+    PickedFile? pickedFile =  ImagePicker().getImage(
       source: ImageSource.camera,
-    );
+    ) as PickedFile?;
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);

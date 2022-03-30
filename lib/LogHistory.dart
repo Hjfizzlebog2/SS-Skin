@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PastResults.dart';
+import 'package:ss_skin_project/PreviousPhoto.dart';
 
 // class for the log history screen
 class LogHistory extends StatelessWidget {
@@ -37,8 +38,15 @@ class LogHistory extends StatelessWidget {
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PreviousPhoto()),
+                  );
+                },
+                icon: const Icon(
+                    Icons.add
+                ),
                 label: const Text(
                     'View Previous Photos',
                     style: TextStyle(
@@ -46,7 +54,9 @@ class LogHistory extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+                ),
               ),
             ),
             Container(
@@ -55,7 +65,10 @@ class LogHistory extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PastResults()),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PastResults()),
+                  );
                 },
                 icon: const Icon(
                     Icons.add
@@ -67,7 +80,9 @@ class LogHistory extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
+                ),
               ),
             ),
           ],
