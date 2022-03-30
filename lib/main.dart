@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/LoginScreen.dart';
+import 'package:ss_skin_project/LogInScreen.dart';
 
 // main class, runs app
 void main() async {
