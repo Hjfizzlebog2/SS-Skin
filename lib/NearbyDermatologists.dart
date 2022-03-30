@@ -87,7 +87,8 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 25
                                   )
-                              ));
+                              )
+                          );
                         }
                     );
                   } else if (snapshot.hasError) {
@@ -95,7 +96,9 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                   }
 
                   return const CircularProgressIndicator();
-                })));
+                })
+        )
+    );
   }
 }
 

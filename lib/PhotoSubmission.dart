@@ -44,7 +44,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Lets Take a Photo!',
+                'Let\'s take a photo!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
@@ -75,10 +75,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
             Container(
@@ -101,8 +98,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                     )
                 ),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.blueGrey)
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             ),

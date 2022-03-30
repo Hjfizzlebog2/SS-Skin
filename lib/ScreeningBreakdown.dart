@@ -37,9 +37,7 @@ class ScreeningBreakdown extends StatelessWidget {
                     'DISCLAIMER:\n\n'
                     '• Please note that this is NOT an official diagnosis\n\n'
                     '• If necessary, please seek help from a medical expert\n',
-                style: TextStyle(
-                    fontSize: 17
-                ),
+                style: TextStyle(fontSize: 17),
               ),
             ),
             Container(
@@ -53,9 +51,7 @@ class ScreeningBreakdown extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Questionnaire()),
                   );
                 },
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.add),
                 label: const Text(
                     'Continue',
                     style: TextStyle(
@@ -63,9 +59,7 @@ class ScreeningBreakdown extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             )
           ],

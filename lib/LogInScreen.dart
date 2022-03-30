@@ -32,19 +32,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Skin Safety Scanner',
+                  'Skin Safety Scanner\n',
                   style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                )),
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Log in',
-                  style: TextStyle(fontSize: 20),
-                )),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34
+                  ),
+                )
+            ),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
@@ -73,13 +67,19 @@ class _LogInScreenState extends State<LogInScreen> {
                   MaterialPageRoute(builder: (context) => const ResetPassword()), // go to reset password
                 );
               },
-              child: const Text('Forgot Password?',),
+              child: const Text(
+                'Forgot Password?',
+                style: TextStyle(fontSize: 18),
+              ),
             ),
             Container(
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text(
+                    'Log in',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   onPressed: () {
                     signInUser(emailController, passwordController, context);
                   },
@@ -87,7 +87,10 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             Row(
               children: <Widget>[
-                const Text('Dont not have account?'),
+                const Text(
+                  'Don\'t have an account?',
+                  style: TextStyle(fontSize: 16),
+                ),
                 TextButton(
                   child: const Text(
                     'Sign Up',
@@ -96,7 +99,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CreateAccount()), // go to homepage
+                      MaterialPageRoute(builder: (context) => const CreateAccount()), // go to homepage
                     );
                   },
                 )
@@ -104,6 +107,7 @@ class _LogInScreenState extends State<LogInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
-        ));
+        )
+    );
   }
 }

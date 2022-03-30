@@ -37,7 +37,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 34),
-                )),
+                )
+            ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextField(
@@ -63,8 +64,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 )
             ),
           ],
-        ));
+        )
+    );
   }
-
-
 }

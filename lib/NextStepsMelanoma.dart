@@ -19,9 +19,14 @@ class NextStepsMelanoma extends StatelessWidget {
               Container(
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-                  child: const Text('Melanoma',
+                  child: const Text(
+                      'Melanoma',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 34))),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 34
+                      )
+                  )
+              ),
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(35, 25, 35, 15),
@@ -30,8 +35,10 @@ class NextStepsMelanoma extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        decoration: TextDecoration.underline),
-                  )),
+                        decoration: TextDecoration.underline
+                    ),
+                  )
+              ),
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
@@ -39,8 +46,10 @@ class NextStepsMelanoma extends StatelessWidget {
                     'See a doctor if you:',
                     style: TextStyle(
                         fontSize: 18,
-                        decoration: TextDecoration.underline),
-                  )),
+                        decoration: TextDecoration.underline
+                    ),
+                  )
+              ),
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
@@ -51,7 +60,8 @@ class NextStepsMelanoma extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
-                    )),
+                    )
+                ),
               ),
               Container(
                   alignment: Alignment.centerRight,
@@ -60,15 +70,16 @@ class NextStepsMelanoma extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const NearbyDermatologists()),
+                        MaterialPageRoute(builder: (context) => const NearbyDermatologists()),
                       );
                     },
-                    label: const Text('See Nearby Dermatologists',
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    label: const Text(
+                        'See Nearby Dermatologists',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                    ),
                     icon: const Icon(Icons.navigate_next),
-                  ))
+                  )
+              )
             ]
         )
     );

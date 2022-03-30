@@ -31,7 +31,7 @@ class _PastResultsState extends State<PastResults> {
                 'Past Results',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18
+                    fontSize: 34
                 ),
               ),
             ),
@@ -49,7 +49,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 120,
-                height: 60,
+                height: 50,
                 child: TextButton(
                   child: const Text(
                       'View Photo',
@@ -80,7 +80,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 120,
-                height: 60,
+                height: 50,
                 child: TextButton(
                   child: const Text(
                       'View Photo',
@@ -111,7 +111,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 120,
-                height: 60,
+                height: 50,
                 child: TextButton(
                   child: const Text(
                       'View Photo',
@@ -142,7 +142,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 120,
-                height: 60,
+                height: 50,
                 child: TextButton(
                   child: const Text(
                       'View Photo',
@@ -163,5 +163,4 @@ class _PastResultsState extends State<PastResults> {
         )
     );
   }
-
 }

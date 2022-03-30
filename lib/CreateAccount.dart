@@ -137,7 +137,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   final email = controller.elementAt(2);
                   final pass = controller.elementAt(3);
 
-                  if(formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     createUser(userName, name, email, pass, context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => RegisteredHomePage()));
@@ -150,10 +150,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         fontWeight: FontWeight.bold, fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
           ],

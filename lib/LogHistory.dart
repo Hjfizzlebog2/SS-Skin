@@ -38,9 +38,7 @@ class LogHistory extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.add),
                 label: const Text(
                     'View Previous Photos',
                     style: TextStyle(
@@ -48,9 +46,7 @@ class LogHistory extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
             Container(
@@ -59,10 +55,7 @@ class LogHistory extends StatelessWidget {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PastResults()),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PastResults()),);
                 },
                 icon: const Icon(
                     Icons.add
@@ -74,9 +67,7 @@ class LogHistory extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
           ],
