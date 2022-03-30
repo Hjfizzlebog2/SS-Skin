@@ -32,14 +32,14 @@ class ScreeningBreakdown extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: const Text(
                 '• This screening includes a brief questionnaire\n\n'
-                '• You will then submit a photo for analyzation\n\n'
-                '• Your image will be compared to an extensive database to generate your report\n\n'
-                'DISCLAIMER:\n\n'
-                '• Please note that this is NOT an official diagnosis\n\n'
-                '• If necessary, please seek help from a medical expert\n',
-                  style: TextStyle(
-                      fontSize: 17
-                  ),
+                    '• You will then submit a photo for analyzation\n\n'
+                    '• Your image will be compared to an extensive database to generate your report\n\n'
+                    'DISCLAIMER:\n\n'
+                    '• Please note that this is NOT an official diagnosis\n\n'
+                    '• If necessary, please seek help from a medical expert\n',
+                style: TextStyle(
+                    fontSize: 17
+                ),
               ),
             ),
             Container(

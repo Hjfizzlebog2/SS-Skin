@@ -29,8 +29,8 @@ class LogHistory extends StatelessWidget {
               ),
             ),
             Image.asset(
-              'assets/images/log_history.jpg',
-              width: 300
+                'assets/images/log_history.jpg',
+                width: 300
             ),
             Container(
               padding: const EdgeInsets.all(15),

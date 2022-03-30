@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skin_safety_scanner/CreateAccount.dart';
-import 'package:skin_safety_scanner/ResetPassword.dart';
+import 'package:ss_skin_project/dbOperations.dart';
+import 'CreateAccount.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
@@ -13,7 +13,7 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -48,10 +48,10 @@ class _LogInScreenState extends State<LogInScreen> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                controller: nameController,
+                controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Email',
                 ),
               ),
             ),
@@ -81,10 +81,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go to homepage
-                    );
+                    signInUser(emailController, passwordController, context);
                   },
                 )
             ),

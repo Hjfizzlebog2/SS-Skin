@@ -38,7 +38,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                    'Date: 07/01/2021\n'
+                'Date: 07/01/2021\n'
                     'Skin condition: Psoriasis\n'
                     'Probability: 75.1%',
                 style: TextStyle(
@@ -69,7 +69,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                    'Date: 08/01/2021\n'
+                'Date: 08/01/2021\n'
                     'Skin condition: Psoriasis\n'
                     'Probability: 70.8%',
                 style: TextStyle(
@@ -100,7 +100,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                    'Date: 09/01/2021\n'
+                'Date: 09/01/2021\n'
                     'Skin condition: Psoriasis\n'
                     'Probability: 68.2%',
                 style: TextStyle(
@@ -131,7 +131,7 @@ class _PastResultsState extends State<PastResults> {
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                    'Date: 10/01/2021\n'
+                'Date: 10/01/2021\n'
                     'Skin condition: Psoriasis\n'
                     'Probability: 66.8%',
                 style: TextStyle(
