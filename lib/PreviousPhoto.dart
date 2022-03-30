@@ -33,24 +33,24 @@ class PreviousPhoto extends StatelessWidget {
                 width: 300
             ),
             Container(
-              padding: const EdgeInsets.all(15),
-              width: 270,
-              height: 90,
-              child: TextButton(
-                child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PastResults()),
-                  );
-                },
-              )
+                padding: const EdgeInsets.all(15),
+                width: 270,
+                height: 90,
+                child: TextButton(
+                  child: const Text(
+                      'Cancel',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PastResults()),
+                    );
+                  },
+                )
             ),
           ],
         )

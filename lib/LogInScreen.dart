@@ -1,8 +1,7 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-//import 'package:skin_safety_scanner/CreateAccount.dart'; //<- These two depend on the name of your project, I think
-//import 'package:skin_safety_scanner/ResetPassword.dart'; //
-import 'package:ss_skin_project/CreateAccount.dart';
-import 'package:ss_skin_project/ResetPassword.dart';
+import 'package:ss_skin_project/dbOperations.dart';
+import 'CreateAccount.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
@@ -15,8 +14,9 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _LogInScreenState extends State<LogInScreen> {
           centerTitle: true,
           backgroundColor: Colors.redAccent,
         ),
-        body: Column (
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -49,33 +49,46 @@ class _LogInScreenState extends State<LogInScreen> {
                 )),
             Container(
               padding: const EdgeInsets.all(10),
-              child: TextField(
-                controller: nameController,
+              child: TextFormField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'User Name',
                 ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (email) =>
+                email != null && !EmailValidator.validate(email)
+                    ? 'Enter a valid email'
+                    : null,
               ),
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: TextField(
+              child: TextFormField(
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) => value != null && value.length < 6
+                    ? 'Enter min. 6 characters'
+                    : null,
               ),
             ),
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ResetPassword()), // go to reset password
+                  MaterialPageRoute(
+                      builder: (context) =>
+                      const ResetPassword()), // go to reset password
                 );
               },
-              child: const Text('Forgot Password?',),
+              child: const Text(
+                'Forgot Password?',
+              ),
             ),
             Container(
                 height: 50,
@@ -83,16 +96,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RegisteredHomePage()), // go to homepage
-                    );
+                   // if (formKey.currentState!.validate()) {
+                      signInUser(emailController, passwordController, context);
+                   // }
                   },
-                )
-            ),
+                )),
             Row(
               children: <Widget>[
-                const Text('Don\'t have an account?'),
+                const Text('Dont not have account?'),
                 TextButton(
                   child: const Text(
                     'Sign Up',
@@ -101,7 +112,9 @@ class _LogInScreenState extends State<LogInScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CreateAccount()), // go to homepage
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              CreateAccount()), // go to homepage
                     );
                   },
                 )

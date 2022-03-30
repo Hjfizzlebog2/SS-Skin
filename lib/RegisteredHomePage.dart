@@ -5,7 +5,7 @@ import 'LogHistory.dart';
 
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
-  static User? user;
+  static late UserCredential user;
 
   const RegisteredHomePage({Key? key}) : super(key: key);
 

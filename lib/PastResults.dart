@@ -39,21 +39,21 @@ class _PastResultsState extends State<PastResults> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                children: [
-                  StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance.collection("results").snapshots(),
-                      builder: (context, snapshot) {
-                        if(!snapshot.hasData){
-                          return const LinearProgressIndicator();
-                        } else {
-                          return _buildList(snapshot.data as QuerySnapshot);
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection("results").snapshots(),
+                        builder: (context, snapshot) {
+                          if(!snapshot.hasData){
+                            return const LinearProgressIndicator();
+                          } else {
+                            return _buildList(snapshot.data as QuerySnapshot);
+                          }
                         }
-                      }
-                  )
-                ],
-              )
+                    )
+                  ],
+                )
             ),
             Container(
                 padding: const EdgeInsets.all(5),
@@ -83,16 +83,16 @@ class _PastResultsState extends State<PastResults> {
   // function that returns a list view
   Widget _buildList(QuerySnapshot snapshot) {
     return ListView.builder(
-      itemCount: snapshot.docs.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        final doc = snapshot.docs[index];
-        return ListTile(
-          title: Text("Date: " + doc["Date"] + "\n\n"
-          + "Condition: " + doc["Condition"] + "\n\n" +
-          "Probability: " + doc["Probability"] + "\n")
-        );
-      }
+        itemCount: snapshot.docs.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          final doc = snapshot.docs[index];
+          return ListTile(
+              title: Text("Date: " + doc["Date"] + "\n\n"
+                  + "Condition: " + doc["Condition"] + "\n\n" +
+                  "Probability: " + doc["Probability"] + "\n")
+          );
+        }
     );
   }
 

@@ -1,37 +1,78 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/CreateAccount.dart';
+import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
-Future createUser(
-    TextEditingController fName, TextEditingController lName, TextEditingController email, TextEditingController password) async {
-  await Firebase.initializeApp();
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+Future signInUser(
 
-  firebaseAuth
-      .createUserWithEmailAndPassword(email: email.text, password: password.text)
-      .then((result) {
-    final docUser = FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
-    RegisteredHomePage.user = result.user;
-    final json = {
-      'firstName': fName.text,
-      'lastName': lName.text,
-      'email': email.text,
-    };
+    TextEditingController email, TextEditingController password, BuildContext context) async {
+  try {
 
-    docUser.set(json);
-  });
+    RegisteredHomePage.user = (await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+        email: email.text, password: password.text));
 
-  //ADD ERROR MESSAGE
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+  } catch (e) {
+   print(e);
+  }
 }
 
-Future enterQuestionData(String userName, String age, String gender,
+Future createUser(
+    TextEditingController fName,
+    TextEditingController lName,
+    TextEditingController email,
+    TextEditingController password,
+    BuildContext context) async {
+
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  //try {
+    firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: email.text, password: password.text)
+        .then((result) {
+      final docUser =
+          FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
+      RegisteredHomePage.user = result.user as UserCredential;
+      final json = {
+        'firstName': fName.text,
+        'lastName': lName.text,
+        'email': email.text,
+      };
+      docUser.set(json);
+    });
+  // } on FirebaseAuthException catch (e) {
+  //   print(e);
+  //   AlertDialog(
+  //     title:
+  //         Text('Error Creating Account'), // To display the title it is optional
+  //     content: Text(e.toString()), // Message which will be pop up on the screen
+  //     // Action widget which will provide the user to acknowledge the choice
+  //     actions: [
+  //       FlatButton(
+  //         textColor: Colors.black,
+  //         onPressed: () {
+  //           Navigator.push(context,
+  //               MaterialPageRoute(builder: (context) => CreateAccount()));
+  //         },
+  //         child: Text('Okay'),
+  //       ),
+  //     ],
+  //   );
+  // }
+}
+
+Future enterQuestionData(String age, String gender,
     String condition, bool genetic) async {
-  await Firebase.initializeApp();
   final docUser =
-      FirebaseFirestore.instance.collection('UserData').doc(userName);
+      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
   final json = {
     'age': age,
     'gender': gender,
@@ -42,13 +83,27 @@ Future enterQuestionData(String userName, String age, String gender,
   await docUser.set(json);
 }
 
-Future<void> editProduct(bool _isFavourite, String id) async {
-  FirebaseFirestore.instance.collection('User');
-  //var fireBaseUser = FirebaseAuth.instance.currentUser;
+Future uploadImage(File imageFile, String filePathName) async {
+  final storeRef = FirebaseStorage.instance
+      .ref()
+      .child('$RegisteredHomePage.user/$filePathName');
+  await storeRef.putFile(imageFile);
 }
 
-Future<void> deleteProduct(DocumentSnapshot doc) async {
-  FirebaseFirestore.instance.collection('User');
-  //.document(doc.documentID)
-  //.delete();
+Future getUserImages() async {
+  Image image;
+  final storeRef =
+      FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
+  final url = storeRef.getDownloadURL();
 }
+
+Future<bool> resetPassword(TextEditingController emailController) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+    return false;
+  } catch(e) {
+    print(e);
+    return true;
+  }
+}
+
