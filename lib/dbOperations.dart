@@ -40,7 +40,7 @@ Future createUser(
         .then((result) {
       final docUser =
           FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
-      RegisteredHomePage.user = result.user as UserCredential;
+      RegisteredHomePage.user = result;
       final json = {
         'firstName': fName.text,
         'lastName': lName.text,
