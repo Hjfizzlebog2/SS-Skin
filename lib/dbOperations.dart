@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/CreateAccount.dart';
+import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 Future signInUser(
@@ -39,7 +40,7 @@ Future createUser(
         .then((result) {
       final docUser =
           FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
-      RegisteredHomePage.user = result.user as UserCredential;
+      RegisteredHomePage.user = result;
       final json = {
         'firstName': fName.text,
         'lastName': lName.text,
@@ -68,10 +69,10 @@ Future createUser(
   // }
 }
 
-Future enterQuestionData(String userName, String age, String gender,
+Future enterQuestionData(String age, String gender,
     String condition, bool genetic) async {
   final docUser =
-      FirebaseFirestore.instance.collection('UserData').doc(userName);
+      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
   final json = {
     'age': age,
     'gender': gender,
@@ -96,13 +97,13 @@ Future getUserImages() async {
   final url = storeRef.getDownloadURL();
 }
 
-Future<void> editProduct(bool _isFavourite, String id) async {
-  FirebaseFirestore.instance.collection('User');
-  //var fireBaseUser = FirebaseAuth.instance.currentUser;
+Future<bool> resetPassword(TextEditingController emailController) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+    return false;
+  } catch(e) {
+    print(e);
+    return true;
+  }
 }
 
-Future<void> deleteProduct(DocumentSnapshot doc) async {
-  FirebaseFirestore.instance.collection('User');
-  //.document(doc.documentID)
-  //.delete();
-}

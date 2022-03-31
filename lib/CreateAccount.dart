@@ -52,6 +52,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: TextField(
+                    //TO DELETE
                     onChanged: (text) async {
                       try {
                         var collectionRef = FirebaseFirestore.instance.collection('User');
@@ -137,11 +138,11 @@ class _CreateAccountState extends State<CreateAccount> {
                 final email = controller.elementAt(2);
                 final pass = controller.elementAt(3);
 
-                if(formKey.currentState!.validate()) {
+               // if(formKey.currentState!.validate()) {
                   createUser(userName, name, email, pass, context);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => RegisteredHomePage()));
-                }
+               // }
               },
               icon: const Icon(Icons.add),
               label: const Text(

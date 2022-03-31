@@ -5,7 +5,8 @@ import 'LogInScreen.dart';
 
 // main class, runs app
 void main() async {
-  await Firebase.initializeApp(
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(name: "Skin Safety Scanner",
     options: const FirebaseOptions(
       apiKey: "AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y",
       messagingSenderId: "121689515063",

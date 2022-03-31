@@ -113,9 +113,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
+    PickedFile? pickedFile =  ImagePicker().getImage(
       source: ImageSource.camera,
-    );
+    ) as PickedFile?;
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
