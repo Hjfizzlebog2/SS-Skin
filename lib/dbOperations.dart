@@ -48,6 +48,7 @@ Future createUser(
     };
     docUser.set(json);
   });
+  
   // } on FirebaseAuthException catch (e) {
   //   print(e);
   //   AlertDialog(
