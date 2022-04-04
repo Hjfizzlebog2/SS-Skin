@@ -18,10 +18,15 @@ class NextStepsMelanoma extends StatelessWidget {
             children: <Widget>[
               Container(
                   alignment: Alignment.topCenter,
-                  padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-                  child: const Text('Melanoma',
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                  child: const Text(
+                      'Melanoma',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 34))),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 34
+                      )
+                  )
+              ),
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(35, 25, 35, 15),
@@ -30,45 +35,51 @@ class NextStepsMelanoma extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        decoration: TextDecoration.underline),
-                  )),
+                        decoration: TextDecoration.underline
+                    ),
+                  )
+              ),
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
+                  padding: const EdgeInsets.fromLTRB(35, 15, 35, 5),
                   child: const Text(
                     'See a doctor if you:',
                     style: TextStyle(
                         fontSize: 18,
-                        decoration: TextDecoration.underline),
-                  )),
+                        decoration: TextDecoration.underline
+                    ),
+                  )
+              ),
               Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
                 child: const Text(
                     'Notice a new pigmented or unusual looking growth\n\n'
-                    'Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
-                    'Notice an irregular, notched or scalloped borders',
+                        'Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
+                        'Notice an irregular, notched or scalloped borders',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
-                    )),
+                    )
+                ),
               ),
               Container(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: ElevatedButton.icon(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const NearbyDermatologists()),
+                        MaterialPageRoute(builder: (context) => const NearbyDermatologists()),
                       );
                     },
-                    label: const Text('See Nearby Dermatologists',
-                        style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    label: const Text(
+                        'See Nearby Dermatologists',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                    ),
                     icon: const Icon(Icons.navigate_next),
-                  ))
+                  )
+              )
             ]
         )
     );

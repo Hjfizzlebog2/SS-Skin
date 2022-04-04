@@ -32,14 +32,12 @@ class ScreeningBreakdown extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: const Text(
                 '• This screening includes a brief questionnaire\n\n'
-                '• You will then submit a photo for analyzation\n\n'
-                '• Your image will be compared to an extensive database to generate your report\n\n'
-                'DISCLAIMER:\n\n'
-                '• Please note that this is NOT an official diagnosis\n\n'
-                '• If necessary, please seek help from a medical expert\n',
-                  style: TextStyle(
-                      fontSize: 17
-                  ),
+                    '• You will then submit a photo for analyzation\n\n'
+                    '• Your image will be compared to an extensive database to generate your report\n\n'
+                    'DISCLAIMER:\n\n'
+                    '• Please note that this is NOT an official diagnosis\n\n'
+                    '• If necessary, please seek help from a medical expert\n',
+                style: TextStyle(fontSize: 17),
               ),
             ),
             Container(
@@ -53,9 +51,7 @@ class ScreeningBreakdown extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Questionnaire()),
                   );
                 },
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.add),
                 label: const Text(
                     'Continue',
                     style: TextStyle(
@@ -63,9 +59,7 @@ class ScreeningBreakdown extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             )
           ],

@@ -32,28 +32,22 @@ class _LogInScreenState extends State<LogInScreen> {
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(5),
                 child: const Text(
-                  'Skin Safety Scanner',
+                  'Skin Safety Scanner\n',
                   style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30),
-                )),
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Log in',
-                  style: TextStyle(fontSize: 20),
-                )),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34
+                  ),
+                )
+            ),
             Container(
               padding: const EdgeInsets.all(10),
               child: TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Email',
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
@@ -94,7 +88,10 @@ class _LogInScreenState extends State<LogInScreen> {
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text(
+                      'Login',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   onPressed: () {
                    // if (formKey.currentState!.validate()) {
                       signInUser(emailController, passwordController, context);
@@ -103,11 +100,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 )),
             Row(
               children: <Widget>[
-                const Text('Dont not have account?'),
+                const Text(
+                  'Don\'t have an account?',
+                  style: TextStyle(fontSize: 18),
+                ),
                 TextButton(
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 18),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -122,6 +122,7 @@ class _LogInScreenState extends State<LogInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
-        ));
+        )
+    );
   }
 }

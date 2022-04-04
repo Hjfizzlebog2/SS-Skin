@@ -29,9 +29,9 @@ class _PastResultsState extends State<PastResults> {
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(10),
               child: const Text(
-                'Past Results',
+                '\nPast Results',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30
@@ -88,9 +88,9 @@ class _PastResultsState extends State<PastResults> {
         itemBuilder: (context, index) {
           final doc = snapshot.docs[index];
           return ListTile(
-              title: Text("Date: " + doc["Date"] + "\n\n"
+              title: Text("\nDate: " + doc["Date"] + "\n\n"
                   + "Condition: " + doc["Condition"] + "\n\n" +
-                  "Probability: " + doc["Probability"] + "\n")
+                  "Probability: " + doc["Probability"] + "%\n")
           );
         }
     );
