@@ -5,6 +5,15 @@ import 'package:image_picker/image_picker.dart';
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
 
+  // FIXME: Google sign-in, verification, declaring API
+  // final _googleSignIn = GoogleSignIn(
+  //    scopes: <String>[CloudMachineLearningEngineApi.cloudPlatformReadOnlyScope],
+  // );
+
+  // var httpClient = (await _googleSignIn.authenticatedClient())!;
+
+  // var request = CloudMachineLearningEngineApi;
+
   const PhotoSubmission({Key? key}) : super(key: key);
 
   @override
@@ -109,6 +118,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         imageFile = File(pickedFile.path);
       });
     }
+    // FIXME: converting image to json and sending through Google API
+    // List<int> imageBytes = imageFile.readAsBytesSync();
+    // String base64Image = BASE64.encode(imageBytes);
+    // GoogleCloudMlV1PredictRequest.fromJson(base64Image);
   }
 
   // get from camera function
@@ -122,5 +135,4 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       });
     }
   }
-
 }

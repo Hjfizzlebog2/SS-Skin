@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/GeneratedReport.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
@@ -54,9 +55,7 @@ class RegisteredHomePage extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
             Container(
@@ -70,9 +69,7 @@ class RegisteredHomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const LogHistory()),
                   );
                 },
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.add),
                 label: const Text(
                     'View Log History',
                     style: TextStyle(
@@ -80,9 +77,7 @@ class RegisteredHomePage extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
           ],

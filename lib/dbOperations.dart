@@ -20,7 +20,7 @@ Future signInUser(
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => RegisteredHomePage()));
   } catch (e) {
-   print(e);
+    print(e);
   }
 }
 
@@ -34,20 +34,21 @@ Future createUser(
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   //try {
-    firebaseAuth
-        .createUserWithEmailAndPassword(
-            email: email.text, password: password.text)
-        .then((result) {
-      final docUser =
-          FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
-      RegisteredHomePage.user = result;
-      final json = {
-        'firstName': fName.text,
-        'lastName': lName.text,
-        'email': email.text,
-      };
-      docUser.set(json);
-    });
+  firebaseAuth
+      .createUserWithEmailAndPassword(
+      email: email.text, password: password.text)
+      .then((result) {
+    final docUser =
+    FirebaseFirestore.instance.collection('User').doc(result.user?.uid);
+    RegisteredHomePage.user = result;
+    final json = {
+      'firstName': fName.text,
+      'lastName': lName.text,
+      'email': email.text,
+    };
+    docUser.set(json);
+  });
+  
   // } on FirebaseAuthException catch (e) {
   //   print(e);
   //   AlertDialog(
@@ -72,7 +73,7 @@ Future createUser(
 Future enterQuestionData(String age, String gender,
     String condition, bool genetic) async {
   final docUser =
-      FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
+  FirebaseFirestore.instance.collection('UserData').doc(RegisteredHomePage.user.user?.uid);
   final json = {
     'age': age,
     'gender': gender,
@@ -93,7 +94,7 @@ Future uploadImage(File imageFile, String filePathName) async {
 Future getUserImages() async {
   Image image;
   final storeRef =
-      FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
+  FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
   final url = storeRef.getDownloadURL();
 }
 
@@ -106,4 +107,3 @@ Future<bool> resetPassword(TextEditingController emailController) async {
     return true;
   }
 }
-

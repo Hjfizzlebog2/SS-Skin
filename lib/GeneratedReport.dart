@@ -24,27 +24,35 @@ class _GeneratedReportState extends State<GeneratedReport> {
             Container(
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-                child: const Text('Report',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 34))),
-
+                child: const Text(
+                    'Report',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 34
+                    )
+                )
+            ),
             //MELANOMA
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
-                child: const Text('84.7% Match',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
+                child: const Text(
+                    '84.7% Match',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25
+                    )
+                )
+            ),
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 10, 35, 15),
                 child: const Text(
                   'Your uploaded image displayed 84.7% similarity with images of positive cases of Melanoma.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )),
+                  style: TextStyle(fontSize: 18),
+                )
+            ),
             Container(
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
@@ -52,35 +60,41 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const FurtherDetailsMelanoma()),
+                      MaterialPageRoute(builder: (context) => const FurtherDetailsMelanoma()),
                     );
                   },
-                  label: const Text('Next',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  label: const Text(
+                      'Next',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
                   icon: const Icon(Icons.navigate_next),
-                )),
+                )
+            ),
             Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  //TEMPORARY CODE - REPLACE WITH REPORT GENERATION
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GeneratedReport())
-                    );
-                  // END TEMPORARY CODE
-                },
-                label: const Text('Generate PDF',
-                style:
-                TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 20)
-                ), icon: const Icon(Icons.print)
-                ))
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                child: ElevatedButton.icon(
+                    onPressed: () {
+                      //TEMPORARY CODE - REPLACE WITH REPORT GENERATION
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => GeneratedReport()));
+                      // END TEMPORARY CODE
+                    },
+                    label: const Text(
+                        'Generate PDF',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20
+                        )
+                    ), icon: const Icon(Icons.print)
+                )
+            )
           ],
-        ));
+        )
+    );
   }
 }
