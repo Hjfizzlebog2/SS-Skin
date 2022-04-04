@@ -42,7 +42,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                   );
                 },
                 icon: const Icon(
