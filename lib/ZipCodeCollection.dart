@@ -47,9 +47,9 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            alignment: Alignment.center,
+            alignment: Alignment.topCenter,
             child: const Text(
-              'Find Nearby Dermatologists',
+              'Find Nearby Dermatologists\n',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
             )
           ),
@@ -57,7 +57,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Enter your zip code'
+                'Enter your zip code',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 22
+                  )
               )
           ),
         Container(

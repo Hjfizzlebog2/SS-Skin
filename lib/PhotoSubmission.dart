@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ss_skin_project/GeneratedReport.dart';
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -39,7 +40,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Lets Take a Photo!',
+                'Let\'s Take a Photo!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
@@ -57,6 +58,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                  );
                   _getFromCamera();
                   // take photo with camera function
                 },
