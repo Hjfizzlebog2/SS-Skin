@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 import 'PhotoSubmission.dart';
 
+enum Group1 { q1a1, q1a2, q1a3, q1a4 }
+enum Group2 { q2a1, q2a2 }
+enum Group3 { q3a1, q3a2, q3a3 }
+enum Group4 { q4a1, q4a2 }
+
 // class for the questionnaire screen
 class Questionnaire extends StatefulWidget {
   const Questionnaire({Key? key}) : super(key: key);
@@ -11,15 +16,15 @@ class Questionnaire extends StatefulWidget {
 }
 
 class QuestionnaireState extends State<Questionnaire> {
-  int group1 = 1;
-  int group2 = 1;
-  int group3 = 1;
-  int group4 = 1;
+  var g1Values = ['18-29', '30-49', '50-69', '70+'];
+  var g2Values = ['Male', 'Female'];
+  var g3Values = ['Mole', 'Rash', 'Burn'];
+  var g4Values = [true, false];
 
-  var g1Vals = ['18-29', '30-49', '50-69', '70+'];
-  var g2Vals = ['Male', 'Female'];
-  var g3Vals = ['Mole', 'Rash', 'Burn'];
-  var g4Vals = [true, false];
+  Group1? g1 = Group1.q1a1;
+  Group2? g2 = Group2.q2a1;
+  Group3? g3 = Group3.q3a1;
+  Group4? g4 = Group4.q4a1;
 
   @override
   Widget build(BuildContext context) {
@@ -89,42 +94,42 @@ class QuestionnaireState extends State<Questionnaire> {
             Row(
               children: [
                 const SizedBox(width: 11),
-                Radio(
-                  value: 1,
-                  groupValue: group1,
-                  onChanged: (T) {
+                Radio<Group1>(
+                  value: Group1.q1a1,
+                  groupValue: g1,
+                  onChanged: (Group1? value) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      g1 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
-                Radio(
-                  value: 2,
-                  groupValue: group1,
-                  onChanged: (T) {
+                Radio<Group1>(
+                  value: Group1.q1a2,
+                  groupValue: g1,
+                  onChanged: (Group1? value) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      g1 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 17),
-                Radio(
-                  value: 3,
-                  groupValue: group1,
-                  onChanged: (T) {
+                Radio<Group1>(
+                  value: Group1.q1a3,
+                  groupValue: g1,
+                  onChanged: (Group1? value) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      g1 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 11),
-                Radio(
-                  value: 4,
-                  groupValue: group1,
-                  onChanged: (T) {
+                Radio<Group1>(
+                  value: Group1.q1a4,
+                  groupValue: g1,
+                  onChanged: (Group1? value) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      g1 = value;
                     });
                   },
                 ),
@@ -162,22 +167,22 @@ class QuestionnaireState extends State<Questionnaire> {
             Row(
               children: [
                 const SizedBox(width: 11),
-                Radio(
-                  value: 1,
-                  groupValue: group2,
-                  onChanged: (T) {
+                Radio<Group2>(
+                  value: Group2.q2a1,
+                  groupValue: g2,
+                  onChanged: (Group2? value) {
                     setState(() {
-                      group2 = T.toString() as int;
+                      g2 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
-                Radio(
-                  value: 2,
-                  groupValue: group2,
-                  onChanged: (T) {
+                Radio<Group2>(
+                  value: Group2.q2a2,
+                  groupValue: g2,
+                  onChanged: (Group2? value) {
                     setState(() {
-                      group2 = T.toString() as int;
+                      g2 = value;
                     });
                   },
                 ),
@@ -222,32 +227,32 @@ class QuestionnaireState extends State<Questionnaire> {
             Row(
               children: [
                 const SizedBox(width: 11),
-                Radio(
-                  value: 1,
-                  groupValue: group3,
-                  onChanged: (T) {
+                Radio<Group3>(
+                  value: Group3.q3a1,
+                  groupValue: g3,
+                  onChanged: (Group3? value) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      g3 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
-                Radio(
-                  value: 2,
-                  groupValue: group3,
-                  onChanged: (T) {
+                Radio<Group3>(
+                  value: Group3.q3a2,
+                  groupValue: g3,
+                  onChanged: (Group3? value) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      g3 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 17),
-                Radio(
-                  value: 3,
-                  groupValue: group3,
-                  onChanged: (T) {
+                Radio<Group3>(
+                  value: Group3.q3a3,
+                  groupValue: g3,
+                  onChanged: (Group3? value) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      g3 = value;
                     });
                   },
                 ),
@@ -285,22 +290,22 @@ class QuestionnaireState extends State<Questionnaire> {
             Row(
               children: [
                 const SizedBox(width: 11),
-                Radio(
-                  value: 1,
-                  groupValue: group4,
-                  onChanged: (T) {
+                Radio<Group4>(
+                  value: Group4.q4a1,
+                  groupValue: g4,
+                  onChanged: (Group4? value) {
                     setState(() {
-                      group4 = T.toString() as int;
+                      g4 = value;
                     });
                   },
                 ),
                 const SizedBox(width: 22),
-                Radio(
-                  value: 2,
-                  groupValue: group4,
-                  onChanged: (T) {
+                Radio<Group4>(
+                  value: Group4.q4a2,
+                  groupValue: g4,
+                  onChanged: (Group4? value) {
                     setState(() {
-                      group4 = T.toString() as int;
+                      g4 = value;
                     });
                   },
                 ),
@@ -312,10 +317,44 @@ class QuestionnaireState extends State<Questionnaire> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  enterQuestionData(g1Vals[group1 - 1], g2Vals[group2 - 1], g3Vals[group3 - 1], g4Vals[group4 - 1]);
+                  String g1ReturnValue;
+                  if (g1 == Group1.q1a1) {
+                    g1ReturnValue = g1Values[0];
+                  } else if (g1 == Group1.q1a2) {
+                    g1ReturnValue = g1Values[1];
+                  } else if (g1 == Group1.q1a3) {
+                    g1ReturnValue = g1Values[2];
+                  } else {
+                    g1ReturnValue = g1Values[3];
+                  }
+
+                  String g2ReturnValue;
+                  if (g2 == Group2.q2a1) {
+                    g2ReturnValue = g2Values[0];
+                  } else {
+                    g2ReturnValue = g2Values[1];
+                  }
+
+                  String g3ReturnValue;
+                  if (g3 == Group3.q3a1) {
+                    g3ReturnValue = g3Values[0];
+                  } else if (g3 == Group3.q3a2) {
+                    g3ReturnValue = g3Values[1];
+                  } else {
+                    g3ReturnValue = g3Values[2];
+                  }
+
+                  bool g4ReturnValue;
+                  if (g4 == Group4.q4a1) {
+                    g4ReturnValue = g4Values[0];
+                  } else {
+                    g4ReturnValue = g4Values[1];
+                  }
+
+                  enterQuestionData(g1ReturnValue, g2ReturnValue, g3ReturnValue, g4ReturnValue);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PhotoSubmission()),
+                    MaterialPageRoute(builder: (context) => const PhotoSubmission()),
                   );
                 },
                 icon: const Icon(
