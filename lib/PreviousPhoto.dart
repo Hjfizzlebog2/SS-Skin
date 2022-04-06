@@ -28,7 +28,7 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
             if (snapshot.connectionState == ConnectionState.done) {
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: snapshot.data?.docs.length,
+                  itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       contentPadding: const EdgeInsets.all(20.0),
