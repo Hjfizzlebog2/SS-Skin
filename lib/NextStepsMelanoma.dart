@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/NearbyDermatologists.dart';
+import 'package:ss_skin_project/ZipCodeCollection.dart';
 
 class NextStepsMelanoma extends StatelessWidget {
   const NextStepsMelanoma({Key? key}) : super(key: key);
@@ -70,7 +70,7 @@ class NextStepsMelanoma extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const NearbyDermatologists()),
+                        MaterialPageRoute(builder: (context) => const ZipCodeCollection()),
                       );
                     },
                     label: const Text(
