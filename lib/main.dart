@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LogInScreen(),
-    );
+    return const MaterialApp(home: LogInScreen(),);
   }
 }

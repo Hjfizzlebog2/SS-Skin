@@ -54,26 +54,6 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 )
             ),
             Container(
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const FurtherDetailsMelanoma()),
-                    );
-                  },
-                  label: const Text(
-                      'Next',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                      )
-                  ),
-                  icon: const Icon(Icons.navigate_next),
-                )
-            ),
-            Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                 child: ElevatedButton.icon(
@@ -91,6 +71,26 @@ class _GeneratedReportState extends State<GeneratedReport> {
                             fontSize: 20
                         )
                     ), icon: const Icon(Icons.print)
+                )
+            ),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FurtherDetailsMelanoma()),
+                    );
+                  },
+                  label: const Text(
+                      'Next',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18
+                      )
+                  ),
+                  icon: const Icon(Icons.navigate_next),
                 )
             )
           ],
