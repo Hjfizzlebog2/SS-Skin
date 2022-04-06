@@ -28,10 +28,10 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
             if (snapshot.connectionState == ConnectionState.done) {
               return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 1,
+                  itemCount: snapshot.data?.docs.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      contentPadding: const EdgeInsets.all(20.0),
+                      contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
                       + snapshot.data?.docs[index]["Date"] + "\n" +
                           snapshot.data?.docs[index]["Probability"] + "%"),
