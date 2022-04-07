@@ -18,7 +18,7 @@ class Questionnaire extends StatefulWidget {
 class QuestionnaireState extends State<Questionnaire> {
   var g1Values = ['18-29', '30-49', '50-69', '70+'];
   var g2Values = ['Male', 'Female'];
-  var g3Values = ['Mole', 'Rash', 'Burn'];
+  var g3Values = ['Low', 'Medium', 'High'];
   var g4Values = [true, false];
 
   Group1? g1 = Group1.q1a1;
@@ -192,7 +192,7 @@ class QuestionnaireState extends State<Questionnaire> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.all(8),
               child: const Text(
-                'What is your condition?',
+                'What is the severity of your condition?',
                 style: TextStyle(
                     fontSize: 20,
                     decoration: TextDecoration.underline
@@ -203,21 +203,21 @@ class QuestionnaireState extends State<Questionnaire> {
               children: const [
                 SizedBox(width: 20),
                 Text(
-                    'Mole',
+                    'Low',
                     style: TextStyle(
                         fontSize: 15
                     )
                 ),
                 SizedBox(width: 31),
                 Text(
-                    'Rash',
+                    'Medium',
                     style: TextStyle(
                         fontSize: 15
                     )
                 ),
                 SizedBox(width: 31),
                 Text(
-                    'Burn',
+                    'High',
                     style: TextStyle(
                         fontSize: 15
                     )

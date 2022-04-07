@@ -15,11 +15,11 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.redAccent,
-        ),
+      appBar: AppBar(
+        title: const Text('Skin Safety Scanner'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+      ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         child: FutureBuilder(
