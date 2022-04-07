@@ -33,7 +33,7 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                     return ListTile(
                       contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
-                          + snapshot.data?.docs[index]["Date"] + "\n" +
+                      + snapshot.data?.docs[index]["Date"] + "\n" +
                           snapshot.data?.docs[index]["Probability"] + "%"),
                       leading: Image.network(
                           snapshot.data?.docs[index]["url"],
