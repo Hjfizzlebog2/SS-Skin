@@ -1,29 +1,11 @@
 import 'dart:io';
-import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:googleapis/ml/v1.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
-
-
-// FIXME: Google sign-in - make it automatic?
-final GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'https://www.googleapis.com/auth/cloud-platform',
-    'https://www.googleapis.com/auth/cloud-vision',
-  ],
-);
-
-// var httpClient = (await _googleSignIn.authenticatedClient())!;
-
-// var request = CloudMachineLearningEngineApi;
-
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
-
-   const PhotoSubmission({Key? key}) : super(key: key);
+  const PhotoSubmission({Key? key}) : super(key: key);
 
   @override
   _PhotoSubmissionState createState() => _PhotoSubmissionState();
@@ -66,10 +48,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const GeneratedReport()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                  );
                   _getFromCamera();
                   // take photo with camera function
                 },
@@ -121,105 +103,27 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from gallery function
   _getFromGallery() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
     }
-
-    // FIXME: picking a file isn't working: "[ERROR:flutter/lib/ui/ui_dart_state.cc(209)] Unhandled Exception: LateInitializationError: Field 'imageFile' has not been initialized."
-    // PickedFile? pickedFile = await ImagePicker().getImage(
-    //   source: ImageSource.gallery,
-    //   maxWidth: 1800,
-    //   maxHeight: 1800,
-    // );
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     imageFile = File(pickedFile.path);
-    //   });
-    // }
-
-    // TODO: converting image to file, then to base64 and sending through Google API
-    // Image image = Image.asset('assets/images/melanoma.jpeg');
-    // Io.File file = image as Io.File;
-    // final bytes = file.readAsBytesSync();
-    // String base64Encode(List<int> bytes) => base64.encode(bytes);
-
-    // final bytes = Io.File('assets/images/log_history.jpg').readAsBytesSync();
-    // String img64 = base64Encode(bytes);
-    // print(img64.substring(0, 100));
-
-    List<int> imageBytes = imageFile.readAsBytesSync();
-    String base64Image = base64Encode(imageBytes);
-
-    final request = [
-      {
-        "instances": [{
-          "content": base64Image
-        }],
-        "parameters": {
-          "confidenceThreshold": 0.5,
-          "maxPredictions": 5
-        }
-      }
-    ];
-    json.encode(request);
-
-
-
-    // imageFile = Image.asset('melanoma.jpeg') as File;
-    // List<int> imageBytes = await widget.imageFile.readAsBytes();
-    // String base64Image = BASE64.encode(imageBytes);
-    // GoogleCloudMlV1PredictRequest.fromJson(img64);
   }
 
   // get from camera function
   _getFromCamera() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
+    PickedFile? pickedFile =  ImagePicker().getImage(
+      source: ImageSource.camera,
+    ) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
     }
-
-    // FIXME: connecting to camera isn't working
-    // PickedFile? pickedFile = ImagePicker().getImage(
-    //   source: ImageSource.camera,
-    // ) as PickedFile?;
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     imageFile = Io.File(pickedFile.path);
-    //   });
-    // }
-
-    // TODO: converting image to file, then to base64 and sending through Google API
-    // Image image = Image.asset('assets/images/melanoma.jpeg');
-    // Io.File file = image as Io.File;
-    // final bytes = file.readAsBytesSync();
-    // String base64Encode(List<int> bytes) => base64.encode(bytes);
-
-    // final bytes = Io.File('assets/images/log_history.jpg').readAsBytesSync();
-    // String img64 = base64Encode(bytes);
-    // print(img64.substring(0, 100));
-
-    List<int> imageBytes = imageFile.readAsBytesSync();
-    String base64Image = base64Encode(imageBytes);
-
-    final request = [
-      {
-        "instances": [{
-          "content": base64Image
-        }],
-        "parameters": {
-          "confidenceThreshold": 0.5,
-          "maxPredictions": 5
-        }
-      }
-    ];
-
-    // GoogleCloudMlV1PredictRequest.fromJson(json.encode(request));
   }
 }
