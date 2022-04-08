@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/ml/v1.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
-
 
 // FIXME: Google sign-in - make it automatic?
 final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -66,10 +66,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const GeneratedReport()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                  );
                   _getFromCamera();
                   // take photo with camera function
                 },
@@ -121,25 +121,26 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from gallery function
   _getFromGallery() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
-    }
+    // FIXME: google sign in: works? I want it to be automatic
+    // try {
+    //   await _googleSignIn.signIn();
+    // } catch (error) {
+    //   if (kDebugMode) {
+    //     print(error);
+    //   }
+    // }
 
     // FIXME: picking a file isn't working: "[ERROR:flutter/lib/ui/ui_dart_state.cc(209)] Unhandled Exception: LateInitializationError: Field 'imageFile' has not been initialized."
-    // PickedFile? pickedFile = await ImagePicker().getImage(
-    //   source: ImageSource.gallery,
-    //   maxWidth: 1800,
-    //   maxHeight: 1800,
-    // );
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     imageFile = File(pickedFile.path);
-    //   });
-    // }
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
 
     // TODO: converting image to file, then to base64 and sending through Google API
     // Image image = Image.asset('assets/images/melanoma.jpeg');
@@ -186,14 +187,14 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     }
 
     // FIXME: connecting to camera isn't working
-    // PickedFile? pickedFile = ImagePicker().getImage(
-    //   source: ImageSource.camera,
-    // ) as PickedFile?;
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     imageFile = Io.File(pickedFile.path);
-    //   });
-    // }
+    PickedFile? pickedFile =  ImagePicker().getImage(
+      source: ImageSource.camera,
+    ) as PickedFile?;
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
 
     // TODO: converting image to file, then to base64 and sending through Google API
     // Image image = Image.asset('assets/images/melanoma.jpeg');
