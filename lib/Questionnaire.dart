@@ -11,10 +11,10 @@ class Questionnaire extends StatefulWidget {
 }
 
 class QuestionnaireState extends State<Questionnaire> {
-  int group1 = 1;
-  int group2 = 1;
-  int group3 = 1;
-  int group4 = 1;
+  Object? group1 = 1;
+  Object? group2 = 1;
+  Object? group3 = 1;
+  Object? group4 = 1;
 
   var g1Vals = ['18-29', '30-49', '50-69', '70+'];
   var g2Vals = ['Male', 'Female'];
@@ -90,41 +90,41 @@ class QuestionnaireState extends State<Questionnaire> {
               children: [
                 const SizedBox(width: 11),
                 Radio(
-                  value: 1,
+                  value: 0,
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      group1 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
                 Radio(
-                  value: 2,
+                  value: 1,
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      group1 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 17),
                 Radio(
-                  value: 3,
+                  value: 2,
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      group1 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 11),
                 Radio(
-                  value: 4,
+                  value: 3,
                   groupValue: group1,
                   onChanged: (T) {
                     setState(() {
-                      group1 = T.toString() as int;
+                      group1 = T;
                     });
                   },
                 ),
@@ -163,21 +163,21 @@ class QuestionnaireState extends State<Questionnaire> {
               children: [
                 const SizedBox(width: 11),
                 Radio(
-                  value: 1,
+                  value: 0,
                   groupValue: group2,
                   onChanged: (T) {
                     setState(() {
-                      group2 = T.toString() as int;
+                      group2 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
                 Radio(
-                  value: 2,
+                  value: 1,
                   groupValue: group2,
                   onChanged: (T) {
                     setState(() {
-                      group2 = T.toString() as int;
+                      group2 = T;
                     });
                   },
                 ),
@@ -223,31 +223,31 @@ class QuestionnaireState extends State<Questionnaire> {
               children: [
                 const SizedBox(width: 11),
                 Radio(
-                  value: 1,
+                  value: 0,
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      group3 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 19),
                 Radio(
-                  value: 2,
+                  value: 1,
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      group3 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 17),
                 Radio(
-                  value: 3,
+                  value: 2,
                   groupValue: group3,
                   onChanged: (T) {
                     setState(() {
-                      group3 = T.toString() as int;
+                      group3 = T;
                     });
                   },
                 ),
@@ -286,21 +286,21 @@ class QuestionnaireState extends State<Questionnaire> {
               children: [
                 const SizedBox(width: 11),
                 Radio(
-                  value: 1,
+                  value: 0,
                   groupValue: group4,
                   onChanged: (T) {
                     setState(() {
-                      group4 = T.toString() as int;
+                      group4 = T;
                     });
                   },
                 ),
                 const SizedBox(width: 22),
                 Radio(
-                  value: 2,
+                  value: 1,
                   groupValue: group4,
                   onChanged: (T) {
                     setState(() {
-                      group4 = T.toString() as int;
+                      group4 = T;
                     });
                   },
                 ),
@@ -312,7 +312,7 @@ class QuestionnaireState extends State<Questionnaire> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  enterQuestionData(g1Vals[group1 - 1], g2Vals[group2 - 1], g3Vals[group3 - 1], g4Vals[group4 - 1]);
+                  enterQuestionData(g1Vals[group1 as int], g2Vals[group2 as int], g3Vals[group3 as int], g4Vals[group4 as int]);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PhotoSubmission()),

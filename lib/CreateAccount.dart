@@ -140,8 +140,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                // if(formKey.currentState!.validate()) {
                   createUser(userName, name, email, pass, context);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+
                // }
               },
               icon: const Icon(Icons.add),

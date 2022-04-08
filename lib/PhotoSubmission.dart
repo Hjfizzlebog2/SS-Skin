@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -118,6 +119,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         imageFile = File(pickedFile.path);
       });
     }
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)));
     // FIXME: converting image to json and sending through Google API
     // List<int> imageBytes = imageFile.readAsBytesSync();
     // String base64Image = BASE64.encode(imageBytes);

@@ -33,7 +33,7 @@ Future createUser(
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  //try {
+  try {
   firebaseAuth
       .createUserWithEmailAndPassword(
       email: email.text, password: password.text)
@@ -48,9 +48,10 @@ Future createUser(
     };
     docUser.set(json);
   });
-  
-  // } on FirebaseAuthException catch (e) {
-  //   print(e);
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+   } catch(e) {
+     print(e);
   //   AlertDialog(
   //     title:
   //         Text('Error Creating Account'), // To display the title it is optional
@@ -67,7 +68,7 @@ Future createUser(
   //       ),
   //     ],
   //   );
-  // }
+   }
 }
 
 Future enterQuestionData(String age, String gender,
@@ -85,10 +86,18 @@ Future enterQuestionData(String age, String gender,
 }
 
 Future uploadImage(File imageFile, String filePathName) async {
-  final storeRef = FirebaseStorage.instance
-      .ref()
-      .child('$RegisteredHomePage.user/$filePathName');
-  await storeRef.putFile(imageFile);
+
+  final storeRef = FirebaseStorage.instance;
+  String? folder = RegisteredHomePage.user.user?.uid;
+  try {
+    var snapshot = await storeRef
+        .ref()
+        .child('$folder/"C:/Users/cmart/Pictures/IMG_0535.jpg"')
+        .putFile(imageFile);
+  } catch(e) {
+    print(e);
+  }
+
 }
 
 Future getUserImages() async {

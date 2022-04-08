@@ -72,46 +72,47 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
           backgroundColor: Colors.blueAccent,
         ),
         body: Center(
-            child: FutureBuilder<SearchResults>(
-                future: futureSearchResults,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    //NEED TO BREAK UP LOOP. CRAP
-                    return ListView.builder(
-                        itemCount: snapshot.data!.results.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                              child: Text(
-                                  snapshot.data!.results[index]['name'] + '\n\n'
-                                      + snapshot.data!.results[index]['formatted_address'],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 25
-                                  )
-                              )
-                          );
-                        }
-                      itemCount: snapshot.data!.results.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                            child: Text(
-                              snapshot.data!.results[index]['name'] + '\n\n'
-                                + snapshot.data!.results[index]['formatted_address'],
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25
-                              )
-                            ));
-                      }
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-
-                  return const CircularProgressIndicator();
-                })
+            // child: FutureBuilder<SearchResults>(
+            //     future: futureSearchResults,
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasData) {
+            //         //NEED TO BREAK UP LOOP. CRAP
+            //         return ListView.builder(
+            //             itemCount: snapshot.data!.results.length,
+            //             itemBuilder: (BuildContext context, int index) {
+            //               return Card(
+            //                   child: Text(
+            //                       snapshot.data!.results[index]['name'] + '\n\n'
+            //                           + snapshot.data!.results[index]['formatted_address'],
+            //                       style: const TextStyle(
+            //                           fontWeight: FontWeight.bold, fontSize: 25
+            //                       )
+            //                   )
+            //               );
+            //             }
+            //             itemCount: snapshot.data!.results.length,
+            //             itemBuilder: (BuildContext context, int index) {
+            //               return Card(
+            //                   child: Text(
+            //                       snapshot.data!.results[index]['name'] + '\n\n'
+            //                           + snapshot.data!.results[index]['formatted_address'],
+            //                       style: const TextStyle(
+            //                           fontWeight: FontWeight.bold, fontSize: 25
+            //                       )
+            //                   ));
+            //             }
+            //         );
+            //       } else if (snapshot.hasError) {
+            //         return Text('${snapshot.error}');
+            //       }
+            //
+            //       return const CircularProgressIndicator();
+            //     })
         )
     );
-                })));
   }
+  //)));
+//}
 }
 
 /*
