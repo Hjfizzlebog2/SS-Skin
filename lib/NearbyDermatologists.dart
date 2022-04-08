@@ -205,5 +205,4 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                  })));
    }
  }
-
   */
