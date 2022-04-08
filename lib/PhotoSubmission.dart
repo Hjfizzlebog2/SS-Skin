@@ -66,10 +66,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                  // );
                   _getFromCamera();
                   // take photo with camera function
                 },
@@ -178,15 +178,15 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
-    }
+    // FIXME: google sign in: works? I want it to be automatic
+    // try {
+    //   await _googleSignIn.signIn();
+    // } catch (error) {
+    //   if (kDebugMode) {
+    //     print(error);
+    //   }
+    // }
 
-    // FIXME: connecting to camera isn't working
     PickedFile? pickedFile =  ImagePicker().getImage(
       source: ImageSource.camera,
     ) as PickedFile?;
