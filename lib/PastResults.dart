@@ -95,5 +95,4 @@ class _PastResultsState extends State<PastResults> {
         }
     );
   }
-
 }
