@@ -6,12 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
 
 // FIXME: Google sign-in - make it automatic?
-final GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'https://www.googleapis.com/auth/cloud-platform',
-    'https://www.googleapis.com/auth/cloud-vision',
-  ],
-);
+//final GoogleSignIn _googleSignIn = GoogleSignIn(
+ // scopes: <String>[
+   // 'https://www.googleapis.com/auth/cloud-platform',
+   // 'https://www.googleapis.com/auth/cloud-vision',
+ // ],
+//);
 
 // var httpClient = (await _googleSignIn.authenticatedClient())!;
 
