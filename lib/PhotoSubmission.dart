@@ -10,10 +10,10 @@ import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 // FIXME: Google sign-in - make it automatic?
 //final GoogleSignIn _googleSignIn = GoogleSignIn(
- // scopes: <String>[
-   // 'https://www.googleapis.com/auth/cloud-platform',
-   // 'https://www.googleapis.com/auth/cloud-vision',
- // ],
+// scopes: <String>[
+// 'https://www.googleapis.com/auth/cloud-platform',
+// 'https://www.googleapis.com/auth/cloud-vision',
+// ],
 //);
 
 // var httpClient = (await _googleSignIn.authenticatedClient())!;
@@ -197,7 +197,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
-      source: ImageSource.camera
+        source: ImageSource.camera
     );
     if (pickedFile != null) {
       setState(() {
