@@ -2,8 +2,11 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
+import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 // FIXME: Google sign-in - make it automatic?
 final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -26,7 +29,7 @@ class PhotoSubmission extends StatefulWidget {
 }
 
 class _PhotoSubmissionState extends State<PhotoSubmission> {
-  late File imageFile;
+  File imageFile = File("assets/images/errorImage.jpeg");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,11 +64,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
+
+                  _getFromCamera();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
+                    MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
                   );
-                  _getFromCamera();
                   // take photo with camera function
                 },
                 icon: const Icon(
@@ -91,6 +95,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               child: ElevatedButton.icon(
                 onPressed: () {
                   _getFromGallery();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+                  );
                   // pick from device camera roll function
                 },
                 icon: const Icon(
@@ -131,6 +139,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       maxWidth: 1800,
       maxHeight: 1800,
     );
+
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);

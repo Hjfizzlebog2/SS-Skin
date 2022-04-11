@@ -5,8 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'package:ss_skin_project/dbOperations.dart';
+
 
 class ReviewPhotoScreen extends StatelessWidget {
   ReviewPhotoScreen(this.imagePath, this.imageFile, {Key? key})
@@ -31,7 +30,7 @@ class ReviewPhotoScreen extends StatelessWidget {
           Container(
             alignment: Alignment.topCenter,
             padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-            child: Image.network(imagePath, height: 255, width: 255),
+            child: Image.asset('assets/images/errorImage.jpeg', height: 256, width: 256),
           ),
           Container(
               height: 50,
@@ -41,28 +40,28 @@ class ReviewPhotoScreen extends StatelessWidget {
                   onPressed: () async {
                     isLoading = true;
 
-                    String userId = "V5UNxD0ot9e511GWNBdWwatiXJh1";
+                    String userId = "V5UNxD0ot9e511GWNBdWwatiXJh1/";
                       String imageName = imagePath
                           .substring(imagePath.lastIndexOf("/"), imagePath.lastIndexOf("."))
                           .replaceAll("/", "");
 
                       final Directory systemTempDir = Directory.systemTemp;
-                      final byteData = await rootBundle.load(imagePath);
+                      final byteData = await rootBundle.load('assets/images/errorImage.jpeg');
 
                       final file =
-                          File('${systemTempDir.path}/$imageName.jpeg');
+                          File('${systemTempDir.path}/test.jpeg');
                       await file.writeAsBytes(byteData.buffer.asUint8List(
                           byteData.offsetInBytes, byteData.lengthInBytes));
-                      TaskSnapshot snapshot = await FirebaseStorage.instance
+                      TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
                           .ref()
-                          .child("$userId/$imageName")
+                          .child("$userId/test")
                           .putFile(file);
                       if (snapshot.state == TaskState.success) {
                         final String downloadUrl =
                             await snapshot.ref.getDownloadURL();
-                        await FirebaseFirestore.instance
-                            .collection("results")
-                            .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
+                        // await FirebaseFirestore.instance
+                        //     .collection("results")
+                        //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
 //isLoading = false;
 
                         final snackBar =

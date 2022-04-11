@@ -75,4 +75,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0-beta05'
 }
+
+//7F3D6FB9-F204-4DD4-941C-D541A5A6BFC8
