@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:ss_skin_project/PhotoSubmission.dart';
 
 import 'LogInScreen.dart';
 
@@ -21,7 +22,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // added a splash screen that loads up everytime a user lanches the app
+  // added a splash screen that loads up every time a user launches the app
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 4,
-          navigateAfterSeconds:const LogInScreen(),
+          navigateAfterSeconds: const PhotoSubmission(),
           title: const Text(
             'Skin Safety Scanner',
             style: TextStyle(

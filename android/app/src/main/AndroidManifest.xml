@@ -2,6 +2,8 @@
     package="com.example.skin_safety_scanner">
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-feature android:name="android.hardware.camera.external" />
    <application
         android:label="skin_safety_scanner"
         android:name="${applicationName}"
