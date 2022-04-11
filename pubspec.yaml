@@ -79,6 +79,9 @@ flutter:
     - assets/images/log_history.jpg
     - assets/images/photo_submission.jpg
     - assets/images/registered_homepage.jpg
+    - assets/images/errorImage.jpeg
+    - assets/images/previous_photo.jpg
+    - assets/images/title_picture.gif
 
   # To add assets to your application, add an assets section, like this:
   # assets:

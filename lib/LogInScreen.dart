@@ -24,7 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
         appBar: AppBar(
           title: const Text("Skin Safety Scanner"),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,19 +85,24 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
             ),
             Container(
+                width: 120,
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
                   child: const Text(
                       'Login',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20,),
                   ),
                   onPressed: () {
                    // if (formKey.currentState!.validate()) {
                       signInUser(emailController, passwordController, context);
                    // }
                   },
-                )),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.cyan[600]
+                    )
+                )
+            ),
             Row(
               children: <Widget>[
                 const Text(

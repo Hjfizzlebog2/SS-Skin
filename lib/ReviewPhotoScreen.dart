@@ -22,7 +22,7 @@ class ReviewPhotoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Skin Safety Scanner'),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.cyan[600],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,44 +37,48 @@ class ReviewPhotoScreen extends StatelessWidget {
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
-                  child: Text("Save Image"),
-                  onPressed: () async {
-                    isLoading = true;
+                child: const Text("Save Image"),
+                onPressed: () async {
+                  isLoading = true;
 
-                    String? userId = RegisteredHomePage.user.user?.uid;
-                      String imageName = imagePath
-                          .substring(imagePath.lastIndexOf("/"), imagePath.lastIndexOf("."))
-                          .replaceAll("/", "");
+                  String? userId = RegisteredHomePage.user.user?.uid;
+                    String imageName = imagePath
+                        .substring(imagePath.lastIndexOf("/"), imagePath.lastIndexOf("."))
+                        .replaceAll("/", "");
 
-                      final Directory systemTempDir = Directory.systemTemp;
-                      final byteData = await rootBundle.load(imagePath);
+                    final Directory systemTempDir = Directory.systemTemp;
+                    final byteData = await rootBundle.load(imagePath);
 
-                      final file =
-                          File('${systemTempDir.path}/$imageName.jpeg');
-                      await file.writeAsBytes(byteData.buffer.asUint8List(
-                          byteData.offsetInBytes, byteData.lengthInBytes));
-                      TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
-                          .ref()
-                          .child("$userId//$imageName")
-                          .putFile(file);
-                      if (snapshot.state == TaskState.success) {
-                        final String downloadUrl =
-                            await snapshot.ref.getDownloadURL();
-                        // await FirebaseFirestore.instance
-                        //     .collection("results")
-                        //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
+                    final file =
+                        File('${systemTempDir.path}/$imageName.jpeg');
+                    await file.writeAsBytes(byteData.buffer.asUint8List(
+                        byteData.offsetInBytes, byteData.lengthInBytes));
+                    TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
+                        .ref()
+                        .child("$userId//$imageName")
+                        .putFile(file);
+                    if (snapshot.state == TaskState.success) {
+                      final String downloadUrl =
+                          await snapshot.ref.getDownloadURL();
+                      // await FirebaseFirestore.instance
+                      //     .collection("results")
+                      //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
 //isLoading = false;
 
-                        final snackBar =
-                            SnackBar(content: Text('Yay! Success'));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      } else {
-                        print(
-                            'Error from image repo ${snapshot.state.toString()}');
-                        throw ('This file is not an image');
-                      }
-                    })
+                      final snackBar =
+                          SnackBar(content: Text('Yay! Success'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } else {
+                      print(
+                          'Error from image repo ${snapshot.state.toString()}');
+                      throw ('This file is not an image');
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
                   ),
+              )
+          ),
         ],
       ),
     );

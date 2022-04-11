@@ -10,7 +10,7 @@ class NextStepsMelanoma extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -73,6 +73,9 @@ class NextStepsMelanoma extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const ZipCodeCollection()),
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.cyan[600]
+                    ),
                     label: const Text(
                         'See Nearby Dermatologists',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)

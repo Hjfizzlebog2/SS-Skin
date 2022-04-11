@@ -1,24 +1,25 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
+import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 // FIXME: Google sign-in - make it automatic?
-//final GoogleSignIn _googleSignIn = GoogleSignIn(
-// scopes: <String>[
-// 'https://www.googleapis.com/auth/cloud-platform',
-// 'https://www.googleapis.com/auth/cloud-vision',
-// ],
-//);
+final GoogleSignIn _googleSignIn = GoogleSignIn(
+scopes: <String>[
+'https://www.googleapis.com/auth/cloud-platform',
+'https://www.googleapis.com/auth/cloud-vision',
+],
+);
 
-// var httpClient = (await _googleSignIn.authenticatedClient())!;
-
-// var request = CloudMachineLearningEngineApi;
+var httpClient = _googleSignIn.authenticatedClient();
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -36,7 +37,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -65,8 +66,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               child: ElevatedButton.icon(
                 onPressed: () {
                   _getFromCamera();
-                  // take photo with camera function
+                  // pick from device camera function
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(
                     Icons.add
                 ),
@@ -76,10 +80,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.blueGrey)
                 ),
               ),
             ),
@@ -124,7 +124,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //   }
     // }
 
-    // FIXME: picking a file isn't working, pickedFile is still null after the ImagePicker()
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -137,30 +136,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     }
 
     // TODO: converting image to file, then to base64 and sending through Google API
-    Image image = Image.asset('assets/images/melanoma.jpeg');
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
     print('\n\n\n\n\n\n\n\n' + img64.substring(0, 100) + '\n\n\n\n\n\n\n\n');
 
-    // _setPlaceHolder() async {
-    //   imageFile = ImageUtils.imageToFile(imageName: "melanoma", ext: "jpeg") as File;
-    // }
-
-    // Image.file(imageFile);
-    // final bytes = imageFile.readAsBytesSync();
-    // String img64 = base64Encode(bytes);
-    // print('\n\n\n\n\n\n\n' + img64.substring(0, 100) + '\n\n\n\n\n\n\n');
-
-
-
-    // final bytes = File('assets/images/log_history.jpg').readAsBytesSync();
-    // String img64 = base64Encode(bytes);
-    // print(img64.substring(0, 100));
-    //
-    // List<int> imageBytes = imageFile.readAsBytesSync();
-    // String base64Image = base64Encode(imageBytes);
-
-    final request = [
+    final request =
       {
         "instances": [{
           "content": img64
@@ -169,19 +149,20 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
           "confidenceThreshold": 0.5,
           "maxPredictions": 5
         }
-      }
-    ];
-    print(json.encode(request));
+      };
+
+    json.encode(request);
+
+    var x = GoogleCloudMlV1PredictRequest.fromJson(request);
+    print('\n\n\n\n\nPRINT RETURN VALUE:');
+    print(x);
+    print('DONE PRINTING\n\n\n\n\n\n');
+
 
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
     );
-    //
-    // imageFile = Image.asset('melanoma.jpeg') as File;
-    // List<int> imageBytes = await widget.imageFile.readAsBytes();
-    // String base64Image = BASE64.encode(imageBytes);
-    // GoogleCloudMlV1PredictRequest.fromJson(img64);
   }
 
   // get from camera function
@@ -204,45 +185,30 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         imageFile = File(pickedFile.path);
       });
     }
+
     // TODO: converting image to file, then to base64 and sending through Google API
-    // Image image = Image.asset('assets/images/melanoma.jpeg');
-    // Io.File file = image as Io.File;
-    // final bytes = file.readAsBytesSync();
-    // String base64Encode(List<int> bytes) => base64.encode(bytes);
+    final bytes = imageFile.readAsBytesSync();
+    String img64 = base64Encode(bytes);
+    print('\n\n\n\n\n\n\n\nIMG64:\n' + img64.substring(0, 100) + '\nENDSTRING\n\n\n\n\n\n\n\n');
 
-    // final bytes = Io.File('assets/images/log_history.jpg').readAsBytesSync();
-    // String img64 = base64Encode(bytes);
-    // print(img64.substring(0, 100));
-
-    List<int> imageBytes = imageFile.readAsBytesSync();
-    String base64Image = base64Encode(imageBytes);
-
-    final request = [
+    final request =
       {
         "instances": [{
-          "content": base64Image
+          "content": img64
         }],
         "parameters": {
           "confidenceThreshold": 0.5,
           "maxPredictions": 5
         }
-      }
-    ];
+      };
+
+    json.encode(request);
+
+    GoogleCloudMlV1PredictRequest.fromJson(request);
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
     );
-    // GoogleCloudMlV1PredictRequest.fromJson(json.encode(request));
-  }
-}
-
-class ImageUtils {
-  static Future<File> imageToFile({required String imageName, required String ext}) async {
-    var bytes = await rootBundle.load('assets/$imageName.$ext');
-    String tempPath = (await getTemporaryDirectory()).path;
-    File file = File('$tempPath/profile.png');
-    await file.writeAsBytes(
-        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
-    return file;
   }
 }

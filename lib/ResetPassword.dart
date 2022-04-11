@@ -24,9 +24,9 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Skin Safety Scanner"),
+          title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,8 +73,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                       );
                     }
                   },
-                )),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.cyan[600]
+                  ),
+                )
+            ),
           ],
-        ));
+        )
+    );
   }
 }

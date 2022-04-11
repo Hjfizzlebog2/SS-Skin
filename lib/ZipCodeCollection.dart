@@ -104,6 +104,9 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
               ),
               icon: const Icon(Icons.navigate_next),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.cyan[600]
+              ),
             )
           )
         ]

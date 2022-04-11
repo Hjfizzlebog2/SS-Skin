@@ -11,7 +11,7 @@ class ScreeningBreakdown extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.start,
@@ -51,6 +51,9 @@ class ScreeningBreakdown extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Questionnaire()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(Icons.add),
                 label: const Text(
                     'Continue',
@@ -59,7 +62,6 @@ class ScreeningBreakdown extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             )
           ],
