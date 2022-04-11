@@ -128,10 +128,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     // }
 
     // FIXME: picking a file isn't working, pickedFile is still null after the ImagePicker()
-    var pickedFile = await ImagePicker().pickImage(
+    final ImagePicker _picker = ImagePicker();
+    final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
-      maxWidth: 1800,
-      maxHeight: 1800,
     );
 
     if (pickedFile != null) {
@@ -196,9 +195,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //   }
     // }
 
-    PickedFile? pickedFile =  ImagePicker().pickImage(
-      source: ImageSource.camera,
-    ) as PickedFile?;
+    final ImagePicker _picker = ImagePicker();
+    final XFile? pickedFile = await _picker.pickImage(
+      source: ImageSource.camera
+    );
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
