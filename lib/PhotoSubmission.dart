@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
+import 'package:path_provider/path_provider.dart';
 
 // FIXME: Google sign-in - make it automatic?
 //final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -125,34 +127,47 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //   }
     // }
 
-    // FIXME: picking a file isn't working: "[ERROR:flutter/lib/ui/ui_dart_state.cc(209)] Unhandled Exception: LateInitializationError: Field 'imageFile' has not been initialized."
-    PickedFile? pickedFile = await ImagePicker().getImage(
+    // FIXME: picking a file isn't working, pickedFile is still null after the ImagePicker()
+    var pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxWidth: 1800,
       maxHeight: 1800,
     );
+
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);
       });
     }
-    // TODO: converting image to file, then to base64 and sending through Google API
-    // Image image = Image.asset('assets/images/melanoma.jpeg');
-    // Io.File file = image as Io.File;
-    // final bytes = file.readAsBytesSync();
-    // String base64Encode(List<int> bytes) => base64.encode(bytes);
 
-    // final bytes = Io.File('assets/images/log_history.jpg').readAsBytesSync();
+    // TODO: converting image to file, then to base64 and sending through Google API
+    Image image = Image.asset('assets/images/melanoma.jpeg');
+    final bytes = imageFile.readAsBytesSync();
+    String img64 = base64Encode(bytes);
+    print('\n\n\n\n\n\n\n\n' + img64.substring(0, 100) + '\n\n\n\n\n\n\n\n');
+
+    // _setPlaceHolder() async {
+    //   imageFile = ImageUtils.imageToFile(imageName: "melanoma", ext: "jpeg") as File;
+    // }
+
+    // Image.file(imageFile);
+    // final bytes = imageFile.readAsBytesSync();
+    // String img64 = base64Encode(bytes);
+    // print('\n\n\n\n\n\n\n' + img64.substring(0, 100) + '\n\n\n\n\n\n\n');
+
+
+
+    // final bytes = File('assets/images/log_history.jpg').readAsBytesSync();
     // String img64 = base64Encode(bytes);
     // print(img64.substring(0, 100));
-
-    List<int> imageBytes = imageFile.readAsBytesSync();
-    String base64Image = base64Encode(imageBytes);
+    //
+    // List<int> imageBytes = imageFile.readAsBytesSync();
+    // String base64Image = base64Encode(imageBytes);
 
     final request = [
       {
         "instances": [{
-          "content": base64Image
+          "content": img64
         }],
         "parameters": {
           "confidenceThreshold": 0.5,
@@ -160,10 +175,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         }
       }
     ];
-    json.encode(request);
+    print(json.encode(request));
 
 
-
+    //
     // imageFile = Image.asset('melanoma.jpeg') as File;
     // List<int> imageBytes = await widget.imageFile.readAsBytes();
     // String base64Image = BASE64.encode(imageBytes);
@@ -181,7 +196,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //   }
     // }
 
-    PickedFile? pickedFile =  ImagePicker().getImage(
+    PickedFile? pickedFile =  ImagePicker().pickImage(
       source: ImageSource.camera,
     ) as PickedFile?;
     if (pickedFile != null) {
@@ -215,5 +230,16 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     ];
 
     // GoogleCloudMlV1PredictRequest.fromJson(json.encode(request));
+  }
+}
+
+class ImageUtils {
+  static Future<File> imageToFile({required String imageName, required String ext}) async {
+    var bytes = await rootBundle.load('assets/$imageName.$ext');
+    String tempPath = (await getTemporaryDirectory()).path;
+    File file = File('$tempPath/profile.png');
+    await file.writeAsBytes(
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
+    return file;
   }
 }

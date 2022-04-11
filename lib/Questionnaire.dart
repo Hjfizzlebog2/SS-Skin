@@ -208,14 +208,14 @@ class QuestionnaireState extends State<Questionnaire> {
                         fontSize: 15
                     )
                 ),
-                SizedBox(width: 31),
+                SizedBox(width: 26),
                 Text(
                     'Medium',
                     style: TextStyle(
                         fontSize: 15
                     )
                 ),
-                SizedBox(width: 31),
+                SizedBox(width: 22),
                 Text(
                     'High',
                     style: TextStyle(
