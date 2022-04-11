@@ -1,4 +1,3 @@
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -15,10 +14,8 @@ void main() async {
       messagingSenderId: "121689515063",
       projectId: "skin-safety-scanner",
       appId: '1:121689515063:android:3f3fb5bee8296b028e8bb2',
-      storageBucket: 'gs://skin-safety-scanner/'
     ),
   );
-  print(FirebaseAppCheck.instance.getToken());
   runApp(const MyApp());
 }
 
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 4,
-          navigateAfterSeconds: const PhotoSubmission(),
+          navigateAfterSeconds: const LogInScreen(),
           title: const Text(
             'Skin Safety Scanner',
             style: TextStyle(

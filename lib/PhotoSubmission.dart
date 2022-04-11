@@ -6,6 +6,7 @@ import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 // FIXME: Google sign-in - make it automatic?
 //final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -63,10 +64,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const GeneratedReport()),
-                  );
                   _getFromCamera();
                   // take photo with camera function
                 },
@@ -176,7 +173,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     ];
     print(json.encode(request));
 
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+    );
     //
     // imageFile = Image.asset('melanoma.jpeg') as File;
     // List<int> imageBytes = await widget.imageFile.readAsBytes();
@@ -228,7 +228,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         }
       }
     ];
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+    );
     // GoogleCloudMlV1PredictRequest.fromJson(json.encode(request));
   }
 }
