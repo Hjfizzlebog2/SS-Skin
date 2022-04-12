@@ -16,7 +16,7 @@ class RegisteredHomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,6 +45,9 @@ class RegisteredHomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(
                     Icons.add
                 ),
@@ -55,7 +58,6 @@ class RegisteredHomePage extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
             Container(
@@ -69,6 +71,9 @@ class RegisteredHomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const LogHistory()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(Icons.add),
                 label: const Text(
                     'View Log History',
@@ -77,7 +82,6 @@ class RegisteredHomePage extends StatelessWidget {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)),
               ),
             ),
           ],

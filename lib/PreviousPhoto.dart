@@ -18,7 +18,7 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
       appBar: AppBar(
         title: const Text('Skin Safety Scanner'),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.cyan[600],
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),

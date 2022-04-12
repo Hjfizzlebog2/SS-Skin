@@ -80,7 +80,7 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Center(
             child: FutureBuilder<SearchResults>(

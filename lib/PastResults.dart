@@ -21,7 +21,7 @@ class _PastResultsState extends State<PastResults> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.start,

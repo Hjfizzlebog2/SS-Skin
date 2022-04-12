@@ -15,7 +15,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,6 +83,9 @@ class _GeneratedReportState extends State<GeneratedReport> {
                       MaterialPageRoute(builder: (context) => const FurtherDetailsMelanoma()),
                     );
                   },
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.cyan[600]
+                  ),
                   label: const Text(
                       'Next',
                       style: TextStyle(

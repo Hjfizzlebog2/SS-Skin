@@ -27,7 +27,7 @@ class _CreateAccountState extends State<CreateAccount> {
       appBar: AppBar(
         title: const Text('Skin Safety Scanner'),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.cyan[600],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -98,9 +98,8 @@ class _CreateAccountState extends State<CreateAccount> {
                       //errorText: 'Enter a valid email',
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (email) => email != null && !EmailValidator.validate(email)
-                      ? 'Enter a valid email'
-                      : null,
+                    validator: (email) => email != null &&
+                        !EmailValidator.validate(email) ? 'Enter a valid email' : null,
                   ),
                 ),
                 const Divider(),
@@ -129,8 +128,8 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
           Container(
             padding: const EdgeInsets.all(15),
-            width: 270,
-            height: 90,
+            width: 160,
+            height: 80,
             child: ElevatedButton.icon(
               onPressed: () {
                 final userName = controller.elementAt(0);
@@ -150,10 +149,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       fontWeight: FontWeight.bold, fontSize: 18
                   )
               ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blueGrey)
-              ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                )
             ),
           ),
         ],

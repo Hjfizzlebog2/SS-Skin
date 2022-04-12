@@ -12,7 +12,7 @@ class LogHistory extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +44,9 @@ class LogHistory extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const PreviousPhoto()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(
                     Icons.add
                 ),
@@ -53,9 +56,6 @@ class LogHistory extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             ),
@@ -70,6 +70,9 @@ class LogHistory extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const PastResults()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(
                     Icons.add
                 ),
@@ -79,9 +82,6 @@ class LogHistory extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             ),

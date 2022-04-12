@@ -10,7 +10,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -82,6 +82,9 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const NextStepsMelanoma()),
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.cyan[600]
+                    ),
                     label: const Text(
                         'Next',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)

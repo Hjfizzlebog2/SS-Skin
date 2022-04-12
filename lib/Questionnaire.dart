@@ -32,7 +32,7 @@ class QuestionnaireState extends State<Questionnaire> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.cyan[600],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -360,15 +360,15 @@ class QuestionnaireState extends State<Questionnaire> {
                 icon: const Icon(
                     Icons.add
                 ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 label: const Text(
                     'Continue',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey)
                 ),
               ),
             )
