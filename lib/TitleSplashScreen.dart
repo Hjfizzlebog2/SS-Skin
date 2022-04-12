@@ -28,6 +28,7 @@ class TitleSplashScreen extends StatelessWidget {
               'assets/images/title_picture.gif',
               width: 300
           ),
+          // TODO: move loading circle up higher
           loadingText: const Text("Loading"),
           photoSize: 150.0,
           loaderColor: Colors.white,
