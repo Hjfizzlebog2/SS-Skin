@@ -5,6 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 
@@ -46,8 +49,20 @@ class ReviewPhotoScreen extends StatelessWidget {
                         .substring(imagePath.lastIndexOf("/"), imagePath.lastIndexOf("."))
                         .replaceAll("/", "");
 
+                    //Directory? dir = getApplicationDocumentsDirectory() as Directory;
+
+                    var temp = Image.file(imageFile);
                     final Directory systemTempDir = Directory.systemTemp;
-                    final byteData = await rootBundle.load(imagePath);
+                    var baseName = path.basename(imageFile.path);
+                    print(imageFile.path);
+                    var file2 = await imageFile.rename('$systemTempDir/test.jpeg');
+                    //File newImage = await imageFile.copySync('$systemTempDir/test.jpg');
+                    //SharedPreferences prefs = await SharedPreferences.getInstance();
+                    //prefs.setString('test', newImage.path);
+
+                    //String path = await getApplicationDocumentsDirectory().toString();
+                    //final fileCopy = await imageFile.copy('$path/test.jpeg');
+                    final byteData = await rootBundle.load(file2.path);
 
                     final file =
                         File('${systemTempDir.path}/$imageName.jpeg');
@@ -56,7 +71,7 @@ class ReviewPhotoScreen extends StatelessWidget {
                     TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
                         .ref()
                         .child("$userId//$imageName")
-                        .putFile(file);
+                        .putFile(file2);
                     if (snapshot.state == TaskState.success) {
                       final String downloadUrl =
                           await snapshot.ref.getDownloadURL();
