@@ -1,25 +1,20 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ss_skin_project/GeneratedReport.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
-import 'package:http/http.dart' as http;
 
-// FIXME: Google sign-in - make it automatic?
 final GoogleSignIn _googleSignIn = GoogleSignIn(
 scopes: <String>[
-'https://www.googleapis.com/auth/cloud-platform',
-'https://www.googleapis.com/auth/cloud-vision',
+  'https://www.googleapis.com/auth/cloud-platform',
+  'https://www.googleapis.com/auth/cloud-vision',
+  'https://www.googleapis.com/auth/cloud-platform.read-only'
 ],
 );
-
-var httpClient = _googleSignIn.authenticatedClient();
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -65,8 +60,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromCamera();
-                  // pick from device camera function
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromCamera();
+                      // take picture with device's camera
+                    }
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -89,8 +101,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromGallery();
-                  // pick from device camera roll function
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromGallery();
+                      // pick from device's photo gallery
+                    }
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -114,17 +143,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
-    // FIXME: google sign in: works? I want it to be automatic
-    // try {
-    //   await _googleSignIn.signIn();
-    // } catch (error) {
-    //   if (kDebugMode) {
-    //     print(error);
-    //   }
-    // }
-
-    // TODO: Authentication?????
-    // gcloud auth application-default login
+    final httpClient = await _googleSignIn.authenticatedClient();
 
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
@@ -147,23 +166,18 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       }],
     };
 
-    json.encode(request);
+    var endpoint = '5815105893074731008';
+    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
 
-    String ENDPOINT_ID = "5815105893074731008";
-    String PROJECT_ID = "skin-safety-scanner";
+    final api = CloudMachineLearningEngineApi(httpClient!);
+    // FIXME: should it be .fromJson?
+    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
 
-    var client = http.Client();
+    var predict = api.projects.locations.endpoints.predict(predictRequest, url);
 
-    // TODO: EXECUTE THIS COMMAND
-    // curl \
-    // -X POST \
-    // -H "Authorization: Bearer $(gcloud auth print-access-token)" \
-    // -H "Content-Type: application/json" \
-    // https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/us-central1/endpoints/${ENDPOINT_ID}:predict \
-    // -d "@${INPUT_DATA_FILE}"
-
-    GoogleCloudMlV1PredictRequest.fromJson(request);
-
+    print('\n\n\n\n\nPREDICT:');
+    print(predict);
+    print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,
@@ -173,17 +187,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from gallery function
   _getFromGallery() async {
-    // FIXME: google sign in: works? I want it to be automatic
-    // try {
-    //   await _googleSignIn.signIn();
-    // } catch (error) {
-    //   if (kDebugMode) {
-    //     print(error);
-    //   }
-    // }
-
-    // TODO: Authentication?????
-    // gcloud auth application-default login
+    final httpClient = await _googleSignIn.authenticatedClient();
 
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
@@ -200,27 +204,24 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     String img64 = base64Encode(bytes);
 
     final request =
-      {
-        "instances": [{
-          "content": img64
-        }],
-      };
+    {
+      "instances": [{
+        "content": img64
+      }],
+    };
 
-    json.encode(request);
+    var endpoint = '5815105893074731008';
+    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
 
-    String ENDPOINT_ID = "5815105893074731008";
-    String PROJECT_ID = "skin-safety-scanner";
+    final api = CloudMachineLearningEngineApi(httpClient!);
+    // FIXME: should it be .fromJson?
+    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
 
-    // TODO: EXECUTE THIS COMMAND
-    // curl \
-    // -X POST \
-    // -H "Authorization: Bearer $(gcloud auth print-access-token)" \
-    // -H "Content-Type: application/json" \
-    // https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/us-central1/endpoints/${ENDPOINT_ID}:predict \
-    // -d "@${INPUT_DATA_FILE}"
+    var predict = api.projects.predict(predictRequest, url);
 
-    GoogleCloudMlV1PredictRequest.fromJson(request);
-
+    print('\n\n\n\n\nPREDICT:');
+    print(predict);
+    print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,

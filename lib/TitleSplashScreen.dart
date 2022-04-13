@@ -15,7 +15,7 @@ class TitleSplashScreen extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: SplashScreen(
-          seconds: 8,
+          seconds: 6,
           navigateAfterSeconds: const LogInScreen(),
           title: const Text(
             'Skin Safety Scanner',
