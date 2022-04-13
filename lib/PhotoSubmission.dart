@@ -105,8 +105,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
-    final httpClient = await _googleSignIn.authenticatedClient();
-
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.camera,
@@ -147,13 +145,16 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       }
     });
 
+    final httpClient = await _googleSignIn.authenticatedClient();
+
+
     var endpoint = '5815105893074731008';
     var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
 
     final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
     final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-    // var predict = api.projects.locations.endpoints.predict(predictRequest, url);
+    var predict = api.projects.locations.endpoints.predict(predictRequest, url);
 
     print('\n\n\n\n\nPREDICT:');
     // print(predict);
@@ -167,8 +168,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from gallery function
   _getFromGallery() async {
-    final httpClient = await _googleSignIn.authenticatedClient();
-
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -208,6 +207,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
       }
     });
+
+    final httpClient = await _googleSignIn.authenticatedClient();
+
 
     var endpoint = '5815105893074731008';
     var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
