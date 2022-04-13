@@ -1,25 +1,20 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ss_skin_project/GeneratedReport.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
-// FIXME: Google sign-in - make it automatic?
 final GoogleSignIn _googleSignIn = GoogleSignIn(
 scopes: <String>[
-'https://www.googleapis.com/auth/cloud-platform',
-'https://www.googleapis.com/auth/cloud-vision',
+  'https://www.googleapis.com/auth/cloud-platform',
+  'https://www.googleapis.com/auth/cloud-vision',
+  'https://www.googleapis.com/auth/cloud-platform.read-only'
 ],
 );
-
-var httpClient = _googleSignIn.authenticatedClient();
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
@@ -65,8 +60,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromCamera();
-                  // pick from device camera function
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromCamera();
+                      // take picture with device's camera
+                    }
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -89,9 +101,29 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromGallery();
-                  // pick from device camera roll function
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromGallery();
+                      // pick from device's photo gallery
+                    }
+                  });
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
                 icon: const Icon(
                     Icons.add
                 ),
@@ -102,10 +134,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                         fontSize: 18
                     )
                 ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.blueGrey)
-                ),
               ),
             ),
           ],
@@ -113,16 +141,53 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     );
   }
 
+  // get from camera function
+  _getFromCamera() async {
+    final httpClient = await _googleSignIn.authenticatedClient();
+
+    final ImagePicker _picker = ImagePicker();
+    final XFile? pickedFile = await _picker.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
+
+    final bytes = imageFile.readAsBytesSync();
+    String img64 = base64Encode(bytes);
+
+    final request =
+    {
+      "instances": [{
+        "content": img64
+      }],
+    };
+
+    var endpoint = '5815105893074731008';
+    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
+
+    final api = CloudMachineLearningEngineApi(httpClient!);
+    // FIXME: should it be .fromJson?
+    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
+
+    var predict = api.projects.locations.endpoints.predict(predictRequest, url);
+
+    print('\n\n\n\n\nPREDICT:');
+    print(predict);
+    print('\nEND PREDICT\n\n\n\n\n');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+    );
+  }
+
   // get from gallery function
   _getFromGallery() async {
-    // FIXME: google sign in: works? I want it to be automatic
-    // try {
-    //   await _googleSignIn.signIn();
-    // } catch (error) {
-    //   if (kDebugMode) {
-    //     print(error);
-    //   }
-    // }
+    final httpClient = await _googleSignIn.authenticatedClient();
 
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
@@ -135,76 +200,28 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       });
     }
 
-    // TODO: converting image to file, then to base64 and sending through Google API
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
-    print('\n\n\n\n\n\n\n\n' + img64.substring(0, 100) + '\n\n\n\n\n\n\n\n');
 
     final request =
-      {
-        "instances": [{
-          "content": img64
-        }],
-        "parameters": {
-          "confidenceThreshold": 0.5,
-          "maxPredictions": 5
-        }
-      };
+    {
+      "instances": [{
+        "content": img64
+      }],
+    };
 
-    json.encode(request);
+    var endpoint = '5815105893074731008';
+    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
 
-    var x = GoogleCloudMlV1PredictRequest.fromJson(request);
-    print('\n\n\n\n\nPRINT RETURN VALUE:');
-    print(x);
-    print('DONE PRINTING\n\n\n\n\n\n');
+    final api = CloudMachineLearningEngineApi(httpClient!);
+    // FIXME: should it be .fromJson?
+    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
 
+    var predict = api.projects.predict(predictRequest, url);
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
-    );
-  }
-
-  // get from camera function
-  _getFromCamera() async {
-    // FIXME: google sign in: works? I want it to be automatic
-    // try {
-    //   await _googleSignIn.signIn();
-    // } catch (error) {
-    //   if (kDebugMode) {
-    //     print(error);
-    //   }
-    // }
-
-    final ImagePicker _picker = ImagePicker();
-    final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.camera
-    );
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-      });
-    }
-
-    // TODO: converting image to file, then to base64 and sending through Google API
-    final bytes = imageFile.readAsBytesSync();
-    String img64 = base64Encode(bytes);
-    print('\n\n\n\n\n\n\n\nIMG64:\n' + img64.substring(0, 100) + '\nENDSTRING\n\n\n\n\n\n\n\n');
-
-    final request =
-      {
-        "instances": [{
-          "content": img64
-        }],
-        "parameters": {
-          "confidenceThreshold": 0.5,
-          "maxPredictions": 5
-        }
-      };
-
-    json.encode(request);
-
-    GoogleCloudMlV1PredictRequest.fromJson(request);
+    print('\n\n\n\n\nPREDICT:');
+    print(predict);
+    print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,

@@ -1,16 +1,13 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 
 class ReviewPhotoScreen extends StatelessWidget {
-  ReviewPhotoScreen(this.imagePath, this.imageFile, {Key? key})
-      : super(key: key);
+  ReviewPhotoScreen(this.imagePath, this.imageFile, {Key? key}) : super(key: key);
 
   final File imageFile;
   final String imagePath;
@@ -31,13 +28,13 @@ class ReviewPhotoScreen extends StatelessWidget {
           Container(
             alignment: Alignment.topCenter,
             padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-            child: Image.file(imageFile, width: 256, height: 256)
+            child: Image.file(imageFile, width: 512, height: 512)
           ),
           Container(
-              height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ElevatedButton(
-                child: const Text("Save Image"),
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
+              child: ElevatedButton.icon(
                 onPressed: () async {
                   isLoading = true;
 
@@ -47,6 +44,7 @@ class ReviewPhotoScreen extends StatelessWidget {
                         .replaceAll("/", "");
 
                     final Directory systemTempDir = Directory.systemTemp;
+                    // FIXME: "Unhandled Exception: Unable to load asset: /data/user/0/com.example.ss_skin_project/cache/50a3b3d6-1c79-4acb-8692-60fa94645ac59177760667377750289.jpg"
                     final byteData = await rootBundle.load(imagePath);
 
                     final file =
@@ -63,9 +61,9 @@ class ReviewPhotoScreen extends StatelessWidget {
                       // await FirebaseFirestore.instance
                       //     .collection("results")
                       //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
-//isLoading = false;
+                      //isLoading = false;
 
-                      final snackBar =
+                      const snackBar =
                           SnackBar(content: Text('Yay! Success'));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {
@@ -74,9 +72,19 @@ class ReviewPhotoScreen extends StatelessWidget {
                       throw ('This file is not an image');
                     }
                   },
-                  style: ElevatedButton.styleFrom(
+                style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
-                  ),
+                ),
+                icon: const Icon(
+                    Icons.add
+                ),
+                label: const Text(
+                    'Save Image',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
               )
           ),
         ],
