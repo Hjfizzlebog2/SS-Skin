@@ -64,6 +64,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
               border: OutlineInputBorder(),
               labelText: 'ZIP Code',
             ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) => value != null && value.length < 5
+                ? 'Enter min. 5 characters'
+                : null,
           )
         ),
         Container(
