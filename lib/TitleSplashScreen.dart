@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'LogInScreen.dart';
 
 class TitleSplashScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 6,
-          navigateAfterSeconds: const LogInScreen(),
+          navigateAfterSeconds: const RegisteredHomePage(),
           title: const Text(
             'Skin Safety Scanner',
             style: TextStyle(

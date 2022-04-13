@@ -42,7 +42,7 @@ class QuestionnaireState extends State<Questionnaire> {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                '\nFirst, a bit about you:',
+                '\nFirst, a bit about you...',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34),
@@ -357,9 +357,7 @@ class QuestionnaireState extends State<Questionnaire> {
                     MaterialPageRoute(builder: (context) => const PhotoSubmission()),
                   );
                 },
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),

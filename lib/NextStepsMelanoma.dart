@@ -31,21 +31,10 @@ class NextStepsMelanoma extends StatelessWidget {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(35, 25, 35, 15),
                   child: const Text(
-                    'Per Mayo Clinic:',
+                    'See a Doctor If You...',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        decoration: TextDecoration.underline
-                    ),
-                  )
-              ),
-              Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.fromLTRB(35, 15, 35, 5),
-                  child: const Text(
-                    'See a doctor if you:',
-                    style: TextStyle(
-                        fontSize: 18,
                         decoration: TextDecoration.underline
                     ),
                   )

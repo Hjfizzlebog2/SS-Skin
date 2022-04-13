@@ -43,15 +43,15 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   )
               ),
               //MELANOMA
-          Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: const Text(
-                'Enter your zip code',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 22
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                      'Enter your zip code',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 22
+                      )
                   )
-              )
           ),
         Container(
           alignment: Alignment.center,
@@ -64,6 +64,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
               border: OutlineInputBorder(),
               labelText: 'ZIP Code',
             ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) => value != null && value.length < 5
+                ? 'Enter min. 5 characters'
+                : null,
           )
         ),
         Container(
@@ -73,36 +77,35 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
               onPressed: () async {
                 //STEP 1: Get data from text field [DONE]
                 String zip = _zipcodeTEC.text;
+                      //STEP 2: Fetch data with get request [DONE]
+                      String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
+                      final response = await http.get(Uri.parse(createdURL));
+                      // final response2 = await http.post(Uri.parse())
 
-                //STEP 2: Fetch data with get request [DONE]
-                String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
-                final response = await http.get(Uri.parse(createdURL));
-                // final response2 = await http.post(Uri.parse())
+                      //STEP 3: Parse JSON to get lat and long (Update lat and long) [DONE]
+                      GeocodeData geocodeData = GeocodeData.fromJson(jsonDecode(response.body));
 
-                //STEP 3: Parse JSON to get lat and long (Update lat and long) [DONE]
-                GeocodeData geocodeData = GeocodeData.fromJson(jsonDecode(response.body));
+                      double lat = geocodeData.results![0].geometry?.location?.lat as double;
+                      double long = geocodeData.results![0].geometry?.location?.lng as double;
 
-                double lat = geocodeData.results![0].geometry?.location?.lat as double;
-                double long = geocodeData.results![0].geometry?.location?.lng as double;
-
-                //STEP 4: Pass lat and long to NearbyDermatologists [DONE]
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NearbyDermatologists(lat: lat, long: long)),
-                );
-              },
-              label: const Text(
-                  'Search',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
-              ),
-              icon: const Icon(Icons.navigate_next),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan[600]
-              ),
-            )
-          )
-        ]
-      )
+                      //STEP 4: Pass lat and long to NearbyDermatologists [DONE]
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => NearbyDermatologists(lat: lat, long: long)),
+                      );
+                    },
+                    label: const Text(
+                        'Search',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                    ),
+                    icon: const Icon(Icons.navigate_next),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.cyan[600]
+                    ),
+                  )
+              )
+            ]
+        )
     );
   }
 }
