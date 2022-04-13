@@ -20,7 +20,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                   child: const Text(
-                      'Melanoma',
+                      'More About\n Melanoma',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 34

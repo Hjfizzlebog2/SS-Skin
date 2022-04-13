@@ -19,40 +19,30 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
 
   TextEditingController _zipcodeTEC = TextEditingController();
 
-/*
-  Future<SearchResults> fetchSearchResults(String zip) async {
-    String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
-    final response = await http.get(Uri.parse(
-        createdURL));
-
-    if (response.statusCode == 200) {
-      //Change Data into List of Result
-      return SearchResults.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to complete get request');
-    }
-  }
-*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Skin Safety Scanner"),
-        centerTitle: true,
-        backgroundColor: Colors.redAccent,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            alignment: Alignment.topCenter,
-            child: const Text(
-              'Find Nearby Dermatologists\n',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
-            )
-          ),
+        appBar: AppBar(
+          title: const Text('Skin Safety Scanner'),
+          centerTitle: true,
+          backgroundColor: Colors.cyan[600],
+        ),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  alignment: Alignment.topCenter,
+                  padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
+                  child: const Text(
+                      '   Find Nearby\nDermatologists',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 34
+                      )
+                  )
+              ),
+              //MELANOMA
           Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
@@ -68,6 +58,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
           padding: const EdgeInsets.all(10),
           child: TextFormField(
             controller: _zipcodeTEC,
+            maxLength: 5,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -86,10 +77,11 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                 //STEP 2: Fetch data with get request [DONE]
                 String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
                 final response = await http.get(Uri.parse(createdURL));
+                // final response2 = await http.post(Uri.parse())
 
                 //STEP 3: Parse JSON to get lat and long (Update lat and long) [DONE]
                 GeocodeData geocodeData = GeocodeData.fromJson(jsonDecode(response.body));
-                //TODO: Add check for if null (replace the !)
+
                 double lat = geocodeData.results![0].geometry?.location?.lat as double;
                 double long = geocodeData.results![0].geometry?.location?.lng as double;
 
@@ -100,7 +92,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                 );
               },
               label: const Text(
-                  'See Who\'s Nearby',
+                  'Search',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
               ),
               icon: const Icon(Icons.navigate_next),
