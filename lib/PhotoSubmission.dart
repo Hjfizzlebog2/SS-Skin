@@ -60,25 +60,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  try {
-                    _googleSignIn.signIn();
-                  } catch (error) {
-                    if (kDebugMode) {
-                      print(error);
-                    }
-                  }
-
-                  GoogleSignInAccount? _currentUser;
-
-                  _googleSignIn.onCurrentUserChanged.listen((account) {
-                    setState(() {
-                      _currentUser = account;
-                    });
-                    if (_currentUser != null) {
-                      _getFromCamera();
-                      // take picture with device's camera
-                    }
-                  });
+                  _getFromCamera();
+                  // take picture with device's camera
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -99,25 +82,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  try {
-                    _googleSignIn.signIn();
-                  } catch (error) {
-                    if (kDebugMode) {
-                      print(error);
-                    }
-                  }
-
-                  GoogleSignInAccount? _currentUser;
-
-                  _googleSignIn.onCurrentUserChanged.listen((account) {
-                    setState(() {
-                      _currentUser = account;
-                    });
-                    if (_currentUser != null) {
-                      _getFromGallery();
-                      // pick from device's photo gallery
-                    }
-                  });
+                  _getFromGallery();
+                  // pick from device's photo gallery
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -162,16 +128,35 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       }],
     };
 
+    try {
+      _googleSignIn.signIn();
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+
+    GoogleSignInAccount? _currentUser;
+
+    _googleSignIn.onCurrentUserChanged.listen((account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+
+      }
+    });
+
     var endpoint = '5815105893074731008';
     var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
 
     final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
     final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-    var predict = api.projects.locations.endpoints.predict(predictRequest, url);
+    // var predict = api.projects.locations.endpoints.predict(predictRequest, url);
 
     print('\n\n\n\n\nPREDICT:');
-    print(predict);
+    // print(predict);
     print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
@@ -204,6 +189,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         "content": img64
       }],
     };
+
+    try {
+      _googleSignIn.signIn();
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+
+    GoogleSignInAccount? _currentUser;
+
+    _googleSignIn.onCurrentUserChanged.listen((account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+
+      }
+    });
 
     var endpoint = '5815105893074731008';
     var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
