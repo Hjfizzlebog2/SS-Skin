@@ -47,9 +47,7 @@ class LogHistory extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'View Previous Photos',
                     style: TextStyle(
@@ -73,9 +71,7 @@ class LogHistory extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'View Past Results',
                     style: TextStyle(

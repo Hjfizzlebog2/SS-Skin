@@ -83,9 +83,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'Use Camera',
                     style: TextStyle(
@@ -124,9 +122,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'Choose From Device',
                     style: TextStyle(
@@ -172,7 +168,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
     final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-
     var predict = api.projects.locations.endpoints.predict(predictRequest, url);
 
     print('\n\n\n\n\nPREDICT:');

@@ -48,11 +48,9 @@ class RegisteredHomePage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(
-                    Icons.add
-                ),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'Create New Entry',
+                    'Make a New Scan',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -74,7 +72,7 @@ class RegisteredHomePage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(Icons.add),
+                icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'View Log History',
                     style: TextStyle(
