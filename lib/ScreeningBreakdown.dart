@@ -32,7 +32,7 @@ class ScreeningBreakdown extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: const Text(
                 '• This screening includes a brief questionnaire\n\n'
-                    '• You will then submit a photo for analyzation\n\n'
+                    '• You will then submit a photo for analysis\n\n' //said "analyzation" before
                     '• Your image will be compared to an extensive database to generate your report\n\n'
                     'DISCLAIMER:\n\n'
                     '• Please note that this is NOT an official diagnosis\n\n'
@@ -54,7 +54,7 @@ class ScreeningBreakdown extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(Icons.add),
+                  icon: const Icon(Icons.navigate_next),
                 label: const Text(
                     'Continue',
                     style: TextStyle(

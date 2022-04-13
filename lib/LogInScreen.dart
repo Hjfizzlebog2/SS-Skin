@@ -5,6 +5,8 @@ import 'CreateAccount.dart';
 import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
+// TODO: keyboard is bright red, we want it to be teal as well
+
 //class for the log in screen
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
