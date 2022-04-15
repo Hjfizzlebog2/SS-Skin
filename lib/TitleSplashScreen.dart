@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:ss_skin_project/FurtherDetailsEczema.dart';
+import 'package:ss_skin_project/FurtherDetailsPsoriasis.dart';
+import 'package:ss_skin_project/NextStepsEczema.dart';
+import 'package:ss_skin_project/NextStepsMelanoma.dart';
+import 'package:ss_skin_project/NextStepsPsoriasis.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'LogInScreen.dart';
 

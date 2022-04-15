@@ -154,11 +154,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
     final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-    var predict = api.projects.locations.endpoints.predict(predictRequest, url);
+   // var predict = api.projects.locations.endpoints.predict(predictRequest, url);
 
     print('\n\n\n\n\nPREDICT:');
     // print(predict);
-    print('\nEND PREDICT\n\n\n\n\n');
+   // print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,
