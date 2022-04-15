@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "121689515063-qs6avb1j1etqmu5cueflv29qkhesgpup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ss_skin_project",
+            "certificate_hash": "b23414f1724d9b294a04b585d0f6727e9f246ca2"
+          }
+        },
+        {
           "client_id": "121689515063-tc5rp4mgt3kp69cqf6trfcovl3gth9fd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
