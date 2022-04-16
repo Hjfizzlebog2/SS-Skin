@@ -2,15 +2,34 @@ import 'package:flutter/material.dart';
 import 'FurtherDetailsMelanoma.dart';
 
 class GeneratedReport extends StatefulWidget {
-  const GeneratedReport({Key? key}) : super(key: key);
+  final Map scan;
+  // var _list = _scan.values.toList(); // <- Doesn't work
+
+  const GeneratedReport({
+        Key? key,
+    required this.scan,
+  }) : super(key: key);
 
   @override
   State<GeneratedReport> createState() => _GeneratedReportState();
 }
 
 class _GeneratedReportState extends State<GeneratedReport> {
+  get mapList => widget.scan.entries.toList();
+
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // var _list = _scan.values.toList() FIXME
+    String percentage = (mapList[0].value * 100).toStringAsFixed(3);
+    String condition = mapList[0].key;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
@@ -25,7 +44,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                 child: const Text(
-                    'Report',
+                    'Your image displayed',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 34
@@ -36,9 +55,10 @@ class _GeneratedReportState extends State<GeneratedReport> {
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
-                child: const Text(
-                    '84.7% Match',
+                child: Text(
+                    percentage + '%',
                     style: TextStyle(
+                        color: Colors.teal,
                         fontWeight: FontWeight.bold,
                         fontSize: 25
                     )
@@ -47,32 +67,13 @@ class _GeneratedReportState extends State<GeneratedReport> {
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 10, 35, 15),
-                child: const Text(
-                  'Your uploaded image displayed 84.7% similarity with images of positive cases of Melanoma.',
+                child: Text(
+                  'similarity with images of positive cases of ' + condition + '.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),
                 )
             ),
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-                child: ElevatedButton.icon(
-                    onPressed: () {
-                      //TEMPORARY CODE - REPLACE WITH REPORT GENERATION
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => GeneratedReport()));
-                      // END TEMPORARY CODE
-                    },
-                    label: const Text(
-                        'Generate PDF',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20
-                        )
-                    ), icon: const Icon(Icons.print)
-                )
-            ),
+
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
@@ -101,3 +102,28 @@ class _GeneratedReportState extends State<GeneratedReport> {
     );
   }
 }
+
+
+// OLD PDF GENERATOR CONTAINER
+/*
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                child: ElevatedButton.icon(
+                    onPressed: () {
+                      //TEMPORARY CODE - REPLACE WITH REPORT GENERATION
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => GeneratedReport()));
+                      // END TEMPORARY CODE
+                    },
+                    label: const Text(
+                        'Generate PDF',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20
+                        )
+                    ), icon: const Icon(Icons.print)
+                )
+            ),
+ */

@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
+import 'GeneratedReport.dart';
+
 
 class ReviewPhotoScreen extends StatelessWidget {
-  ReviewPhotoScreen(this.imagePath, this.imageFile, {Key? key}) : super(key: key);
-
+  ReviewPhotoScreen(this.imagePath, this.imageFile, this.map, {Key? key}) : super(key: key);
+  
+  final Map map;
   final File imageFile;
   final String imagePath;
   bool isLoading = false;
@@ -27,11 +30,11 @@ class ReviewPhotoScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             alignment: Alignment.topCenter,
-            padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-            child: Image.file(imageFile, width: 512, height: 512)
+            padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
+            child: Image.file(imageFile, width: 410, height: 410)
           ),
           Container(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.fromLTRB(15, 10, 15, 40),
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
@@ -71,12 +74,13 @@ class ReviewPhotoScreen extends StatelessWidget {
                           'Error from image repo ${snapshot.state.toString()}');
                       throw ('This file is not an image');
                     }
+
                   },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
                 icon: const Icon(
-                    Icons.add
+                    Icons.save_alt
                 ),
                 label: const Text(
                     'Save Image',
@@ -87,6 +91,26 @@ class ReviewPhotoScreen extends StatelessWidget {
                 ),
               )
           ),
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  GeneratedReport(scan: map)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.cyan[600]
+                ),
+                label: const Text(
+                    'Scan Photo',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                ),
+                icon: const Icon(Icons.navigate_next),
+              )
+          )
         ],
       ),
     );

@@ -4,9 +4,10 @@ import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sig
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:googleapis/ml/v1.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
+import 'GeneratedReport.dart';
+import 'VertexReport.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
@@ -20,12 +21,14 @@ final GoogleSignIn _googleSignIn = GoogleSignIn(
 class PhotoSubmission extends StatefulWidget {
   const PhotoSubmission({Key? key}) : super(key: key);
 
+
   @override
   _PhotoSubmissionState createState() => _PhotoSubmissionState();
 }
 
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,19 +168,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    // final request =
-    // {
-    //   "instances": [{
-    //     "content": img64
-    //   }],
-    // };
-    // final api = CloudMachineLearningEngineApi(httpClient!);
-    // FIXME: should it be .fromJson?
-    // final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-    // var endpoints = 'us-central1-aiplatform.googleapis.com';
-    // var predict = api.projects.locations.endpoints.predict();
-
-
     String endpoint = '3866595366795214848';
     Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
 
@@ -192,20 +182,42 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
 
-    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
-    print(response?.body);
-    print('\nDONE!!!!!\n\n\n\n');
+    //Get JSON response to GeneratedReport Screen
 
-    // print('\n\n\n\n\nPREDICT:');
-    // print(predict);
-    // print('\nEND PREDICT\n\n\n\n\n');
+    //STEP 1: Create a VertexReport object [COMPLETE]
+    VertexReport vertexReport = VertexReport.fromJson(jsonDecode(response!.body));
+
+    //STEP 2: Create a map out of the VertexReport object [COMPLETE]
+    Map reportMap = {
+      vertexReport.predictions![0].displayNames![1] : vertexReport.predictions![0].confidences![1],
+      vertexReport.predictions![0].displayNames![0] : vertexReport.predictions![0].confidences![0]
+    };
+
+    /*
+    // Use below code in case that you want to skip over the ReviewPhotoScreen
+    //STEP 3: Pass map to GeneratedReport
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+      MaterialPageRoute(builder: (context) => GeneratedReport(scan: reportMap)),
     );
+
+     */
+
+    //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
+
+    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
+    print(response.body);
+    print('\nDONE!!!!!\n\n\n\n');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, reportMap)),
+    );
+
   }
 
+  //LOOK HERE
   // get from gallery function
   _getFromGallery() async {
     final httpClient = await _googleSignIn.authenticatedClient();
@@ -224,18 +236,6 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    // final request =
-    // {
-    //   "instances": [{
-    //     "content": img64
-    //   }],
-    // };
-    // final api = CloudMachineLearningEngineApi(httpClient!);
-    // FIXME: should it be .fromJson?
-    // final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-    // var endpoints = 'us-central1-aiplatform.googleapis.com';
-    // var predict = api.projects.locations.endpoints.predict();
-
 
     String endpoint = '3866595366795214848';
     Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
@@ -251,17 +251,38 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
 
-    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
-    print(response?.body.toString());
-    print('\nDONE!!!!!\n\n\n\n');
+    //Get JSON response to GeneratedReport Screen
 
-    // print('\n\n\n\n\nPREDICT:');
-    // print(predict);
-    // print('\nEND PREDICT\n\n\n\n\n');
+    //STEP 1: Create a VertexReport object [COMPLETE]
+    VertexReport vertexReport = VertexReport.fromJson(jsonDecode(response!.body));
+
+    //STEP 2: Create a map out of the VertexReport object [COMPLETE]
+    Map reportMap = {
+      vertexReport.predictions![0].displayNames![1] : vertexReport.predictions![0].confidences![1],
+      vertexReport.predictions![0].displayNames![0] : vertexReport.predictions![0].confidences![0]
+    };
+
+    /*
+    // Use below code in case that you want to skip over the ReviewPhotoScreen
+    //STEP 3: Pass map to GeneratedReport
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile)),
+      MaterialPageRoute(builder: (context) => GeneratedReport(scan: reportMap)),
     );
+
+     */
+
+    //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
+
+    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
+    print(response.body);
+    print('\nDONE!!!!!\n\n\n\n');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, reportMap)),
+    );
+
   }
 }

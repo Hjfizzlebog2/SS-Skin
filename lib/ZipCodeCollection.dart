@@ -66,7 +66,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => value != null && value.length < 5
-                ? 'Enter min. 5 characters'
+                ? 'Enter 5 characters'
                 : null,
           )
         ),
