@@ -16,15 +16,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:cache_manager/cache_manager.dart';
 
+import 'GeneratedReport.dart';
+
 
 class ReviewPhotoScreen extends StatelessWidget {
-  ReviewPhotoScreen(this.imagePath, this.imageFile, {Key? key})
+  ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, {Key? key})
       : super(key: key);
 
   final File imageFile;
   final String imagePath;
   bool isLoading = false;
   var progress;
+  Map reportMap;
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +101,26 @@ class ReviewPhotoScreen extends StatelessWidget {
 
             child: LinearProgressIndicator(value: progress),
           ),
+      Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+        child: ElevatedButton.icon(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  GeneratedReport(scan: reportMap)),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+              primary: Colors.cyan[600]
+          ),
+          label: const Text(
+              'Scan Photo',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+          ),
+          icon: const Icon(Icons.navigate_next),
+        ),
+      )
         ],
       ),
     );
