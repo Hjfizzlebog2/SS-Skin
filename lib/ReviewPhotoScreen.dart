@@ -1,14 +1,20 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:cache_manager/cache_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
+import 'package:cache_manager/cache_manager.dart';
 
 
 class ReviewPhotoScreen extends StatelessWidget {
@@ -18,6 +24,7 @@ class ReviewPhotoScreen extends StatelessWidget {
   final File imageFile;
   final String imagePath;
   bool isLoading = false;
+  var progress;
 
   @override
   Widget build(BuildContext context) {
@@ -44,55 +51,52 @@ class ReviewPhotoScreen extends StatelessWidget {
                 onPressed: () async {
                   isLoading = true;
 
-                  String? userId = RegisteredHomePage.user.user?.uid;
-                    String imageName = imagePath
-                        .substring(imagePath.lastIndexOf("/"), imagePath.lastIndexOf("."))
-                        .replaceAll("/", "");
 
-                    //Directory? dir = getApplicationDocumentsDirectory() as Directory;
+                    String? userId = RegisteredHomePage.user.user?.uid;
 
-                    var temp = Image.file(imageFile);
-                    final Directory systemTempDir = Directory.systemTemp;
-                    var baseName = path.basename(imageFile.path);
-                    print(imageFile.path);
-                    var file2 = await imageFile.rename('$systemTempDir/test.jpeg');
-                    //File newImage = await imageFile.copySync('$systemTempDir/test.jpg');
-                    //SharedPreferences prefs = await SharedPreferences.getInstance();
-                    //prefs.setString('test', newImage.path);
-
-                    //String path = await getApplicationDocumentsDirectory().toString();
-                    //final fileCopy = await imageFile.copy('$path/test.jpeg');
-                    final byteData = await rootBundle.load(file2.path);
+                    final Directory systemTempDir = await getTemporaryDirectory();
+                    final bytes = imageFile.readAsBytesSync();
+                    final byteData = await rootBundle.load(imagePath);
+                    DateTime now = DateTime.now();
+                    var date = DateFormat("dd-MM-yyy").format(now);
 
                     final file =
-                        File('${systemTempDir.path}/$imageName.jpeg');
-                    await file.writeAsBytes(byteData.buffer.asUint8List(
-                        byteData.offsetInBytes, byteData.lengthInBytes));
+                        File('${systemTempDir.path}/$date.jpeg');
+                    await file.writeAsBytes(bytes.buffer.asUint8List(
+                        byteData.offsetInBytes, bytes.lengthInBytes));
                     TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
                         .ref()
-                        .child("$userId//$imageName")
-                        .putFile(file2);
-                    if (snapshot.state == TaskState.success) {
-                      final String downloadUrl =
-                          await snapshot.ref.getDownloadURL();
-                      // await FirebaseFirestore.instance
-                      //     .collection("results")
-                      //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
-//isLoading = false;
+                        .child("$userId//$date")
+                        .putFile(file);
+                    progress = (snapshot.bytesTransferred / snapshot.totalBytes);
+                    print(progress);
 
-                      final snackBar =
-                          SnackBar(content: Text('Yay! Success'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    } else {
-                      print(
-                          'Error from image repo ${snapshot.state.toString()}');
-                      throw ('This file is not an image');
-                    }
+//                     if (snapshot.state == TaskState.success) {
+//                       final String downloadUrl =
+//                           await snapshot.ref.getDownloadURL();
+//                       // await FirebaseFirestore.instance
+//                       //     .collection("results")
+//                       //     .add({"Condition": "test", "Date" : "test", "Probability" : "test", "url": downloadUrl});
+// //isLoading = false;
+//
+//                       final snackBar =
+//                           SnackBar(content: Text('Yay! Success'));
+//                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+//                     } else {
+//                       print(
+//                           'Error from image repo ${snapshot.state.toString()}');
+//                       throw ('This file is not an image');
+//                     }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                   ),
               )
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
+
+            child: LinearProgressIndicator(value: progress),
           ),
         ],
       ),
