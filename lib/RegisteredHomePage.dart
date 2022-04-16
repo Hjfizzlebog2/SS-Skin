@@ -4,6 +4,8 @@ import 'package:ss_skin_project/GeneratedReport.dart';
 import 'ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
+// FIXME: Renderflex overflow error, "use Expanded widget"?
+
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
   static late UserCredential user;
