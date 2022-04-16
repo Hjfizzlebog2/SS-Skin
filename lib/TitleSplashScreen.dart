@@ -21,14 +21,15 @@ class TitleSplashScreen extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: SplashScreen(
-          seconds: 6,
-          navigateAfterSeconds: const RegisteredHomePage(),
+          seconds: 5,
+          navigateAfterSeconds: const LogInScreen(),
           title: const Text(
-            'Skin Safety Scanner',
+            '\nSkin Safety Scanner',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 34,
-                color: Colors.white),
+                color: Colors.white
+            ),
           ),
           image: Image.asset(
               'assets/images/title_picture.gif',
@@ -38,7 +39,7 @@ class TitleSplashScreen extends StatelessWidget {
           loadingText: const Text("Loading"),
           photoSize: 150.0,
           loaderColor: Colors.white,
-          backgroundColor: Colors.tealAccent[700],
+          backgroundColor: Colors.cyan[600],
         )
     );
   }

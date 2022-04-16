@@ -9,11 +9,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
-scopes: <String>[
-  'https://www.googleapis.com/auth/cloud-platform',
-  'https://www.googleapis.com/auth/cloud-vision',
-  'https://www.googleapis.com/auth/cloud-platform.read-only'
-],
+  scopes: <String>[
+    'https://www.googleapis.com/auth/cloud-platform',
+    'https://www.googleapis.com/auth/cloud-vision',
+    'https://www.googleapis.com/auth/cloud-platform.read-only'
+  ],
 );
 
 // class for the photo submission screen
@@ -60,8 +60,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromCamera();
-                  // take picture with device's camera
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromCamera();
+                      // take picture with device's camera
+                    }
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -82,8 +99,25 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  _getFromGallery();
-                  // pick from device's photo gallery
+                  try {
+                    _googleSignIn.signIn();
+                  } catch (error) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  }
+
+                  GoogleSignInAccount? _currentUser;
+
+                  _googleSignIn.onCurrentUserChanged.listen((account) {
+                    setState(() {
+                      _currentUser = account;
+                    });
+                    if (_currentUser != null) {
+                      _getFromGallery();
+                      // pick from device's photo gallery
+                    }
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -105,6 +139,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from camera function
   _getFromCamera() async {
+    final httpClient = await _googleSignIn.authenticatedClient();
+
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.camera,
@@ -119,46 +155,45 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    final request =
-    {
-      "instances": [{
-        "content": img64
-      }],
-    };
-
-    try {
-      _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
-    }
-
-    GoogleSignInAccount? _currentUser;
-
-    _googleSignIn.onCurrentUserChanged.listen((account) {
-      setState(() {
-        _currentUser = account;
-      });
-      if (_currentUser != null) {
-
-      }
-    });
-
-    final httpClient = await _googleSignIn.authenticatedClient();
-
-
-    var endpoint = '5815105893074731008';
-    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
-
-    final api = CloudMachineLearningEngineApi(httpClient!);
+    // final request =
+    // {
+    //   "instances": [{
+    //     "content": img64
+    //   }],
+    // };
+    // final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
-    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
-   // var predict = api.projects.locations.endpoints.predict(predictRequest, url);
+    // final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
+    // var endpoints = 'us-central1-aiplatform.googleapis.com';
+    // var predict = api.projects.locations.endpoints.predict();
 
-    print('\n\n\n\n\nPREDICT:');
+
+    String endpoint = '3866595366795214848';
+    Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
+
+    Map<String, String> headers = {"Accept": "application/json"};
+    Map body =
+    {
+      "image": img64
+    };
+    var response = await httpClient?.post(url2, headers: headers, body: body);
+
+    print('\n\n\n\n RESPONSE!!!!!!!! Empty, headers, characters, length, toString');
+    print(response?.body.isEmpty);
+    print('\n\n\n');
+    print(response?.headers.toString());
+    print('\n\n\n');
+    print(response?.body.characters.toString());
+    print('\n\n\n');
+    print(response?.body.length);
+    print('\n\n\n');
+    print(response?.body.toString());
+    print('\nDONE!!!!!\n\n\n\n');
+    
+
+    // print('\n\n\n\n\nPREDICT:');
     // print(predict);
-   // print('\nEND PREDICT\n\n\n\n\n');
+    // print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,
@@ -168,6 +203,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
   // get from gallery function
   _getFromGallery() async {
+    final httpClient = await _googleSignIn.authenticatedClient();
+
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,
@@ -182,47 +219,45 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    final request =
-    {
-      "instances": [{
-        "content": img64
-      }],
-    };
-
-    try {
-      _googleSignIn.signIn();
-    } catch (error) {
-      if (kDebugMode) {
-        print(error);
-      }
-    }
-
-    GoogleSignInAccount? _currentUser;
-
-    _googleSignIn.onCurrentUserChanged.listen((account) {
-      setState(() {
-        _currentUser = account;
-      });
-      if (_currentUser != null) {
-
-      }
-    });
-
-    final httpClient = await _googleSignIn.authenticatedClient();
-
-
-    var endpoint = '5815105893074731008';
-    var url = 'projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint;
-
-    final api = CloudMachineLearningEngineApi(httpClient!);
+    // final request =
+    // {
+    //   "instances": [{
+    //     "content": img64
+    //   }],
+    // };
+    // final api = CloudMachineLearningEngineApi(httpClient!);
     // FIXME: should it be .fromJson?
-    final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
+    // final predictRequest = GoogleCloudMlV1PredictRequest.fromJson(request);
+    // var endpoints = 'us-central1-aiplatform.googleapis.com';
+    // var predict = api.projects.locations.endpoints.predict();
 
-    var predict = api.projects.predict(predictRequest, url);
 
-    print('\n\n\n\n\nPREDICT:');
-    print(predict);
-    print('\nEND PREDICT\n\n\n\n\n');
+    String endpoint = '3866595366795214848';
+    Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
+
+    Map<String, String> headers = {"Accept": "application/json"};
+    Map body =
+    {
+      "image": img64
+    };
+    var response = await httpClient?.post(url2, headers: headers, body: body);
+
+    print('\n\n\n\n RESPONSE!!!!!!!! Empty, headers, characters, length, toString');
+    print(response?.body.isEmpty);
+    print('\n\n\n');
+    print(response?.headers.toString());
+    print('\n\n\n');
+    print(response?.body.characters.toString());
+    print('\n\n\n');
+    print(response?.body.length);
+    print('\n\n\n');
+    print(response?.body.toString());
+    print('\nDONE!!!!!\n\n\n\n');
+
+
+    // print('\n\n\n\n\nPREDICT:');
+    // print(predict);
+    // print('\nEND PREDICT\n\n\n\n\n');
 
     Navigator.push(
       context,
