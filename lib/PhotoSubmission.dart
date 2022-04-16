@@ -75,6 +75,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                       _currentUser = account;
                     });
                     if (_currentUser != null) {
+
+                      if (kDebugMode) {
+                        print(_currentUser?.displayName);
+                      }
+
                       _getFromCamera();
                       // take picture with device's camera
                     }
@@ -114,6 +119,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                       _currentUser = account;
                     });
                     if (_currentUser != null) {
+
+                      if (kDebugMode) {
+                        print(_currentUser?.displayName);
+                      }
+
                       _getFromGallery();
                       // pick from device's photo gallery
                     }
@@ -174,22 +184,17 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     Map<String, String> headers = {"Accept": "application/json"};
     Map body =
     {
-      "image": img64
+      "instances": [{
+        "content": img64
+      }],
     };
-    var response = await httpClient?.post(url2, headers: headers, body: body);
+    String bodyJson = json.encode(body);
 
-    print('\n\n\n\n RESPONSE!!!!!!!! Empty, headers, characters, length, toString');
-    print(response?.body.isEmpty);
-    print('\n\n\n');
-    print(response?.headers.toString());
-    print('\n\n\n');
-    print(response?.body.characters.toString());
-    print('\n\n\n');
-    print(response?.body.length);
-    print('\n\n\n');
-    print(response?.body.toString());
+    var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
+
+    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
+    print(response?.body);
     print('\nDONE!!!!!\n\n\n\n');
-    
 
     // print('\n\n\n\n\nPREDICT:');
     // print(predict);
@@ -238,22 +243,17 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     Map<String, String> headers = {"Accept": "application/json"};
     Map body =
     {
-      "image": img64
+      "instances": [{
+        "content": img64
+      }],
     };
-    var response = await httpClient?.post(url2, headers: headers, body: body);
+    String bodyJson = json.encode(body);
 
-    print('\n\n\n\n RESPONSE!!!!!!!! Empty, headers, characters, length, toString');
-    print(response?.body.isEmpty);
-    print('\n\n\n');
-    print(response?.headers.toString());
-    print('\n\n\n');
-    print(response?.body.characters.toString());
-    print('\n\n\n');
-    print(response?.body.length);
-    print('\n\n\n');
+    var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
+
+    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
     print(response?.body.toString());
     print('\nDONE!!!!!\n\n\n\n');
-
 
     // print('\n\n\n\n\nPREDICT:');
     // print(predict);
