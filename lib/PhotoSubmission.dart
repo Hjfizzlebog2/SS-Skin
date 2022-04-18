@@ -21,7 +21,6 @@ final GoogleSignIn _googleSignIn = GoogleSignIn(
 class PhotoSubmission extends StatefulWidget {
   const PhotoSubmission({Key? key}) : super(key: key);
 
-
   @override
   _PhotoSubmissionState createState() => _PhotoSubmissionState();
 }
@@ -63,30 +62,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  try {
-                    _googleSignIn.signIn();
-                  } catch (error) {
-                    if (kDebugMode) {
-                      print(error);
-                    }
-                  }
-
-                  GoogleSignInAccount? _currentUser;
-
-                  _googleSignIn.onCurrentUserChanged.listen((account) {
-                    setState(() {
-                      _currentUser = account;
-                    });
-                    if (_currentUser != null) {
-
-                      if (kDebugMode) {
-                        print(_currentUser?.displayName);
-                      }
-
-                      _getFromCamera();
-                      // take picture with device's camera
-                    }
-                  });
+                  processImage('camera');
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -107,30 +83,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               height: 90,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  try {
-                    _googleSignIn.signIn();
-                  } catch (error) {
-                    if (kDebugMode) {
-                      print(error);
-                    }
-                  }
-
-                  GoogleSignInAccount? _currentUser;
-
-                  _googleSignIn.onCurrentUserChanged.listen((account) {
-                    setState(() {
-                      _currentUser = account;
-                    });
-                    if (_currentUser != null) {
-
-                      if (kDebugMode) {
-                        print(_currentUser?.displayName);
-                      }
-
-                      _getFromGallery();
-                      // pick from device's photo gallery
-                    }
-                  });
+                  processImage('gallery');
                 },
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
@@ -150,28 +103,64 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     );
   }
 
-  // get from camera function
-  _getFromCamera() async {
+  processImage(String input) async {
+    try {
+      _googleSignIn.signIn();
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+
+    GoogleSignInAccount? _currentUser;
+
+    _googleSignIn.onCurrentUserChanged.listen((account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+        if (kDebugMode) {
+          print(_currentUser?.displayName);
+        }
+      }
+    });
+
     final httpClient = await _googleSignIn.authenticatedClient();
 
     final ImagePicker _picker = ImagePicker();
-    final XFile? pickedFile = await _picker.pickImage(
-      source: ImageSource.camera,
-    );
 
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-      });
+    if (input == 'camera') {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: ImageSource.camera,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          imageFile = File(pickedFile.path);
+        });
+      }
+    } else {
+      final XFile? pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          imageFile = File(pickedFile.path);
+        });
+      }
     }
 
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    String endpoint = '3866595366795214848';
-    Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
+    String endpoint = '4859639084630409216';
+    Uri url = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
 
-    Map<String, String> headers = {"Accept": "application/json"};
+    Map<String, String> headers = {
+      "Accept": "application/json"
+    };
+
     Map body =
     {
       "instances": [{
@@ -180,7 +169,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     };
     String bodyJson = json.encode(body);
 
-    var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
+    var response = await httpClient?.post(url, headers: headers, body: bodyJson);
 
     //Get JSON response to GeneratedReport Screen
 
@@ -206,83 +195,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
 
-    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
-    print(response.body);
-    print('\nDONE!!!!!\n\n\n\n');
-
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, reportMap)),
     );
-
-  }
-
-  //LOOK HERE
-  // get from gallery function
-  _getFromGallery() async {
-    final httpClient = await _googleSignIn.authenticatedClient();
-
-    final ImagePicker _picker = ImagePicker();
-    final XFile? pickedFile = await _picker.pickImage(
-      source: ImageSource.gallery,
-    );
-
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-      });
-    }
-
-    final bytes = imageFile.readAsBytesSync();
-    String img64 = base64Encode(bytes);
-
-
-    String endpoint = '3866595366795214848';
-    Uri url2 = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
-
-    Map<String, String> headers = {"Accept": "application/json"};
-    Map body =
-    {
-      "instances": [{
-        "content": img64
-      }],
-    };
-    String bodyJson = json.encode(body);
-
-    var response = await httpClient?.post(url2, headers: headers, body: bodyJson);
-
-    //Get JSON response to GeneratedReport Screen
-
-    //STEP 1: Create a VertexReport object [COMPLETE]
-    VertexReport vertexReport = VertexReport.fromJson(jsonDecode(response!.body));
-
-    //STEP 2: Create a map out of the VertexReport object [COMPLETE]
-    Map reportMap = {
-      vertexReport.predictions![0].displayNames![1] : vertexReport.predictions![0].confidences![1],
-      vertexReport.predictions![0].displayNames![0] : vertexReport.predictions![0].confidences![0]
-    };
-
-    /*
-    // Use below code in case that you want to skip over the ReviewPhotoScreen
-    //STEP 3: Pass map to GeneratedReport
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => GeneratedReport(scan: reportMap)),
-    );
-
-     */
-
-    //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
-
-    print('\n\n\n\n RESPONSE!!!!!!!!\n\n\n');
-    print(response.body);
-    print('\nDONE!!!!!\n\n\n\n');
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, reportMap)),
-    );
-
   }
 }
