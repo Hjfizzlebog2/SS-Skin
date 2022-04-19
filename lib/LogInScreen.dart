@@ -27,6 +27,7 @@ class _LogInScreenState extends State<LogInScreen> {
           title: const Text("Skin Safety Scanner"),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+          automaticallyImplyLeading: false
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
