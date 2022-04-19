@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/RegisteredHomePage.dart';
+import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
-// class for the registered home page screen
+// class for the create account screen
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
 
@@ -89,7 +89,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   padding: const EdgeInsets.all(8),
                   child: TextFormField(
                     controller: controller.elementAt(2),
-                    maxLength: 25,
+                    maxLength: 40,
                     textInputAction: TextInputAction.next,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -141,6 +141,11 @@ class _CreateAccountState extends State<CreateAccount> {
                   createUser(userName, name, email, pass, context);
 
                // }
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                );
               },
               icon: const Icon(Icons.add),
               label: const Text(

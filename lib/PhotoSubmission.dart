@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
-import 'GeneratedReport.dart';
 import 'VertexReport.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
