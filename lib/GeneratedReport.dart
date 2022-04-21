@@ -5,7 +5,7 @@ import 'RegisteredHomePage.dart';
 class GeneratedReport extends StatefulWidget {
   final Map scan;
   // var _list = _scan.values.toList(); // <- Doesn't work
-
+  
   const GeneratedReport({
         Key? key,
     required this.scan,
@@ -17,8 +17,7 @@ class GeneratedReport extends StatefulWidget {
 
 class _GeneratedReportState extends State<GeneratedReport> {
   get mapList => widget.scan.entries.toList();
-
-
+  //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
   @override
   void initState() {
@@ -27,9 +26,11 @@ class _GeneratedReportState extends State<GeneratedReport> {
 
   @override
   Widget build(BuildContext context) {
-    // var _list = _scan.values.toList() FIXME
-    String percentage = (mapList[0].value * 100).toStringAsFixed(3);
-    String condition = mapList[0].key;
+
+    String percentage = (mapList[0].value * 100).toStringAsFixed(2); // Melanoma percentage
+    String condition = mapList[0].key; // Melanoma
+    //(mapList[1].value * 100).toStringAsFixed(3) // Not_Melanoma Percentage (Ex: 92.783%)
+    //mapList[1].key // "Not_Melanoma"
 
     return Scaffold(
         appBar: AppBar(
@@ -80,7 +81,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                     style: const TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25
+                        fontSize: 35
                     )
                 )
             ),

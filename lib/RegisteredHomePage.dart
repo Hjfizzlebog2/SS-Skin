@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PhotoSubmission.dart';
+import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'LogHistory.dart';
 
 // FIXME: Renderflex overflow error, "use Expanded widget"?
@@ -28,14 +29,24 @@ class RegisteredHomePage extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Welcome Back!',
+                'Welcome!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
             ),
-            Image.asset('assets/images/registered_homepage.jpg'),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.cyan[600] as Color,
+                  width: 3
+                )
+              ),
+              child:
+              Image.asset('assets/images/registered_homepage.jpg')
+            ),
+           // Image.asset('assets/images/registered_homepage.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,
@@ -44,7 +55,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PhotoSubmission()),
+                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -52,7 +63,7 @@ class RegisteredHomePage extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'Make a New Scan',
+                    'Start Scanning',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -76,7 +87,7 @@ class RegisteredHomePage extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'View Log History',
+                    'See Past Scans',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18

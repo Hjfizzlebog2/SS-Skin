@@ -19,6 +19,9 @@ class QuestionnaireState extends State<Questionnaire> {
   var g2Values = ['Male', 'Female'];
   var g3Values = [true, false];
 
+  static const titleInset = 25;
+  static const labelInset = titleInset - 5;
+
   Group1? g1 = Group1.q1a1;
   Group2? g2 = Group2.q2a1;
   Group3? g3 = Group3.q3a1;
@@ -26,6 +29,7 @@ class QuestionnaireState extends State<Questionnaire> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
@@ -37,7 +41,7 @@ class QuestionnaireState extends State<Questionnaire> {
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(25),
+              padding: const EdgeInsets.fromLTRB(titleInset * 1.0, titleInset * 1.0, titleInset * 1.0, titleInset - 10), // * 1.0 since needs to be double
               child: const Text(
                 '\nFirst, a bit about you...',
                 style: TextStyle(
@@ -47,18 +51,18 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(labelInset * 1.0),
               child: const Text(
                 'What is your age?',
                 style: TextStyle(
                     fontSize: 20,
-                    decoration: TextDecoration.underline
+                    //decoration: TextDecoration.underline
                 ),
               ),
             ),
             Row(
               children: const [
-                SizedBox(width: 15),
+                SizedBox(width:titleInset + 11),
                 Text(
                     '18-29',
                     style: TextStyle(
@@ -90,7 +94,7 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Row(
               children: [
-                const SizedBox(width: 11),
+                const SizedBox(width: 30),
                 Radio<Group1>(
                   value: Group1.q1a1,
                   groupValue: g1,
@@ -134,18 +138,18 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(titleInset * 1.0 - 1),
               child: const Text(
                 'What is your gender?',
                 style: TextStyle(
                     fontSize: 20,
-                    decoration: TextDecoration.underline
+                   // decoration: TextDecoration.underline
                 ),
               ),
             ),
             Row(
               children: const [
-                SizedBox(width: 19),
+                SizedBox(width: labelInset + 18),
                 Text(
                     'Male',
                     style: TextStyle(
@@ -163,7 +167,7 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Row(
               children: [
-                const SizedBox(width: 11),
+                const SizedBox(width: labelInset + 11 * 1.0),
                 Radio<Group2>(
                   value: Group2.q2a1,
                   groupValue: g2,
@@ -187,18 +191,19 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(labelInset + 2 * 1.0),
               child: const Text(
-                'Has anyone else in your family experienced this?',
+                'Any relevant family history?',
                 style: TextStyle(
                     fontSize: 20,
-                    decoration: TextDecoration.underline
+                 //TODO: could make bold
+                 //   decoration: TextDecoration.underline
                 ),
               ),
             ),
             Row(
               children: const [
-                SizedBox(width: 22),
+                SizedBox(width: labelInset + 23),
                 Text(
                     'Yes',
                     style: TextStyle(
@@ -216,7 +221,7 @@ class QuestionnaireState extends State<Questionnaire> {
             ),
             Row(
               children: [
-                const SizedBox(width: 11),
+                const SizedBox(width: labelInset + 10),
                 Radio<Group3>(
                   value: Group3.q3a1,
                   groupValue: g3,

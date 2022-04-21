@@ -89,7 +89,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 ),
                 icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'Choose From Device',
+                    'Choose From Gallery',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -180,6 +180,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       vertexReport.predictions![0].displayNames![1] : vertexReport.predictions![0].confidences![1],
       vertexReport.predictions![0].displayNames![0] : vertexReport.predictions![0].confidences![0]
     };
+    //^ The above is the definition and instantiation of a map that stores two key : value  pairs
+    // Line 180 is "Melanoma" : 0.927947293824 (an example percentage in decimal form)
+    // Line 181 is "Not_Melanoma" : 0.07205270617
+    // So reportMap is just a normal map of two elements. But I do something different
+    // it on GeneratedReport to make it more usable.
 
     /*
     // Use below code in case that you want to skip over the ReviewPhotoScreen

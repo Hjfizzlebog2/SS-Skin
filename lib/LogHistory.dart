@@ -49,7 +49,7 @@ class LogHistory extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'View Previous Photos',
+                    'See Past Pictures',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18
@@ -73,7 +73,7 @@ class LogHistory extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.navigate_next),
                 label: const Text(
-                    'View Past Results',
+                    'See Past Results',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18

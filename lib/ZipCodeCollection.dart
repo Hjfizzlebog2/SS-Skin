@@ -66,7 +66,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                      'Enter your zip code',
+                      "What's your zip code?",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22
