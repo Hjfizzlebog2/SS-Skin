@@ -1,21 +1,11 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
-
-import 'package:cache_manager/cache_manager.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'package:cache_manager/cache_manager.dart';
-
 import 'GeneratedReport.dart';
 
 
@@ -72,7 +62,9 @@ class ReviewPhotoScreen extends StatelessWidget {
                         .child("$userId//$date")
                         .putFile(file);
                     progress = (snapshot.bytesTransferred / snapshot.totalBytes);
-                    print(progress);
+                    if (kDebugMode) {
+                      print(progress);
+                    }
 
 //                     if (snapshot.state == TaskState.success) {
 //                       final String downloadUrl =

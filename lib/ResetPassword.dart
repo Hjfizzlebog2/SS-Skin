@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ss_skin_project/CreateAccount.dart';
 import 'package:ss_skin_project/LogInScreen.dart';
-import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 import 'dbOperations.dart';
 

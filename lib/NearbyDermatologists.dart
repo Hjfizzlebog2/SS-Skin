@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'RegisteredHomePage.dart';
+
 // API KEY: AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
 // ^ Works for both Places and Geocoding
 
@@ -81,6 +83,24 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                  );
+                },
+                child: const Text(
+                    'Home',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
         ),
         body: Center(
             child: FutureBuilder<SearchResults>(

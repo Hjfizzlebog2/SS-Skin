@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 import 'CreateAccount.dart';
-import 'RegisteredHomePage.dart';
 import 'ResetPassword.dart';
 
 // TODO: keyboard is bright red, we want it to be teal as well
@@ -120,9 +119,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              CreateAccount()), // go to homepage
+                      MaterialPageRoute(builder: (context) => const CreateAccount()), // go to homepage
                     );
                   },
                 )

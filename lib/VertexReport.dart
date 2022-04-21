@@ -7,15 +7,15 @@ class VertexReport {
     if (json['predictions'] != null) {
       predictions = <Predictions>[];
       json['predictions'].forEach((v) {
-        predictions!.add(new Predictions.fromJson(v));
+        predictions!.add(Predictions.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.predictions != null) {
-      data['predictions'] = this.predictions!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (predictions != null) {
+      data['predictions'] = predictions!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class Predictions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['confidences'] = this.confidences;
-    data['displayNames'] = this.displayNames;
-    data['ids'] = this.ids;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['confidences'] = confidences;
+    data['displayNames'] = displayNames;
+    data['ids'] = ids;
     return data;
   }
 }

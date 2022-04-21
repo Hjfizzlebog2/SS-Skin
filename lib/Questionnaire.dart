@@ -37,7 +37,7 @@ class QuestionnaireState extends State<Questionnaire> {
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(25),
               child: const Text(
                 '\nFirst, a bit about you...',
                 style: TextStyle(
