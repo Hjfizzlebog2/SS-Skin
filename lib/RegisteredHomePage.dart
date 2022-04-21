@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/GeneratedReport.dart';
-import 'ScreeningBreakdown.dart';
+import 'package:ss_skin_project/PhotoSubmission.dart';
 import 'LogHistory.dart';
 
 // FIXME: Renderflex overflow error, "use Expanded widget"?
@@ -45,7 +44,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                    MaterialPageRoute(builder: (context) => const PhotoSubmission()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/CreateAccount.dart';
-import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 Future signInUser(
@@ -18,9 +16,11 @@ Future signInUser(
         email: email.text, password: password.text));
 
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+        MaterialPageRoute(builder: (context) => const RegisteredHomePage()));
   } catch (e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
   }
 }
 
@@ -49,9 +49,11 @@ Future createUser(
     docUser.set(json);
   });
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+      MaterialPageRoute(builder: (context) => const RegisteredHomePage()));
    } catch(e) {
-     print(e);
+     if (kDebugMode) {
+       print(e);
+     }
   //   AlertDialog(
   //     title:
   //         Text('Error Creating Account'), // To display the title it is optional
@@ -93,7 +95,9 @@ Future uploadImage(File imageFile, String filePathName) async {
         .child('$folder/"C:/Users/cmart/Pictures/IMG_0535.jpg"')
         .putFile(imageFile);
   } catch(e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
   }
 
 }
@@ -110,7 +114,9 @@ Future<bool> resetPassword(TextEditingController emailController) async {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
     return false;
   } catch(e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
     return true;
   }
 }
