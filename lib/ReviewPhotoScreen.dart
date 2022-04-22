@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'GeneratedReport.dart';
+import 'SeeResults.dart';
 
 
 class ReviewPhotoScreen extends StatelessWidget {
@@ -100,7 +101,7 @@ class ReviewPhotoScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  GeneratedReport(scan: reportMap)),
+              MaterialPageRoute(builder: (context) =>  SeeResults(scan: reportMap)),
             );
           },
           style: ElevatedButton.styleFrom(

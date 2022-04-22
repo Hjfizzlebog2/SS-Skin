@@ -1,11 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
 import 'Constants.dart' as Constants;
 
 class SeeResults extends StatelessWidget {
   final Map scan;
+  final rng = Random();
+  // A list of different things to say
+  final List<String> list = ["The Results Are In", "The Scan Is Complete", "Your Picture Has Been Evaluated",
+  "Scan Completed"];
 
-  const SeeResults({
+  static const screenColor = Constants.Constants.amber;
+  static const textColor = Colors.black;
+
+  SeeResults({
     Key? key,
     required this.scan,
   }) : super(key: key);
@@ -15,7 +24,7 @@ class SeeResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.Constants.teal, //Colors.amber[600],
+      backgroundColor: screenColor, //Colors.amber[600],
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -31,12 +40,13 @@ class SeeResults extends StatelessWidget {
         Container(
         alignment: Alignment.topCenter,
           padding: const EdgeInsets.all(10),
-          child: const Text(
-            'The Results are In',
-            style: TextStyle(
+          child: Text(
+            list[rng.nextInt(3)],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 34,
-              color: Colors.white
+              color: textColor
             ),
           ),
         ),
@@ -48,7 +58,7 @@ class SeeResults extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.white
+                    color: textColor
                 ),
               ),
             )

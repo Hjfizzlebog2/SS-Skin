@@ -64,8 +64,8 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
                 child: const Text(
                     'Melanoma is the most serious type of skin cancer.\n \n'
-                        'Melanoma occurs when the pigment-producing cells that give'
-                        'color t the skin become cancerous.',
+                        'Melanoma occurs when the pigment-producing cells that give '
+                        'color to the skin become cancerous.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18)
                 ),

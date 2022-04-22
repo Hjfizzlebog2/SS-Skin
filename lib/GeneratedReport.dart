@@ -21,7 +21,8 @@ class _GeneratedReportState extends State<GeneratedReport> {
   get mapList => widget.scan.entries.toList();
   //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
-  static const screenColor = Constants.Constants.teal;
+  static const screenColor = Constants.Constants.amber;
+  static const textColor = Colors.black;
 
   @override
   void initState() {
@@ -38,7 +39,10 @@ class _GeneratedReportState extends State<GeneratedReport> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  color: textColor,
+                )),
           centerTitle: true,
           backgroundColor: screenColor,
           automaticallyImplyLeading: false,
@@ -53,7 +57,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 child: const Text(
                     'Home',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
@@ -71,6 +75,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 child: const Text(
                     'Your image displayed',
                     style: TextStyle(
+                      color: textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 34
                     )
@@ -95,7 +100,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 child: Text(
                   'similarity with images of positive cases of ' + condition + '.',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 25, color: textColor),
                 )
             ),
 
@@ -115,11 +120,12 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   label: const Text(
                       'Next',
                       style: TextStyle(
+                        color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
                   ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: textColor),
                 )
             )
           ],

@@ -5,6 +5,8 @@ import 'package:ss_skin_project/ZipCodeCollection.dart';
 class NextStepsMelanoma extends StatelessWidget {
   const NextStepsMelanoma({Key? key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,10 +64,10 @@ class NextStepsMelanoma extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
                 child: const Text(
-                    'Notice a new pigmented or unusual looking growth\n\n'
-                        'Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
-                        'Notice an irregular, notched or scalloped borders',
-                    textAlign: TextAlign.center,
+                    '• Notice a new pigmented or unusual looking growth\n\n'
+                        '• Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
+                        '• Notice an irregular, notched or scalloped borders',
+                    textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 18,
                     )
@@ -85,7 +87,7 @@ class NextStepsMelanoma extends StatelessWidget {
                         primary: Colors.cyan[600]
                     ),
                     label: const Text(
-                        'See Nearby Dermatologists',
+                        'Find Nearby Dermatologists',
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
                     ),
                     icon: const Icon(Icons.navigate_next),

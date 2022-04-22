@@ -14,15 +14,21 @@ class WhatNow extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static const screenColor = Constants.Constants.teal;
+  static const screenColor = Constants.Constants.mint;
+  static const buttonColor = Constants.Constants.mint;
+  static const textColor = Colors.black87;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.white,
         appBar: AppBar(
-            title: const Text('Skin Safety Scanner'),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  color: textColor,
+                )),
             centerTitle: true,
-            backgroundColor: screenColor,
+            backgroundColor: buttonColor,
             automaticallyImplyLeading: false,
             actions: <Widget> [
               TextButton(
@@ -35,7 +41,7 @@ class WhatNow extends StatelessWidget {
                 child: const Text(
                     'Home',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
@@ -64,7 +70,7 @@ class WhatNow extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 34,
-                      color: Colors.black
+                      color: textColor
                   ),
                 ),
               ),
@@ -81,12 +87,14 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      primary: buttonColor
                   ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next,
+                  color: textColor),
                   label: const Text(
                       'Scan Again',
                       style: TextStyle(
+                          color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
@@ -105,12 +113,13 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      primary: buttonColor
                   ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
                       'See Past Scans',
                       style: TextStyle(
+                        color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
@@ -129,12 +138,13 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      primary: buttonColor
                   ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
                       'Find Nearby Doctors',
                       style: TextStyle(
+                        color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
@@ -153,13 +163,14 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      primary: buttonColor
                   ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
-                      'Hear More About Melanoma',
+                      'Read More About Melanoma',
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                        color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
