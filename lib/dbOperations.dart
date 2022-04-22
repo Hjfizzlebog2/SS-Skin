@@ -85,18 +85,23 @@ Future enterQuestionData(String age, String gender,
   await docUser.set(json);
 }
 
-Future uploadImage(File imageFile, String filePathName) async {
+Future enterResults( String condition, String date, String time, String probability, String url ) async {
+  final doc = FirebaseFirestore.instance
+      .collection('results')
+      .doc(RegisteredHomePage.user.user?.uid).collection('case')
+      .doc();
 
-  final storeRef = FirebaseStorage.instance;
-  String? folder = RegisteredHomePage.user.user?.uid;
-  try {
-    var snapshot = await storeRef
-        .ref()
-        .child('$folder/"C:/Users/cmart/Pictures/IMG_0535.jpg"')
-        .putFile(imageFile);
-  } catch(e) {
+  final json =
+  {"Condition": "Melanoma",
+    "Date" : "$date$time",
+    "Probability" : "TODO",
+    "url": url};
+  try{
+    await doc.set(json);
+  } catch(e)   {
     print(e);
   }
+
 
 }
 
