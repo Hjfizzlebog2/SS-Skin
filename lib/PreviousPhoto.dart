@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 // class for the log history screen
 class PreviousPhoto extends StatefulWidget {
@@ -50,6 +51,7 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
   }
 
   Future<QuerySnapshot> getImages() {
-    return fb.collection("results").get();
+    return fb.collection("results").doc(RegisteredHomePage.user.user?.uid)
+        .collection('case').get();
   }
 }
