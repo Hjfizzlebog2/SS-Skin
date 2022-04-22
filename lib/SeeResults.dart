@@ -15,7 +15,7 @@ class SeeResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[600],
+      backgroundColor: Constants.Constants.teal, //Colors.amber[600],
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {

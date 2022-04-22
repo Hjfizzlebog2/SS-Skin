@@ -35,13 +35,13 @@ class ScreeningBreakdown extends StatelessWidget {
               child: const Text(
                 // Survey, Snap, Stats
                   '• The screening starts with a brief survey \n\n'
-                      '• After, you\'ll then snap a photo of your skin \n\n' //said "analyzation" before
-              '• Then your photo will be scanned and a report will be available to you in seconds\n\n\n\n\n',
+                      '• Next you\'ll snap a photo of your mole \n\n' //said "analyzation" before
+              '• Then your photo will be scanned and a report\n   will be available to you in seconds\n',
                 style: TextStyle(fontSize: 17),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(20),
               width: 270,
               height: 90,
               child: ElevatedButton.icon(

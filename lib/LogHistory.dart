@@ -23,6 +23,7 @@ class LogHistory extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: const Text(
                 'Log History',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34

@@ -33,14 +33,14 @@ class FurtherDetailsMelanoma extends StatelessWidget {
             ]
         ),
         body: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                   child: const Text(
-                      'More About\n Melanoma',
+                      'What is Melanoma?',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 34
@@ -66,28 +66,6 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                     'Melanoma is the most serious type of skin cancer.\n \n'
                         'Melanoma occurs when the pigment-producing cells that give'
                         'color t the skin become cancerous.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18)
-                ),
-              ),
-              Container(
-                  alignment: Alignment.topCenter,
-                  padding: const EdgeInsets.fromLTRB(35, 25, 35, 15),
-                  child: const Text(
-                    'Signs and symptoms may include:',
-                    style: TextStyle(
-                        fontSize: 18,
-                        decoration: TextDecoration.underline
-                    ),
-                  )
-              ),
-              Container(
-                alignment: Alignment.topCenter,
-                padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
-                child: const Text(
-                    'A new, unusual growth or change in an existing mole\n \n'
-                        'Mole color changes\n \n'
-                        'Changes in mole border',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18)
                 ),

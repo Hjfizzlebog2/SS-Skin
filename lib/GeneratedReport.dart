@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'Constants.dart' as Constants;
 import 'FurtherDetailsMelanoma.dart';
 import 'RegisteredHomePage.dart';
+import 'ThatMeans.dart';
 
 class GeneratedReport extends StatefulWidget {
   final Map scan;
@@ -19,6 +21,8 @@ class _GeneratedReportState extends State<GeneratedReport> {
   get mapList => widget.scan.entries.toList();
   //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
+  static const screenColor = Constants.Constants.teal;
+
   @override
   void initState() {
     super.initState();
@@ -36,7 +40,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+          backgroundColor: screenColor,
           automaticallyImplyLeading: false,
             actions: <Widget> [
               TextButton(
@@ -79,7 +83,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 child: Text(
                     percentage + '%',
                     style: const TextStyle(
-                        color: Colors.teal,
+                        color: screenColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 35
                     )
@@ -102,11 +106,11 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const FurtherDetailsMelanoma()),
+                      MaterialPageRoute(builder: (context) =>  ThatMeans(scan: widget.scan)),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      primary: screenColor
                   ),
                   label: const Text(
                       'Next',

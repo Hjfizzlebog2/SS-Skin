@@ -29,7 +29,7 @@ class RegisteredHomePage extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Welcome!',
+                'Welcome Home!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34
