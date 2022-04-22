@@ -30,33 +30,34 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
     return Scaffold(
       backgroundColor: backgroundColor,
         appBar: AppBar(
+            iconTheme: const IconThemeData(
+              color: textColor,
+            ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
-            iconTheme: const IconThemeData(
-              color: NearbyDermatologists.textColor,
-            ),
             centerTitle: true,
             backgroundColor: buttonColor,
+            // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
-                  );
-                },
-                child: const Text(
-                    'Home',
-                    style: TextStyle(
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
                         color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-              ),
+                      )
+                  )
+              )
             ]
         ),
         body: Column(
@@ -67,8 +68,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                   child: const Text(
-                      '   Find Nearby\nDermatologists',
+                      "What's your zip code?",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
+                          color: textColor,
                           // fontWeight: FontWeight.bold,
                           fontSize: 34
                       )
@@ -79,7 +82,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                      "What's your zip code?",
+                      "Enter a location below.",
                       style: TextStyle(
                           // fontWeight: FontWeight.bold,
                           fontSize: 22

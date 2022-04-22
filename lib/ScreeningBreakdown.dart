@@ -7,8 +7,8 @@ class ScreeningBreakdown extends StatelessWidget {
   const ScreeningBreakdown({Key? key}) : super(key: key);
   static const bulletPointInsets = 25;
 
-  static const screenColor = Constants.cyan; //Constants.tealAccent;
-  static const buttonColor = Constants.teal; // Constants.cyan;
+  static const screenColor = Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
 

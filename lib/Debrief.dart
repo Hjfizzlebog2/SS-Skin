@@ -35,7 +35,7 @@ class ThatMeans extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: const Text(
-                      'Understanding Your Scan',
+                      '\n\n\n\nUnderstanding Your Scan',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
@@ -48,16 +48,24 @@ class ThatMeans extends StatelessWidget {
                 alignment: Alignment.topCenter,
 
                 padding: const EdgeInsets.fromLTRB(30, 15, 15, 20),
-                child: const Text(
-                  "If your percentage was above 75% or otherwise worried you, "
-                  "we recommend checking out our further info on Melanoma.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: textColor,
-                  ),
-                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                    child: const Text(
+                      "If your percentage was above 75% or otherwise worried you, "
+                          "we recommend checking out our further info on Melanoma.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: textColor,
+                      ),
+                    ),
+                    ),
+
+
+                  ],
+                )
               ),
               //so what now container location
               Container(
@@ -72,15 +80,15 @@ class ThatMeans extends StatelessWidget {
                   ),
                 ),
               ),
-              /*
+
               Container(
                 padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
                 child: const Text(
-                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for an official medical diagnosis. \n\n',
+                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for an official medical diagnosis. Be advised that scans may be affected by lighting and image quality.',
                   style: TextStyle(fontSize: 14, color: textColor),
                 ),
               ),
-              */
+
             ],
           ),
         )
@@ -101,6 +109,26 @@ we recommend checking out our further info on Melanoma."
 'A percentage greater than 80% is unlikely to be coincidental. However, the'
                       ' algorithm can make mistakes.'
  */
+
+
+
+/*
+//Scrapped Text Container
+Container(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      child: const Text(""
+                          "Be advised that scans may be affected by lighting and image quality.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: textColor,
+                        ),
+                      ),
+                    ),
+
+ */
+
 
 /*
               Container(

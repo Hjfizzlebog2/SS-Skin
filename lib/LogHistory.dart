@@ -3,6 +3,7 @@ import 'package:ss_skin_project/PastResults.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
 
 import 'Constants.dart';
+import 'RegisteredHomePage.dart';
 
 // class for the log history screen
 class LogHistory extends StatelessWidget {
@@ -17,16 +18,35 @@ class LogHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            iconTheme: const IconThemeData(
+              color: textColor,
+            ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
             centerTitle: true,
             backgroundColor: buttonColor,
-            iconTheme: const IconThemeData(
-              color:textColor,
-            )
+            // automaticallyImplyLeading: false, //Maybe delete me
+            actions: <Widget> [
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
+                        color: textColor,
+                      )
+                  )
+              )
+            ]
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +66,7 @@ class LogHistory extends StatelessWidget {
               ),
             ),
             Material(
-                elevation: 5,
+                elevation: Constants.pfpElevation,
                 shape: const CircleBorder(),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image.asset(

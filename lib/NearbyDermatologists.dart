@@ -97,22 +97,21 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
           centerTitle: true,
           backgroundColor: NearbyDermatologists.buttonColor,
             actions: <Widget> [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
-                  );
-                },
-                child: const Text(
-                    'Home',
-                    style: TextStyle(
-                        color: NearbyDermatologists.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-              ),
+              Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                    );
+                  },
+                  child: const Icon(
+                    Icons.home,
+                    color: NearbyDermatologists.textColor,
+                  )
+                )
+              )
             ]
         ),
         body: Center(

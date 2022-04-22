@@ -8,11 +8,13 @@ class Constants {
   };
 
   static const buttonElevation = 3.0;
-
+  static const pfpElevation = 7.0;
 
   //Colors
   static const cyan = Color(0xFA00ACC1);
 
+  static const cyan2 = Color(0xFA4BC8D9);
+  static const cyan2Accent = Color(0xFA03B5CB);
 
   static const teal = Color(0xFF46aabd);
   static const tealAccent = Color(0xFF49D3EE);
@@ -24,10 +26,10 @@ class Constants {
   static const amber = Color(0xFFF6B243);
   static const amberAccent = Color(0xFFEFC174);
 
-  static const red = Color(0xFFB90D4A);
-  static const redAccent = Color(0xFFD81159);
+  static const red = Color(0xFFDA477C);
+  static const redAccent = Color(0xFFD5034D);
 
 
-  static const purple = Color(0xFF9A2B9F);
-  static const purpleAccent = Color(0xFFB220B9);
+  static const purple = Color(0xFFE5A5E8);
+  static const purpleAccent = Color(0xDDFD67E9);
 }

@@ -16,34 +16,34 @@ class NextStepsMelanoma extends StatelessWidget {
     return Scaffold(
       backgroundColor: screenColor,
         appBar: AppBar(
-
-          title: const Text('Skin Safety Scanner',
-            style: TextStyle(
+            iconTheme: const IconThemeData(
               color: textColor,
             ),
-          ),
-          iconTheme: const IconThemeData(
-            color: textColor,
-          ),
-          centerTitle: true,
-          backgroundColor: buttonColor,
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                )
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
+            // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
-                  );
-                },
-                child: const Text(
-                    'Home',
-                    style: TextStyle(
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
                         color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-              ),
+                      )
+                  )
+              )
             ]
         ),
         body: Column(

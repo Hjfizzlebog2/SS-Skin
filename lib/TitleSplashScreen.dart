@@ -4,6 +4,7 @@ import 'package:ss_skin_project/GeneratedReport.dart';
 import 'package:ss_skin_project/Questionnaire.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
+import 'Constants.dart';
 import 'LogInScreen.dart';
 import 'SeeResults.dart';
 
@@ -11,6 +12,7 @@ class TitleSplashScreen extends StatelessWidget {
   const TitleSplashScreen({Key? key}) : super(key: key);
 
   // Sample Results from Machine Learning Scan
+  // Can also use Constants.reportMap
   static const Map reportMap = {
     "Melanoma" : 0.893764823,
     "Not_Melanoma" : 1 - 0.893764823,
@@ -28,7 +30,7 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 5,
-          navigateAfterSeconds: const LogInScreen(),
+          navigateAfterSeconds: SeeResults(scan: Constants.reportMap),
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(

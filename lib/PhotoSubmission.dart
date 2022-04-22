@@ -28,8 +28,8 @@ class PhotoSubmission extends StatefulWidget {
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
 
-  static const screenColor = Constants.cyan;
-  static const buttonColor = Constants.teal;
+  static const screenColor = Constants.cyan2;
+  static const buttonColor = Constants.cyan2Accent;
   static const textColor = Colors.black;
 
   @override
@@ -64,7 +64,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               ),
             ),
             Material(
-                elevation: 5,
+                elevation: Constants.pfpElevation,
                 shape: const CircleBorder(),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image.asset(
@@ -83,7 +83,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                   processImage('camera');
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
@@ -105,7 +105,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                   processImage('gallery');
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(

@@ -13,8 +13,8 @@ class RegisteredHomePage extends StatelessWidget {
 
   const RegisteredHomePage({Key? key}) : super(key: key);
 
-  static const screenColor = Constants.cyan; //Constants.tealAccent;
-  static const buttonColor = Constants.teal; // Constants.cyan;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -47,7 +47,7 @@ class RegisteredHomePage extends StatelessWidget {
               ),
             ),
             Material(
-              elevation: 5,
+              elevation: Constants.pfpElevation,
             shape: const CircleBorder(),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Image.asset(

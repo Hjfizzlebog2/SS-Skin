@@ -16,34 +16,34 @@ class FurtherDetailsMelanoma extends StatelessWidget {
     return Scaffold(
       backgroundColor: screenColor,
         appBar: AppBar(
-
-            title: const Text('Skin Safety Scanner',
-              style: TextStyle(
-                color: textColor,
-              ),
-            ),
             iconTheme: const IconThemeData(
               color: textColor,
             ),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                )
+            ),
             centerTitle: true,
             backgroundColor: buttonColor,
+            // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
-                  );
-                },
-                child: const Text(
-                    'Home',
-                    style: TextStyle(
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
                         color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                    )
-                ),
-              ),
+                      )
+                  )
+              )
             ]
         ),
         body: Column(
@@ -90,7 +90,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                 ),
               ),
               Container(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: ElevatedButton.icon(
                     onPressed: () {

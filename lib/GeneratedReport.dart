@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Constants.dart';
 import 'FurtherDetailsMelanoma.dart';
 import 'RegisteredHomePage.dart';
-import 'ThatMeans.dart';
+import 'Debrief.dart';
 
 class GeneratedReport extends StatefulWidget {
   final Map scan;
@@ -139,26 +139,20 @@ class _GeneratedReportState extends State<GeneratedReport> {
 }
 
 
-// OLD PDF GENERATOR CONTAINER
+
 /*
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-                child: ElevatedButton.icon(
-                    onPressed: () {
-                      //TEMPORARY CODE - REPLACE WITH REPORT GENERATION
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => GeneratedReport()));
-                      // END TEMPORARY CODE
-                    },
-                    label: const Text(
-                        'Generate PDF',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20
-                        )
-                    ), icon: const Icon(Icons.print)
-                )
-            ),
- */
+//Extra Container for a "So What does that mean?"
+              Container(
+                alignment: Alignment.bottomCenter,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                  'So what does that mean?',
+                  style: TextStyle(
+                    // fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: textColor
+                  ),
+                ),
+              ),
+            */
+
