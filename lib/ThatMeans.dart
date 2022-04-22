@@ -12,16 +12,13 @@ class ThatMeans extends StatelessWidget {
     required this.scan,
   }) : super(key: key);
 
-  static const screenColor = Constants.Constants.teal;
+  static const screenColor = Constants.Constants.amber;
+  static const textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Skin Safety Scanner'),
-        centerTitle: true,
-        backgroundColor: screenColor,
-      ),
+      backgroundColor: screenColor,
     body: GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -38,10 +35,11 @@ class ThatMeans extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: const Text(
-                      '\n\n\nUnderstanding Your Scan',
+                      'Understanding Your Scan',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        color: textColor,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 34
                       )
                   )
@@ -49,7 +47,7 @@ class ThatMeans extends StatelessWidget {
               Container(
                 alignment: Alignment.topCenter,
 
-                padding: const EdgeInsets.fromLTRB(30, 15, 15, 30),
+                padding: const EdgeInsets.fromLTRB(30, 15, 15, 20),
                 child: const Text(
                   "If your percentage was above 75% or otherwise worried you, "
                   "we recommend checking out our further info on Melanoma.",
@@ -57,7 +55,7 @@ class ThatMeans extends StatelessWidget {
                   style: TextStyle(
                       //fontWeight: FontWeight.bold,
                       fontSize: 25,
-                      color: Colors.black,
+                      color: textColor,
                   ),
                 ),
               ),
@@ -66,21 +64,23 @@ class ThatMeans extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Tap for Next Steps',
+                  'Tap to Continue',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Colors.black
+                      color: textColor
                   ),
                 ),
               ),
+              /*
               Container(
                 padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
                 child: const Text(
-                  '\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for an official medical diagnosis. \n\n',
-                  style: TextStyle(fontSize: 14),
+                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for an official medical diagnosis. \n\n',
+                  style: TextStyle(fontSize: 14, color: textColor),
                 ),
               ),
+              */
             ],
           ),
         )

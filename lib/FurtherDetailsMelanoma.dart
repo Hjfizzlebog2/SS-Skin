@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/NextStepsMelanoma.dart';
 
+import 'Constants.dart';
 import 'RegisteredHomePage.dart';
 
 class FurtherDetailsMelanoma extends StatelessWidget {
   const FurtherDetailsMelanoma({Key? key}) : super(key: key);
 
+  static const screenColor = Constants.teal;//Constants.red;
+  static const buttonColor = Constants.tealAccent;//Constants.redAccent;
+  static const textColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+
+            title: const Text('Skin Safety Scanner',
+              style: TextStyle(
+                color: textColor,
+              ),
+            ),
+            iconTheme: const IconThemeData(
+              color: textColor,
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
             actions: <Widget> [
               TextButton(
                 onPressed: () {
@@ -24,7 +38,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                 child: const Text(
                     'Home',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
@@ -42,7 +56,8 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                   child: const Text(
                       'What is Melanoma?',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        color: textColor,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 34
                       )
                   )
@@ -53,7 +68,8 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                   child: const Text(
                     'Per Mayo Clinic:',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 20,
                         decoration: TextDecoration.underline
                     ),
@@ -67,7 +83,10 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                         'Melanoma occurs when the pigment-producing cells that give '
                         'color to the skin become cancerous.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18)
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: textColor
+                    )
                 ),
               ),
               Container(
@@ -81,13 +100,15 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.cyan[600]
+                        primary: buttonColor,
                     ),
                     label: const Text(
-                        'Next',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                        'More Info',
+                        style: TextStyle(
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 18, color: textColor),
                     ),
-                    icon: const Icon(Icons.navigate_next),
+                    icon: const Icon(Icons.navigate_next, color: textColor),
                   )
               )
             ]

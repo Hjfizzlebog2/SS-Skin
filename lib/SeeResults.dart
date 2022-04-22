@@ -44,7 +44,7 @@ class SeeResults extends StatelessWidget {
             list[rng.nextInt(3)],
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
                 fontSize: 34,
               color: textColor
             ),
@@ -56,7 +56,7 @@ class SeeResults extends StatelessWidget {
               child: const Text(
                 'Tap to See Results',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: textColor
                 ),

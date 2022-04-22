@@ -15,13 +15,13 @@ class WhatNow extends StatelessWidget {
   }) : super(key: key);
 
   static const screenColor = Constants.Constants.mint;
-  static const buttonColor = Constants.Constants.mint;
+  static const buttonColor = Constants.Constants.mintAccent;
   static const textColor = Colors.black87;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
+        backgroundColor: screenColor,
         appBar: AppBar(
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
@@ -50,15 +50,7 @@ class WhatNow extends StatelessWidget {
             ]
         ),
         // backgroundColor: screenColor,
-        body: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => WhatNow())
-            );
-          },
-          child: Column(
+        body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget> [
@@ -66,9 +58,9 @@ class WhatNow extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Next Steps For You',
+                  'So what now?',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      //fontWeight: FontWeight.bold,
                       fontSize: 34,
                       color: textColor
                   ),
@@ -95,7 +87,7 @@ class WhatNow extends StatelessWidget {
                       'Scan Again',
                       style: TextStyle(
                           color: textColor,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
                   ),
@@ -120,7 +112,7 @@ class WhatNow extends StatelessWidget {
                       'See Past Scans',
                       style: TextStyle(
                         color: textColor,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
                   ),
@@ -145,7 +137,7 @@ class WhatNow extends StatelessWidget {
                       'Find Nearby Doctors',
                       style: TextStyle(
                         color: textColor,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
                   ),
@@ -171,7 +163,7 @@ class WhatNow extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
                   ),
@@ -179,7 +171,6 @@ class WhatNow extends StatelessWidget {
               ),
             ],
           ),
-        )
     );
   }
 
