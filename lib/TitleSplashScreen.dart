@@ -5,6 +5,7 @@ import 'package:ss_skin_project/Questionnaire.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
 import 'LogInScreen.dart';
+import 'SeeResults.dart';
 
 class TitleSplashScreen extends StatelessWidget {
   const TitleSplashScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 5,
-          navigateAfterSeconds: const GeneratedReport(scan: reportMap),
+          navigateAfterSeconds: const SeeResults(scan: reportMap),
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(
