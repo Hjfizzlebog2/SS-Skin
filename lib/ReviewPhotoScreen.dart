@@ -79,7 +79,7 @@ class ReviewPhotoScreen extends StatelessWidget {
                     print(e);
                   } finally {
 
-                    enterResults("Melanoma", date, time, reportMap.entries.elementAt(0).value.toString());
+                    enterResults("Melanoma", date, time, (reportMap.entries.elementAt(0).value * 100).toString());
                     Navigator.push(
                       context,
                       MaterialPageRoute(
