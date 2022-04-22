@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'Constants.dart';
 import 'RegisteredHomePage.dart';
 
 // API KEY: AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
@@ -29,11 +30,14 @@ class SearchResults {
   }
 }
 
-
-
 class NearbyDermatologists extends StatefulWidget {
   final double lat;
   final double long;
+
+
+  static const backgroundColor = Constants.mint;
+  static const buttonColor =  Constants.mintAccent;
+  static const textColor = Colors.black87;
 
   const NearbyDermatologists({
     Key? key,
@@ -79,6 +83,111 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: NearbyDermatologists.backgroundColor,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: NearbyDermatologists.textColor,
+          ),
+          title: const Text('Skin Safety Scanner',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: NearbyDermatologists.textColor,
+              )
+          ),
+          centerTitle: true,
+          backgroundColor: NearbyDermatologists.buttonColor,
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                  );
+                },
+                child: const Text(
+                    'Home',
+                    style: TextStyle(
+                        color: NearbyDermatologists.textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
+        ),
+        body: Center(
+            child: FutureBuilder<SearchResults>(
+                future: futureSearchResults,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.results.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              child: Card(
+                                elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  color: NearbyDermatologists.buttonColor,
+                                  child: Container(
+                                    child: Column(
+                                      children: <Widget>[ Padding(
+                                        padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                                        child: Text(
+                                            snapshot.data!.results[index]['name'],
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                color: NearbyDermatologists.textColor,
+                                                // fontWeight: FontWeight.bold,
+                                                fontSize: 25
+                                            )
+                                        )
+                                      ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                            child: Text(
+                                                snapshot.data!.results[index]['formatted_address'],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    color: NearbyDermatologists.textColor,
+                                                    // fontWeight: FontWeight.bold,
+                                                    fontSize: 20
+                                                )
+                                            )
+                                        )
+                                        ,
+                                      ]
+                                    )
+                                  )
+                              ),
+                            )
+                          );
+                        }
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+
+                  return const CircularProgressIndicator();
+                }
+                )
+        )
+    );
+  }
+}
+
+
+/*
+Weird spacing but works
+// Builds user interface
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: NearbyDermatologists.backgroundColor,
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
@@ -107,18 +216,25 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                 future: futureSearchResults,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    //NEED TO BREAK UP LOOP. CRAP
                     return ListView.builder(
                         itemCount: snapshot.data!.results.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                              child: Text(
-                                  snapshot.data!.results[index]['name'] + '\n\n'
-                                      + snapshot.data!.results[index]['formatted_address'],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 25
+                          return Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              child: Card(
+                                  color: NearbyDermatologists.buttonColor,
+                                  child: Text(
+                                      snapshot.data!.results[index]['name'] + '\n\n'
+                                          + snapshot.data!.results[index]['formatted_address'],
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold, fontSize: 25
+                                      )
                                   )
-                              ));
+                              ),
+                            )
+                          );
                         }
                     );
                   } else if (snapshot.hasError) {
@@ -126,9 +242,13 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                   }
 
                   return const CircularProgressIndicator();
-                })));
+                }
+                )
+        )
+    );
   }
-}
+
+ */
 
 /*
  IT WORKS!!! Doctors show without hardcoding!

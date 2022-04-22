@@ -2,16 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
 
+import 'Constants.dart';
+
 class NextStepsMelanoma extends StatelessWidget {
   const NextStepsMelanoma({Key? key}) : super(key: key);
+
+  static const screenColor = Constants.teal;//Constants.red;
+  static const buttonColor = Constants.tealAccent;//Constants.redAccent;
+  static const textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
+
+          title: const Text('Skin Safety Scanner',
+            style: TextStyle(
+              color: textColor,
+            ),
+          ),
+          iconTheme: const IconThemeData(
+            color: textColor,
+          ),
           centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+          backgroundColor: buttonColor,
             actions: <Widget> [
               TextButton(
                 onPressed: () {
@@ -23,7 +38,7 @@ class NextStepsMelanoma extends StatelessWidget {
                 child: const Text(
                     'Home',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
@@ -39,9 +54,10 @@ class NextStepsMelanoma extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
                   child: const Text(
-                      'Melanoma',
+                      'Signs of Melanoma',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        color: textColor,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 34
                       )
                   )
@@ -52,9 +68,10 @@ class NextStepsMelanoma extends StatelessWidget {
                   child: const Text(
                     'See a Doctor If You...',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        decoration: TextDecoration.underline
+                        // decoration: TextDecoration.underline
                     ),
                   )
               ),
@@ -62,11 +79,12 @@ class NextStepsMelanoma extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(35, 15, 35, 15),
                 child: const Text(
-                    'Notice a new pigmented or unusual looking growth\n\n'
-                        'Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
-                        'Notice an irregular, notched or scalloped borders',
-                    textAlign: TextAlign.center,
+                    '• Notice a new pigmented or unusual looking growth\n\n'
+                        '• Have a mole change in color, shape, or diameter greater than 1/4 inch\n\n'
+                        '• Notice an irregular, notched or scalloped borders',
+                    textAlign: TextAlign.left,
                     style: TextStyle(
+                      color: textColor,
                       fontSize: 18,
                     )
                 ),
@@ -82,13 +100,15 @@ class NextStepsMelanoma extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.cyan[600]
+                        primary: buttonColor
                     ),
                     label: const Text(
-                        'See Nearby Dermatologists',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                        'Find Nearby Dermatologists',
+                        style: TextStyle(
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 18, color: textColor)
                     ),
-                    icon: const Icon(Icons.navigate_next),
+                    icon: const Icon(Icons.navigate_next, color: textColor),
                   )
               )
             ]

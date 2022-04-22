@@ -5,6 +5,7 @@ import 'package:ss_skin_project/Questionnaire.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
 import 'LogInScreen.dart';
+import 'SeeResults.dart';
 
 class TitleSplashScreen extends StatelessWidget {
   const TitleSplashScreen({Key? key}) : super(key: key);
@@ -31,19 +32,18 @@ class TitleSplashScreen extends StatelessWidget {
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
                 fontSize: 34,
-                color: Colors.white
+                color: Colors.black
             ),
           ),
           image: Image.asset(
               'assets/images/title_picture.gif',
               width: 300
           ),
-          // TODO: move loading circle up higher
           loadingText: const Text("Loading"),
           photoSize: 150.0,
-          loaderColor: Colors.white,
+          loaderColor: Colors.black,
           backgroundColor: Colors.cyan[600],
         )
     );

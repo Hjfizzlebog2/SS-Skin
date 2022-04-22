@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
+import 'Constants.dart';
 import 'VertexReport.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -27,13 +28,25 @@ class PhotoSubmission extends StatefulWidget {
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
 
+  static const screenColor = Constants.cyan;
+  static const buttonColor = Constants.teal;
+  static const textColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  color: textColor,
+                )
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
+          iconTheme: const IconThemeData(
+            color:textColor,
+          )
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,15 +58,21 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               child: const Text(
                 'Let\'s Take a Photo!',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
             ),
-            Image.asset(
-                'assets/images/photo_submission.jpg',
-                height: 160,
-                width: 160
+            Material(
+                elevation: 5,
+                shape: const CircleBorder(),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.asset(
+                  'assets/images/NewPhotoSubmission.png',
+                  height: 230,
+                  width: 230,
+                  fit: BoxFit.fitWidth,
+                )
             ),
             Container(
               padding: const EdgeInsets.all(15),
@@ -66,11 +85,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(Icons.navigate_next),
+                icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'Use Camera',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                        //fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
                 ),
@@ -87,11 +107,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.cyan[600]
                 ),
-                icon: const Icon(Icons.navigate_next),
+                icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'Choose From Gallery',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
                 ),

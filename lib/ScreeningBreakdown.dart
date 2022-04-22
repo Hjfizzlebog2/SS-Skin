@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Constants.dart';
 import 'Questionnaire.dart';
 
 // class for the screening breakdown screen
@@ -6,14 +7,26 @@ class ScreeningBreakdown extends StatelessWidget {
   const ScreeningBreakdown({Key? key}) : super(key: key);
   static const bulletPointInsets = 25;
 
+  static const screenColor = Constants.cyan; //Constants.tealAccent;
+  static const buttonColor = Constants.teal; // Constants.cyan;
+  static const textColor = Colors.black;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.cyan[600],
-          // automaticallyImplyLeading: false
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  color: textColor,
+                )
+            ),
+            iconTheme: const IconThemeData(
+              color: textColor,
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,9 +36,10 @@ class ScreeningBreakdown extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                '\n\nScreening Breakdown',
+                "\n\nLet's Break it Down",
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                  color: textColor,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
@@ -35,13 +49,13 @@ class ScreeningBreakdown extends StatelessWidget {
               child: const Text(
                 // Survey, Snap, Stats
                   '• The screening starts with a brief survey \n\n'
-                      '• After, you\'ll then snap a photo of your skin \n\n' //said "analyzation" before
-              '• Then your photo will be scanned and a report will be available to you in seconds\n\n\n\n\n',
-                style: TextStyle(fontSize: 17),
+                      '• Next you\'ll snap a photo of your mole \n\n' //said "analyzation" before
+              '• Then your photo will be scanned and a report\n   will be available to you in seconds\n',
+                style: TextStyle(fontSize: 17, color: textColor),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(20),
               width: 270,
               height: 90,
               child: ElevatedButton.icon(
@@ -52,13 +66,14 @@ class ScreeningBreakdown extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
                 ),
-                  icon: const Icon(Icons.navigate_next),
+                  icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'Continue',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
                 ),
@@ -68,7 +83,9 @@ class ScreeningBreakdown extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
               child: const Text(
                     'Skin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for medical diagnosis. \n\n',
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(
+                    fontSize: 14,
+                    color: textColor),
               ),
             ),
           ],
