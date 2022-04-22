@@ -28,7 +28,7 @@ class PhotoSubmission extends StatefulWidget {
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
 
-  static const screenColor = Constants.cyan2;
+  static var screenColor = Constants.cyan2;
   static const buttonColor = Constants.cyan2Accent;
   static const textColor = Colors.black;
 

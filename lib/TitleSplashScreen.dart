@@ -30,7 +30,7 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 5,
-          navigateAfterSeconds: SeeResults(scan: Constants.reportMap),
+          navigateAfterSeconds: const LogInScreen(),
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(
