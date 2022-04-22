@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:ss_skin_project/CreateAccount.dart';
 import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
+import 'package:ss_skin_project/ScreeningBreakdown.dart';
 
 Future signInUser(
 
@@ -50,7 +51,7 @@ Future createUser(
     docUser.set(json);
   });
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+      MaterialPageRoute(builder: (context) => ScreeningBreakdown()));
    } catch(e) {
      print(e);
   //   AlertDialog(

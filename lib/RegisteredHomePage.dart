@@ -65,7 +65,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                    MaterialPageRoute(builder: (context) => const PhotoSubmission()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
