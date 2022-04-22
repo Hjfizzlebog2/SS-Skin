@@ -18,16 +18,16 @@ import 'package:cache_manager/cache_manager.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
 import 'GeneratedReport.dart';
+import 'TitleSplashScreen.dart';
 
 class ReviewPhotoScreen extends StatelessWidget {
   ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, {Key? key})
       : super(key: key);
-
   final File imageFile;
   final String imagePath;
   bool isLoading = false;
   var progress;
-  Map reportMap;
+  Map reportMap = TitleSplashScreen.reportMap;
 
   @override
   Widget build(BuildContext context) {
@@ -69,20 +69,17 @@ class ReviewPhotoScreen extends StatelessWidget {
                   var date = DateFormat("dd-MM-yyy").format(now);
                   var time =
                       "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+                  reportMap = TitleSplashScreen.reportMap;
+                  //This should be commented out or removed when endpoint is deployed
 
                   String url = "";
                   try {
                       url = uploadImage(bytes) as String;
-                      // var ref = FirebaseStorage.instanceFor(
-                      //       bucket: 'gs://skin-safety-scanner/')
-                      //   .ref()
-                      //   .child("$userId//$date$time");
-                      // ref.putData(bytes);
-                      //  url = await ref.getDownloadURL();
                   } catch (e) {
                     print(e);
                   } finally {
-                    enterResults("condition", date, time, "probability", url);
+
+                    enterResults("Melanoma", date, time, reportMap.entries.elementAt(0).value.toString(), url);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

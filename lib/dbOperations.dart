@@ -94,9 +94,9 @@ Future enterResults( String condition, String date, String time, String probabil
       .collection('case').doc();
 
   final json =
-  {"Condition": "Melanoma",
+  {"Condition": condition,
     "Date" : "$date$time",
-    "Probability" : "TODO",
+    "Probability" : probability,
     "url": url};
   try{
     doc.set(json, SetOptions(merge: true));
