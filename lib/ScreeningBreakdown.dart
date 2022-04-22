@@ -4,6 +4,7 @@ import 'Questionnaire.dart';
 // class for the screening breakdown screen
 class ScreeningBreakdown extends StatelessWidget {
   const ScreeningBreakdown({Key? key}) : super(key: key);
+  static const bulletPointInsets = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class ScreeningBreakdown extends StatelessWidget {
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+          // automaticallyImplyLeading: false
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,9 +33,10 @@ class ScreeningBreakdown extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(18),
               child: const Text(
-                  '• The screening starts with a brief optional survey \n\n'
-                      '• You\'ll next snap a photo of your skin condition\n\n' //said "analyzation" before
-              '• Your photo will then be analyzed and a scan report will be available to you within seconds.\n\n\n\n\n',
+                // Survey, Snap, Stats
+                  '• The screening starts with a brief survey \n\n'
+                      '• After, you\'ll then snap a photo of your skin \n\n' //said "analyzation" before
+              '• Then your photo will be scanned and a report will be available to you in seconds\n\n\n\n\n',
                 style: TextStyle(fontSize: 17),
               ),
             ),

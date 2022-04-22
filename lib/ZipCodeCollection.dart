@@ -1,11 +1,12 @@
 import 'dart:convert';
-
 import 'package:ss_skin_project/GeocodeData.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/NearbyDermatologists.dart';
 import 'package:http/http.dart' as http;
 
-//Example Geocoding get request (For CBU's postal code of 92504)
+import 'RegisteredHomePage.dart';
+
+//Example Geocoding get request (For CBUs postal code of 92504)
 // https://maps.googleapis.com/maps/api/geocode/json?address=92504&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
 
 class ZipCodeCollection extends StatefulWidget {
@@ -17,7 +18,7 @@ class ZipCodeCollection extends StatefulWidget {
 
 class _ZipCodeCollectionState extends State<ZipCodeCollection> {
 
-  TextEditingController _zipcodeTEC = TextEditingController();
+  final TextEditingController _zipcodeTEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,24 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                  );
+                },
+                child: const Text(
+                    'Home',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -47,9 +66,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                      'Enter your zip code',
+                      "What's your zip code?",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 22
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22
                       )
                   )
           ),
@@ -96,7 +116,10 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                     },
                     label: const Text(
                         'Search',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18
+                        )
                     ),
                     icon: const Icon(Icons.navigate_next),
                     style: ElevatedButton.styleFrom(

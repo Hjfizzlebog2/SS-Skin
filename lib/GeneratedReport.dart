@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'FurtherDetailsMelanoma.dart';
+import 'RegisteredHomePage.dart';
 
 class GeneratedReport extends StatefulWidget {
   final Map scan;
   // var _list = _scan.values.toList(); // <- Doesn't work
-
+  
   const GeneratedReport({
         Key? key,
     required this.scan,
@@ -16,8 +17,7 @@ class GeneratedReport extends StatefulWidget {
 
 class _GeneratedReportState extends State<GeneratedReport> {
   get mapList => widget.scan.entries.toList();
-
-
+  //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
   @override
   void initState() {
@@ -26,15 +26,36 @@ class _GeneratedReportState extends State<GeneratedReport> {
 
   @override
   Widget build(BuildContext context) {
-    // var _list = _scan.values.toList() FIXME
-    String percentage = (mapList[0].value * 100).toStringAsFixed(3);
-    String condition = mapList[0].key;
+
+    String percentage = (mapList[0].value * 100).toStringAsFixed(2); // Melanoma percentage
+    String condition = mapList[0].key; // Melanoma
+    //(mapList[1].value * 100).toStringAsFixed(3) // Not_Melanoma Percentage (Ex: 92.783%)
+    //mapList[1].key // "Not_Melanoma"
 
     return Scaffold(
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+          automaticallyImplyLeading: false,
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                  );
+                },
+                child: const Text(
+                    'Home',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,10 +78,10 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
                 child: Text(
                     percentage + '%',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.teal,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25
+                        fontSize: 35
                     )
                 )
             ),
@@ -70,7 +91,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 child: Text(
                   'similarity with images of positive cases of ' + condition + '.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 )
             ),
 

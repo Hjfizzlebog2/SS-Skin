@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/NextStepsMelanoma.dart';
 
+import 'RegisteredHomePage.dart';
+
 class FurtherDetailsPsoriasis extends StatelessWidget {
   const FurtherDetailsPsoriasis({Key? key}) : super(key: key);
 
@@ -11,6 +13,24 @@ class FurtherDetailsPsoriasis extends StatelessWidget {
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                  );
+                },
+                child: const Text(
+                    'Home',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.start,

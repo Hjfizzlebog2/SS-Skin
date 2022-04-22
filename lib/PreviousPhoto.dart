@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/PastResults.dart';
 
 // class for the log history screen
 class PreviousPhoto extends StatefulWidget {

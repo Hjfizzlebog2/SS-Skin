@@ -9,18 +9,18 @@ class GeocodeData {
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.results != null) {
-      data['results'] = this.results!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (results != null) {
+      data['results'] = results!.map((v) => v.toJson()).toList();
     }
-    data['status'] = this.status;
+    data['status'] = status;
     return data;
   }
 }
@@ -33,14 +33,14 @@ class Results {
 
   Results.fromJson(Map<String, dynamic> json) {
     geometry = json['geometry'] != null
-        ? new Geometry.fromJson(json['geometry'])
+        ? Geometry.fromJson(json['geometry'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.geometry != null) {
-      data['geometry'] = this.geometry!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (geometry != null) {
+      data['geometry'] = geometry!.toJson();
     }
     return data;
   }
@@ -53,14 +53,14 @@ class Geometry {
 
   Geometry.fromJson(Map<String, dynamic> json) {
     location = json['location'] != null
-        ? new Northeast.fromJson(json['location'])
+        ? Northeast.fromJson(json['location'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.location != null) {
-      data['location'] = this.location!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (location != null) {
+      data['location'] = location!.toJson();
     }
     return data;
   }
@@ -79,9 +79,9 @@ class Northeast {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['lat'] = this.lat;
-    data['lng'] = this.lng;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['lat'] = lat;
+    data['lng'] = lng;
     return data;
   }
 }
