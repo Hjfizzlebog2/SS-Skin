@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ss_skin_project/RegisteredHomePage.dart';
 
 
 // class for the past results screen
@@ -39,10 +40,14 @@ class _PastResultsState extends State<PastResults> {
             ),
             Container(
                 padding: const EdgeInsets.all(15),
-                child: Column(
+                height: 500,
+                child: ListView (
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection("results").snapshots(),
+                        stream: FirebaseFirestore.instance.collection("results").doc(RegisteredHomePage.user.user?.uid)
+                .collection('case').snapshots(),
                         builder: (context, snapshot) {
                           if(!snapshot.hasData){
                             return const LinearProgressIndicator();
@@ -54,6 +59,8 @@ class _PastResultsState extends State<PastResults> {
                   ],
                 )
             ),
+
+
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 180,
@@ -87,9 +94,9 @@ class _PastResultsState extends State<PastResults> {
         itemBuilder: (context, index) {
           final doc = snapshot.docs[index];
           return ListTile(
-              title: Text("\nDate: " + doc["Date"] + "\n\n"
-                  + "Condition: " + doc["Condition"] + "\n\n" +
-                  "Probability: " + doc["Probability"] + "%\n")
+            title: Text("\nDate: " + doc["Date"] + "\n\n"
+                + "Condition: " + doc["Condition"] + "\n\n" +
+                "Probability: " + doc["Probability"] + "%\n")
           );
         }
     );

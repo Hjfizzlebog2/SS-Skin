@@ -19,7 +19,6 @@ import 'package:ss_skin_project/dbOperations.dart';
 
 import 'GeneratedReport.dart';
 
-
 class ReviewPhotoScreen extends StatelessWidget {
   ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, {Key? key})
       : super(key: key);
@@ -40,72 +39,71 @@ class ReviewPhotoScreen extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             alignment: Alignment.topCenter,
-            padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
-            child: Image.file(imageFile, width: 256, height: 256)
+            padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
+            child: Image.file(imageFile, width: 360, height: 360),
           ),
           Container(
-              height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: const EdgeInsets.all(20),
+              alignment: Alignment.center,
               child: ElevatedButton(
-                child: const Text("Save Image"),
+                child: Container(
+                  width: 150,
+                  height: 50,
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: const Text(
+                    "Save Image",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 26),
+                  ),
+                ),
                 onPressed: () async {
                   isLoading = true;
 
+                  String? userId = RegisteredHomePage.user.user?.uid;
 
-                    String? userId = RegisteredHomePage.user.user?.uid;
+                  final bytes = imageFile.readAsBytesSync();
+                  DateTime now = DateTime.now();
+                  var date = DateFormat("dd-MM-yyy").format(now);
+                  var time =
+                      "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
 
-                    final bytes = imageFile.readAsBytesSync();
-                    DateTime now = DateTime.now();
-                    var date = DateFormat("dd-MM-yyy").format(now);
-                    var time = "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+                  String url = "";
+                  try {
+                      url = uploadImage(bytes) as String;
+                      // var ref = FirebaseStorage.instanceFor(
+                      //       bucket: 'gs://skin-safety-scanner/')
+                      //   .ref()
+                      //   .child("$userId//$date$time");
+                      // ref.putData(bytes);
+                      //  url = await ref.getDownloadURL();
+                  } catch (e) {
+                    print(e);
+                  } finally {
+                    enterResults("condition", date, time, "probability", url);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GeneratedReport(scan: reportMap)),
+                    );
+                  }
 
 
-                  TaskSnapshot snapshot = await FirebaseStorage.instanceFor(bucket: 'gs://skin-safety-scanner/')
-                        .ref()
-                        .child("$userId//$date$time")
-                       .putData(bytes);
-
-                   // if (snapshot.state == TaskState.success) {
-
-                      enterResults("condition", date, time, "probability", snapshot.ref.getDownloadURL() as String);
-                      final snackBar =
-                          SnackBar(content: Text('Yay! Success'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    // } else {
-                    //   print(
-                    //       'Error from image repo ${snapshot.state.toString()}');
-                    //   throw ('This file is not an image');
-                    // }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
-                  ),
-              )
-          ),
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-        child: ElevatedButton.icon(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>  GeneratedReport(scan: reportMap)),
-            );
-          },
-          style: ElevatedButton.styleFrom(
-              primary: Colors.cyan[600]
-          ),
-          label: const Text(
-              'Scan Photo',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)
-          ),
-          icon: const Icon(Icons.navigate_next),
-        ),
-      )
+                },
+                style: ElevatedButton.styleFrom(primary: Colors.cyan[600]),
+              )),
+          // Container(
+          //   child: AnimatedPositioned(
+          //     bottom: 80,
+          //       height: 200,
+          //       left:200,
+          //       duration: Duration(microseconds: 200),
+          //       child: Image.asset("assets/images/title_picture.gif", width: 50, height: 50),
+          //   )
+          //
+          // ),
         ],
       ),
     );

@@ -160,6 +160,11 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       "Accept": "application/json"
     };
 
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, Map())),
+    );
+
     Map body =
     {
       "instances": [{
