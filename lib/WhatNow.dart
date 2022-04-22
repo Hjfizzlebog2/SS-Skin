@@ -101,7 +101,7 @@ class WhatNow extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const LogHistory()),
+                      MaterialPageRoute(builder: (context) => LogHistory()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

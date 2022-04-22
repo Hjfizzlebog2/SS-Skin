@@ -88,6 +88,9 @@ flutter:
     - assets/images/previous_photo.jpg
     - assets/images/title_picture.gif
     - assets/images/next_steps.jpg
+    - assets/images/NewHome.png
+    - assets/images/NewPhotoSubmission.png
+    - assets/images/NewLogHistory.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -46,16 +46,16 @@ class RegisteredHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.cyan[600] as Color,
-                  width: 3
-                )
-              ),
-              child:
-              Image.asset('assets/images/registered_homepage.jpg')
-            ),
+            Material(
+              elevation: 5,
+            shape: const CircleBorder(),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Image.asset(
+                'assets/images/NewHome.png',
+              height: 230,
+              width: 230,
+              fit: BoxFit.fitWidth,
+            ) ),
            // Image.asset('assets/images/registered_homepage.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
@@ -90,7 +90,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LogHistory()),
+                    MaterialPageRoute(builder: (context) => LogHistory()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

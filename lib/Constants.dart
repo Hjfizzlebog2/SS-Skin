@@ -7,9 +7,10 @@ class Constants {
     "Not_Melanoma" : 1 - 0.893764823,
   };
 
+  static const buttonElevation = 3.0;
+
 
   //Colors
-
   static const cyan = Color(0xFA00ACC1);
 
 

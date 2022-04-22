@@ -38,7 +38,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: const Text(
                   'Skin Safety Scanner\n',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 34
                   ),
                 )

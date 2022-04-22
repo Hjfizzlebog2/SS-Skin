@@ -2,17 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PastResults.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
 
+import 'Constants.dart';
+
 // class for the log history screen
 class LogHistory extends StatelessWidget {
-  const LogHistory({Key? key}) : super(key: key);
+  LogHistory({Key? key}) : super(key: key);
+
+  static const screenColor = Constants.cyan; // Colors.white
+  final Color buttonColor = Colors.cyan[600] as Color; //Colors.cyan[600]
+  static const textColor = Colors.white; //Colors.white
+  static const titleColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  color: textColor,
+                )
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
+            iconTheme: const IconThemeData(
+              color:textColor,
+            )
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,17 +36,25 @@ class LogHistory extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'Log History',
+                'What would like\n to see?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                  color: titleColor,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
             ),
-            Image.asset(
-                'assets/images/log_history.jpg',
-                width: 300
+            Material(
+                elevation: 5,
+                shape: const CircleBorder(),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.asset(
+                  'assets/images/NewLogHistory.png',
+                  height: 230,
+                  width: 230,
+                  fit: BoxFit.fitWidth,
+                )
             ),
             Container(
               padding: const EdgeInsets.all(15),
@@ -46,13 +68,15 @@ class LogHistory extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
+                    elevation: Constants.buttonElevation
                 ),
-                icon: const Icon(Icons.navigate_next),
+                icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'See Past Pictures',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
                 ),
@@ -70,13 +94,15 @@ class LogHistory extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
+                  elevation: Constants.buttonElevation
                 ),
-                icon: const Icon(Icons.navigate_next),
+                icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'See Past Results',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      color: textColor,
+                        // fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
                 ),

@@ -28,7 +28,7 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 5,
-          navigateAfterSeconds: const RegisteredHomePage(),
+          navigateAfterSeconds: const LogInScreen(),
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(
@@ -41,7 +41,6 @@ class TitleSplashScreen extends StatelessWidget {
               'assets/images/title_picture.gif',
               width: 300
           ),
-          // TODO: move loading circle up higher
           loadingText: const Text("Loading"),
           photoSize: 150.0,
           loaderColor: Colors.black,

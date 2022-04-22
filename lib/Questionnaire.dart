@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/dbOperations.dart';
+import 'Constants.dart';
 import 'PhotoSubmission.dart';
 
 enum Group1 { q1a1, q1a2, q1a3, q1a4 }
@@ -19,6 +20,12 @@ class QuestionnaireState extends State<Questionnaire> {
   var g2Values = ['Male', 'Female'];
   var g3Values = [true, false];
 
+  static const screenColor = Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+ // static const radioColor = Colors.white;
+ // static const hoverColor = Colors.white70;
+
   static const titleInset = 25;
   static const labelInset = titleInset - 5;
 
@@ -29,23 +36,36 @@ class QuestionnaireState extends State<Questionnaire> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
+          title: const Text('Skin Safety Scanner',
+            style: TextStyle(
+              color:textColor,
+          )
+          ),
           centerTitle: true,
           backgroundColor: Colors.cyan[600],
+          iconTheme: const IconThemeData(
+            color: textColor,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+
+        ),
+        body: Theme (
+            data: Theme.of(context).copyWith(
+              unselectedWidgetColor: textColor,
+            ),
+            child : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.fromLTRB(titleInset * 1.0, titleInset * 1.0, titleInset * 1.0, titleInset - 10), // * 1.0 since needs to be double
               child: const Text(
-                '\nFirst, a bit about you...',
+                'First, a bit about you...',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                  color: textColor,
+                    // fontWeight: FontWeight.bold,
                     fontSize: 34),
               ),
             ),
@@ -55,6 +75,7 @@ class QuestionnaireState extends State<Questionnaire> {
               child: const Text(
                 'What is your age?',
                 style: TextStyle(
+                  color: textColor,
                     fontSize: 20,
                     //decoration: TextDecoration.underline
                 ),
@@ -66,6 +87,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     '18-29',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -73,6 +95,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     '30-49',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -80,6 +103,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     '50-69',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -87,6 +111,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     '70+',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -142,6 +167,7 @@ class QuestionnaireState extends State<Questionnaire> {
               child: const Text(
                 'What is your gender?',
                 style: TextStyle(
+                  color: textColor,
                     fontSize: 20,
                    // decoration: TextDecoration.underline
                 ),
@@ -153,6 +179,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     'Male',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -160,6 +187,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     'Female',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -195,6 +223,7 @@ class QuestionnaireState extends State<Questionnaire> {
               child: const Text(
                 'Any relevant family history?',
                 style: TextStyle(
+                  color: textColor,
                     fontSize: 20,
                  //TODO: could make bold
                  //   decoration: TextDecoration.underline
@@ -207,6 +236,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     'Yes',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -214,6 +244,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 Text(
                     'No',
                     style: TextStyle(
+                      color: textColor,
                         fontSize: 15
                     )
                 ),
@@ -281,21 +312,22 @@ class QuestionnaireState extends State<Questionnaire> {
                     MaterialPageRoute(builder: (context) => const PhotoSubmission()),
                   );
                 },
-                icon: const Icon(Icons.navigate_next),
+                icon: const Icon(Icons.navigate_next, color: textColor),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor,
                 ),
                 label: const Text(
                     'Continue',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
+                      color: textColor,
                         fontSize: 18
                     )
                 ),
               ),
             )
           ],
-        )
+        )),
     );
   }
 }

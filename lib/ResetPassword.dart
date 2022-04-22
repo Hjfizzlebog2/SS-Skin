@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/LogInScreen.dart';
 
+import 'Constants.dart';
 import 'dbOperations.dart';
 
 // class for the reset password screen
@@ -16,10 +17,15 @@ class _ResetPasswordState extends State<ResetPassword> {
   final formKey = GlobalKey<FormState>();
   bool emailNotFound = false;
 
-  // TODO: Figure out how to make a proper back button
+  static const screenColor = Colors.white;
+  static const buttonColor = Constants.teal;
+  static const textColor = Colors.white;
+  static const titleColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
           title: const Text('Skin Safety Scanner'),
           centerTitle: true,
@@ -31,10 +37,13 @@ class _ResetPasswordState extends State<ResetPassword> {
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
                 child: const Text(
                   'Reset Password',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34),
+                  style: TextStyle(
+                    color: titleColor,
+                      //fontWeight: FontWeight.bold,
+                      fontSize: 34),
                 )),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -55,7 +64,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: ElevatedButton(
-                  child: const Text('Send Reset Password Email'),
+                  child: const Text('Send Email',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: textColor,
+                    )
+                  ),
                   onPressed: () {
                     resetPassword(emailController).then((value) {
                       emailNotFound = value;
@@ -71,6 +85,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
+                    elevation: Constants.buttonElevation,
                       primary: Colors.cyan[600]
                   ),
                 )
