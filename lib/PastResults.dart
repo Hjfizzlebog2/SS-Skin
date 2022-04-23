@@ -43,14 +43,14 @@ class _PastResultsState extends State<PastResults> {
                 height: 500,
                 child: ListView (
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   children: [
                     StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("results").doc(RegisteredHomePage.user.user?.uid)
-                .collection('case').snapshots(),
+                            .collection('case').snapshots(),
                         builder: (context, snapshot) {
                           if(!snapshot.hasData){
-                            return const LinearProgressIndicator();
+                            return const Text("No Data");
                           } else {
                             return _buildList(snapshot.data as QuerySnapshot);
                           }
@@ -64,7 +64,6 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 180,
-                height: 70,
                 child: TextButton(
                   child: const Text(
                       'View Photos',
@@ -94,9 +93,9 @@ class _PastResultsState extends State<PastResults> {
         itemBuilder: (context, index) {
           final doc = snapshot.docs[index];
           return ListTile(
-            title: Text("\nDate: " + doc["Date"] + "\n\n"
-                + "Condition: " + doc["Condition"] + "\n\n" +
-                "Probability: " + doc["Probability"] + "%\n")
+              title: Text("\nDate: " + doc["Date"] + "\n\n"
+                  + "Condition: " + doc["Condition"] + "\n\n" +
+                  "Probability: " + doc["Probability"] + "%\n")
           );
         }
     );
