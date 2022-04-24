@@ -17,19 +17,37 @@ class _ResetPasswordState extends State<ResetPassword> {
   final formKey = GlobalKey<FormState>();
   bool emailNotFound = false;
 
+  static const screenColor = Constants.tealAccent; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+  static const titleColor = textColor;
+
+
+  /*
+  //Disgusting Combination of Colors
   static const screenColor = Colors.white;
-  static const buttonColor = Constants.teal;
-  static const textColor = Colors.white;
-  static const titleColor = Colors.black;
+  static const buttonColor = Constants.amber;
+  static const textColor = Colors.green;
+  static const titleColor = Colors.green;
+
+   */
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
+          title: const Text('Skin Safety Scanner',
+            style: TextStyle(
+              color: textColor,
+            )
+          ),
           centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+          backgroundColor: buttonColor,
+          iconTheme: const IconThemeData(
+            color: textColor,
+          )
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,6 +66,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextFormField(
+                style: TextStyle(
+                  color: textColor,
+                ),
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -86,7 +107,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: Constants.buttonElevation,
-                      primary: Colors.cyan[600]
+                      primary: buttonColor,
                   ),
                 )
             ),

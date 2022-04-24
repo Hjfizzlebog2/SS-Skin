@@ -18,7 +18,7 @@ class NextStepsEczema extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const RegisteredHomePage()),
+                    MaterialPageRoute(builder: (context) => RegisteredHomePage()),
                   );
                 },
                 child: const Text(

@@ -7,8 +7,8 @@ import 'RegisteredHomePage.dart';
 class FurtherDetailsMelanoma extends StatelessWidget {
   const FurtherDetailsMelanoma({Key? key}) : super(key: key);
 
-  static const screenColor = Constants.teal;//Constants.red;
-  static const buttonColor = Constants.tealAccent;//Constants.redAccent;
+  static const screenColor = Constants.cyan2;//Constants.red;
+  static const buttonColor = Constants.cyan2Accent;//Constants.redAccent;
   static const textColor = Colors.black;
 
   @override
@@ -21,7 +21,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
@@ -100,6 +100,7 @@ class FurtherDetailsMelanoma extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
+                      elevation: Constants.buttonElevation,
                         primary: buttonColor,
                     ),
                     label: const Text(

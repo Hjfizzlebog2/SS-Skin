@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
+import 'Constants.dart';
+
 // class for the log history screen
 class PreviousPhoto extends StatefulWidget {
   const PreviousPhoto({Key? key}) : super(key: key);
@@ -12,13 +14,45 @@ class PreviousPhoto extends StatefulWidget {
 
 class _PreviousPhotoState extends State<PreviousPhoto> {
   final FirebaseFirestore fb = FirebaseFirestore.instance;
+
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Skin Safety Scanner'),
-        centerTitle: true,
-        backgroundColor: Colors.cyan[600],
+          iconTheme: const IconThemeData(
+            color: textColor,
+          ),
+          title: const Text('Skin Safety Scanner',
+              style: TextStyle(
+                // fontWeight: FontWeight.bold,
+                color: textColor,
+              )
+          ),
+          centerTitle: true,
+          backgroundColor: buttonColor,
+          // automaticallyImplyLeading: false, //Maybe delete me
+          actions: <Widget> [
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                      );
+                    },
+                    child: const Icon(
+                      Icons.home,
+                      color: textColor,
+                    )
+                )
+            )
+          ]
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
@@ -34,10 +68,16 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                       contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
                       + snapshot.data?.docs[index]["Date"] + "\n" +
-                          snapshot.data?.docs[index]["Probability"] + "%"),
-                      leading: Image.network(
+                          (double.parse(snapshot.data?.docs[index]["Probability"])).toStringAsFixed(2) + "%", //Made it so that it shows to 2 decimal points
+                      style: TextStyle(
+                        color: textColor,
+                      ),
+                      ),
+                      leading: Material(
+                        elevation: Constants.buttonElevation,
+                        child: Image.network(
                           snapshot.data?.docs[index]["url"],
-                          fit: BoxFit.fill),
+                          fit: BoxFit.fill),)
                     );
                   });
             } else if (snapshot.connectionState == ConnectionState.none) {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
+import 'Constants.dart';
+
 // class for the create account screen
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -17,6 +19,9 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController(), TextEditingController()];
   final formKey = GlobalKey<FormState>();
 
+  static const backgroundColor = Constants.tealAccent; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +29,17 @@ class _CreateAccountState extends State<CreateAccount> {
       key: formKey,
      child:
      Scaffold(
+       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Skin Safety Scanner'),
+        title: const Text('Skin Safety Scanner',
+        style: TextStyle(
+            color: textColor,
+        )),
         centerTitle: true,
         backgroundColor: Colors.cyan[600],
+        iconTheme: IconThemeData(
+          color: textColor,
+        )
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -147,15 +159,17 @@ class _CreateAccountState extends State<CreateAccount> {
                   MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                 );
               },
-              icon: const Icon(Icons.add),
+              icon: const Icon(Icons.add, color: textColor),
               label: const Text(
                   'Sign Up',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: textColor,
                   )
               ),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.cyan[600]
+                    primary: buttonColor
                 )
             ),
           ),

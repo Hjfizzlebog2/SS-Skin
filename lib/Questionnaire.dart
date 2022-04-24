@@ -314,6 +314,7 @@ class QuestionnaireState extends State<Questionnaire> {
                 },
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 style: ElevatedButton.styleFrom(
+                  elevation: Constants.buttonElevation,
                     primary: buttonColor,
                 ),
                 label: const Text(

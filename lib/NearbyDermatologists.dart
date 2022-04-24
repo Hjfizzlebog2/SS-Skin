@@ -90,7 +90,7 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
           ),
           title: const Text('Skin Safety Scanner',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
                 color: NearbyDermatologists.textColor,
               )
           ),

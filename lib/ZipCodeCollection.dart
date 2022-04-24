@@ -35,7 +35,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
@@ -143,6 +143,7 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                         color: textColor
                     ),
                     style: ElevatedButton.styleFrom(
+                      elevation: Constants.buttonElevation,
                         primary: buttonColor,
                     ),
                   )

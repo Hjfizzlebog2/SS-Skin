@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ss_skin_project/NearbyDermatologists.dart';
 import 'package:ss_skin_project/PhotoSubmission.dart';
 import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'Constants.dart';
 import 'LogHistory.dart';
+import 'ZipCodeCollection.dart';
 
 // FIXME: Renderflex overflow error, "use Expanded widget"?
 
@@ -11,7 +15,11 @@ import 'LogHistory.dart';
 class RegisteredHomePage extends StatelessWidget {
   static late UserCredential user;
 
-  const RegisteredHomePage({Key? key}) : super(key: key);
+  RegisteredHomePage({Key? key}) : super(key: key);
+
+  final rng = Random();
+  // A list of different things to say
+  final List<String> list = ["Welcome Home!", "Hey there!", "Welcome Back!"];
 
   static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
   static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
@@ -38,8 +46,8 @@ class RegisteredHomePage extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
-              child: const Text(
-                'Welcome Home!',
+              child: Text(
+                list[rng.nextInt(3)],
                 style: TextStyle(
                     // fontWeight: FontWeight.bold,
                     fontSize: 34
@@ -65,10 +73,11 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PhotoSubmission()),
+                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  elevation: Constants.buttonElevation,
                     primary: buttonColor
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
@@ -94,6 +103,7 @@ class RegisteredHomePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  elevation: Constants.buttonElevation,
                     primary: buttonColor
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
@@ -102,6 +112,32 @@ class RegisteredHomePage extends StatelessWidget {
                     style: TextStyle(
                         // fontWeight: FontWeight.bold,
                       color: textColor,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(15),
+              width: 270,
+              height: 90,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ZipCodeCollection()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    elevation: Constants.buttonElevation,
+                    primary: buttonColor
+                ),
+                icon: const Icon(Icons.navigate_next, color: textColor),
+                label: const Text(
+                    'Find Nearby Doctors',
+                    style: TextStyle(
+                      // fontWeight: FontWeight.bold,
+                        color: textColor,
                         fontSize: 18
                     )
                 ),

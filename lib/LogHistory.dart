@@ -9,21 +9,32 @@ import 'RegisteredHomePage.dart';
 class LogHistory extends StatelessWidget {
   LogHistory({Key? key}) : super(key: key);
 
+
+  //ORIGINAL COLOR SCHEME
+  /*
   static const screenColor = Constants.cyan; // Colors.white
   final Color buttonColor = Colors.cyan[600] as Color; //Colors.cyan[600]
   static const textColor = Colors.white; //Colors.white
   static const titleColor = Colors.black;
+  */
+
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+  static const titleColor = textColor;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
         appBar: AppBar(
             iconTheme: const IconThemeData(
               color: textColor,
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
@@ -56,7 +67,7 @@ class LogHistory extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: const Text(
-                'What would like\n to see?',
+                'What would you \nlike to see?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: titleColor,

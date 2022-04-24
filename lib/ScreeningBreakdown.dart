@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Constants.dart';
 import 'Questionnaire.dart';
+import 'RegisteredHomePage.dart';
 
 // class for the screening breakdown screen
 class ScreeningBreakdown extends StatelessWidget {
@@ -17,16 +18,34 @@ class ScreeningBreakdown extends StatelessWidget {
     return Scaffold(
       backgroundColor: screenColor,
         appBar: AppBar(
-            title: const Text('Skin Safety Scanner',
-                style: TextStyle(
-                  color: textColor,
-                )
-            ),
             iconTheme: const IconThemeData(
               color: textColor,
             ),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                )
+            ),
             centerTitle: true,
             backgroundColor: buttonColor,
+            actions: <Widget> [
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
+                        color: textColor,
+                      )
+                  )
+              )
+            ]
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -66,6 +85,7 @@ class ScreeningBreakdown extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
+                  elevation: Constants.buttonElevation,
                     primary: buttonColor,
                 ),
                   icon: const Icon(Icons.navigate_next, color: textColor),

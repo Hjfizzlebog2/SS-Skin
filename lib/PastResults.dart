@@ -3,6 +3,8 @@ import 'package:ss_skin_project/PreviousPhoto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 
+import 'Constants.dart';
+
 
 // class for the past results screen
 class PastResults extends StatefulWidget {
@@ -15,26 +17,57 @@ class PastResults extends StatefulWidget {
 class _PastResultsState extends State<PastResults> {
   final firestoreInstance = FirebaseFirestore.instance;
 
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner'),
-          centerTitle: true,
-          backgroundColor: Colors.cyan[600],
+            iconTheme: const IconThemeData(
+              color: textColor,
+            ),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                )
+            ),
+            centerTitle: true,
+            backgroundColor: buttonColor,
+            // automaticallyImplyLeading: false, //Maybe delete me
+            actions: <Widget> [
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
+                        );
+                      },
+                      child: const Icon(
+                        Icons.home,
+                        color: textColor,
+                      )
+                  )
+              )
+            ]
         ),
         body: Column (
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.topCenter,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.fromLTRB(10,30,10,0),
               child: const Text(
-                '\nPast Results',
+                'Past Results',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30
+                    // fontWeight: FontWeight.bold,
+                    fontSize: 34
                 ),
               ),
             ),
@@ -50,7 +83,10 @@ class _PastResultsState extends State<PastResults> {
                             .collection('case').snapshots(),
                         builder: (context, snapshot) {
                           if(!snapshot.hasData){
-                            return const Text("No Data");
+                            return const Text(
+                                "No Data",
+                                style: TextStyle(color: textColor,)
+                            );
                           } else {
                             return _buildList(snapshot.data as QuerySnapshot);
                           }
@@ -68,6 +104,7 @@ class _PastResultsState extends State<PastResults> {
                   child: const Text(
                       'View Photos',
                       style: TextStyle(
+                        color: textColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
@@ -95,7 +132,11 @@ class _PastResultsState extends State<PastResults> {
           return ListTile(
               title: Text("\nDate: " + doc["Date"] + "\n\n"
                   + "Condition: " + doc["Condition"] + "\n\n" +
-                  "Probability: " + doc["Probability"] + "%\n")
+                  "Probability: " + double.parse(doc["Probability"]).toStringAsFixed(2) + "%\n", // Made it so that probability shows to 2 decimal points
+                style: TextStyle(
+                  color: textColor,
+                ),
+              ),
           );
         }
     );

@@ -9,7 +9,7 @@ class SeeResults extends StatelessWidget {
   final rng = Random();
   // A list of different things to say
   final List<String> list = ["The Results Are In", "The Scan Is Complete", "Your Picture Has Been Evaluated",
-  "Scan Completed"];
+  "Scan Completed", "Photo Analyzed"];
 
   static const screenColor = Constants.Constants.amber;
   static const textColor = Colors.black;
@@ -40,13 +40,14 @@ class SeeResults extends StatelessWidget {
         Container(
         alignment: Alignment.topCenter,
           padding: const EdgeInsets.all(10),
-          child: Text(
-            list[rng.nextInt(3)],
+          child:
+          Text(
+            list[rng.nextInt(5)], //list.length?
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
                 // fontWeight: FontWeight.bold,
                 fontSize: 34,
-              color: textColor
+              color: textColor,
             ),
           ),
         ),
@@ -58,7 +59,7 @@ class SeeResults extends StatelessWidget {
                 style: TextStyle(
                     // fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: textColor
+                    color: textColor,
                 ),
               ),
             )

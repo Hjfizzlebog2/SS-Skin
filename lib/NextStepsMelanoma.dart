@@ -7,8 +7,8 @@ import 'Constants.dart';
 class NextStepsMelanoma extends StatelessWidget {
   const NextStepsMelanoma({Key? key}) : super(key: key);
 
-  static const screenColor = Constants.teal;//Constants.red;
-  static const buttonColor = Constants.tealAccent;//Constants.redAccent;
+  static const screenColor = Constants.cyan2;//Constants.red;
+  static const buttonColor = Constants.cyan2Accent;//Constants.redAccent;
   static const textColor = Colors.black;
 
   @override
@@ -66,7 +66,7 @@ class NextStepsMelanoma extends StatelessWidget {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(35, 25, 35, 15),
                   child: const Text(
-                    'See a Doctor If You...',
+                    'See a doctor if you...',
                     style: TextStyle(
                       color: textColor,
                         // fontWeight: FontWeight.bold,
@@ -100,6 +100,7 @@ class NextStepsMelanoma extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
+                      elevation: Constants.buttonElevation,
                         primary: buttonColor
                     ),
                     label: const Text(

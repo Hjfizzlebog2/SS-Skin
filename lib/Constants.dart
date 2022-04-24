@@ -7,7 +7,7 @@ class Constants {
     "Not_Melanoma" : 1 - 0.893764823,
   };
 
-  static const buttonElevation = 3.0;
+  static const buttonElevation = 4.0;
   static const pfpElevation = 7.0;
 
   //Colors

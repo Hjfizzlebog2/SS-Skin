@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/FurtherDetailsMelanoma.dart';
 import 'package:ss_skin_project/NextStepsMelanoma.dart';
@@ -10,9 +12,13 @@ import 'RegisteredHomePage.dart';
 
 class WhatNow extends StatelessWidget {
 
-  const WhatNow({
+  WhatNow({
     Key? key,
   }) : super(key: key);
+
+  final rng = Random();
+  // A list of different things to say
+  final List<String> list = ["Where to now?", "So what's next?", "Where to next?",];
 
   static const screenColor = Constants.Constants.purple;//Constants.Constants.mint;
   static const buttonColor = Constants.Constants.purpleAccent;//Constants.Constants.mintAccent;
@@ -28,7 +34,7 @@ class WhatNow extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                   color: textColor,
                 )
             ),
@@ -61,8 +67,9 @@ class WhatNow extends StatelessWidget {
               Container(
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.all(10),
-                child: const Text(
-                  'Where to now?',
+                child: Text(
+                  list[rng.nextInt(3)],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       //fontWeight: FontWeight.bold,
                       fontSize: 34,
@@ -83,6 +90,7 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+                    elevation: Constants.Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next,
@@ -109,6 +117,7 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+                    elevation: Constants.Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),
@@ -134,6 +143,7 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+                    elevation: Constants.Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),
@@ -159,6 +169,7 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
+                    elevation: Constants.Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),

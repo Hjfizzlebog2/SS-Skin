@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/dbOperations.dart';
+import 'Constants.dart';
 import 'CreateAccount.dart';
 import 'ResetPassword.dart';
 
@@ -19,14 +20,27 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+  static const backgroundColor = Constants.tealAccent; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+  static const clickableColor = Color(0xff1664bd); //Color(0xff1664bd)
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
         appBar: AppBar(
-          title: const Text("Skin Safety Scanner"),
+          title: const Text('Skin Safety Scanner',
+              style: TextStyle(
+                color: textColor,
+              )
+          ),
+          iconTheme: const IconThemeData(
+            color: textColor,
+          ),
           centerTitle: true,
-          backgroundColor: Colors.cyan[600],
-          automaticallyImplyLeading: false
+          backgroundColor: buttonColor,
+          automaticallyImplyLeading: false,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,11 +48,12 @@ class _LogInScreenState extends State<LogInScreen> {
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: const Text(
-                  'Skin Safety Scanner\n',
+                  'Skin Safety Scanner',
                   style: TextStyle(
                       // fontWeight: FontWeight.bold,
+                    color: textColor,
                       fontSize: 34
                   ),
                 )
@@ -46,6 +61,9 @@ class _LogInScreenState extends State<LogInScreen> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextFormField(
+                style: const TextStyle(
+                  color: textColor,
+                ),
                 controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -61,6 +79,9 @@ class _LogInScreenState extends State<LogInScreen> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextFormField(
+                style: TextStyle(
+                  color: textColor,
+                ),
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -73,7 +94,9 @@ class _LogInScreenState extends State<LogInScreen> {
                     : null,
               ),
             ),
+
             TextButton(
+
               onPressed: () {
                 Navigator.push(
                   context,
@@ -83,17 +106,23 @@ class _LogInScreenState extends State<LogInScreen> {
                 );
               },
               child: const Text(
-                'Forgot Password?',
+                  'Forgot Password?',
+                  style: TextStyle(
+                    // fontWeight: FontWeight.bold,
+                    color: clickableColor,
+                  )
               ),
             ),
-            Container(
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: Container(
                 width: 120,
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: ElevatedButton(
                   child: const Text(
                       'Login',
-                    style: TextStyle(fontSize: 20,),
+                    style: TextStyle(fontSize: 20, color: textColor),
                   ),
                   onPressed: () {
                    // if (formKey.currentState!.validate()) {
@@ -101,20 +130,26 @@ class _LogInScreenState extends State<LogInScreen> {
                    // }
                   },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan[600]
+                      elevation: Constants.buttonElevation,
+                      primary: buttonColor
                     )
                 )
             ),
+            ),
+
             Row(
               children: <Widget>[
                 const Text(
                   'Don\'t have an account?',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 17, color: textColor),
                 ),
                 TextButton(
                   child: const Text(
                     'Sign Up',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                        fontSize: 17,
+                        // fontWeight: FontWeight.bold,
+                        color: clickableColor),
                   ),
                   onPressed: () {
                     Navigator.push(

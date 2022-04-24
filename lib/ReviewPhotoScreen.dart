@@ -17,6 +17,7 @@ import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:cache_manager/cache_manager.dart';
 import 'package:ss_skin_project/dbOperations.dart';
 
+import 'Constants.dart';
 import 'GeneratedReport.dart';
 import 'TitleSplashScreen.dart';
 
@@ -29,13 +30,25 @@ class ReviewPhotoScreen extends StatelessWidget {
   var progress;
   Map reportMap = TitleSplashScreen.reportMap;
 
+  static const screenColor = Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: screenColor,
       appBar: AppBar(
-        title: const Text('Skin Safety Scanner'),
+        title: const Text('Skin Safety Scanner',
+        style: TextStyle(
+          color: textColor,
+          )
+        ),
+        iconTheme: const IconThemeData(
+          color: textColor,
+        ),
         centerTitle: true,
-        backgroundColor: Colors.cyan[600],
+        backgroundColor: buttonColor,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -56,7 +69,7 @@ class ReviewPhotoScreen extends StatelessWidget {
                   child: const Text(
                     "Save Image",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 26),
+                    style: TextStyle(fontSize: 26, color: textColor),
                   ),
                 ),
                 onPressed: () async {
@@ -89,8 +102,11 @@ class ReviewPhotoScreen extends StatelessWidget {
 
 
                 },
-                style: ElevatedButton.styleFrom(primary: Colors.cyan[600]),
-              )),
+                style: ElevatedButton.styleFrom(
+                    primary: buttonColor,
+                    elevation: Constants.buttonElevation),
+              )
+          ),
           // Container(
           //   child: AnimatedPositioned(
           //     bottom: 80,
