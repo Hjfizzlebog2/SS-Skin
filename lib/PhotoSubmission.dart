@@ -5,9 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 import 'Constants.dart';
+import 'SeeResults.dart';
 import 'VertexReport.dart';
+import 'dbOperations.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
@@ -170,7 +173,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       }
     } else {
       final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery,
+        source: ImageSource.gallery, imageQuality: 50
       );
 
       if (pickedFile != null) {
@@ -235,11 +238,36 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(
-          imageFile.path, imageFile, reportMap, widget.q1, widget.q2, widget.q3)
-      ),
-    );
+    DateTime now = DateTime.now();
+    var date = DateFormat("dd-MM-yyy").format(now);
+    var time =
+        "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+    // reportMap = TitleSplashScreen.reportMap;
+    //This should be commented out or removed when endpoint is deployed
+
+    try {
+      uploadImage(bytes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    } finally {
+      enterResults("Melanoma", date, time, (reportMap.entries
+          .elementAt(0)
+          .value * 100).toString());
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                SeeResults(scan: reportMap,
+                    q1: widget.q1, q2: widget.q2, q3: widget.q3)),
+      );
+    }
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => ReviewPhotoScreen(
+    //       imageFile.path, imageFile, reportMap, widget.q1, widget.q2, widget.q3)
+    //   ),
+    // );
   }
 }

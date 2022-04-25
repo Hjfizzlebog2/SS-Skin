@@ -79,7 +79,7 @@ class _PastResultsState extends State<PastResults> {
                   children: [
                     StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection("results").doc(RegisteredHomePage.user.user?.uid)
-                            .collection('case').snapshots(),
+                            .collection('case').orderBy('Date', descending: true).snapshots(),
                         builder: (context, snapshot) {
                           if(!snapshot.hasData){
                             return const Text(

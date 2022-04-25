@@ -69,6 +69,8 @@ class ReviewPhotoScreen extends StatelessWidget {
 
                   DateTime now = DateTime.now();
                   var date = DateFormat("dd-MM-yyy").format(now);
+                  var time =
+                      "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
                   // reportMap = TitleSplashScreen.reportMap;
                   //This should be commented out or removed when endpoint is deployed
 
@@ -78,7 +80,7 @@ class ReviewPhotoScreen extends StatelessWidget {
                       print(e);
                     }
                   } finally {
-                    enterResults("Melanoma", date, (reportMap.entries.elementAt(0).value * 100).toString());
+                    enterResults("Melanoma", date,time,  (reportMap.entries.elementAt(0).value * 100).toString());
                     Navigator.push(
                       context,
                       MaterialPageRoute(

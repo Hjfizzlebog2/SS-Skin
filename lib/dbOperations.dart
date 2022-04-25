@@ -86,19 +86,21 @@ Future enterQuestionData(String age, String gender,
   await docUser.set(json);
 }
 
-Future enterResults( String condition, String date, String probability) async {
+Future enterResults( String condition, String date, String time, String probability) async {
 
   final doc = FirebaseFirestore.instance
       .collection('results')
       .doc(RegisteredHomePage.user.user?.uid)
       .collection('case').doc();
 
-  String url = 'https://firebasestorage.googleapis.com/v0/b/skin-safety-scanner/o/${RegisteredHomePage.user.user?.uid}%2F$date?alt=media';
+  String urlTime = time.replaceAll(':', '%3A');
+  String url = 'https://firebasestorage.googleapis.com/v0/b/skin-safety-scanner/o/${RegisteredHomePage.user.user?.uid}%2F$date$urlTime?alt=media';
   final json =
   {"Condition": condition,
     "Date" : date,
     "Probability" : probability,
-    "url": url};
+    "url": url,
+    "DateTime" : '$date$time'};
   try{
     doc.set(json, SetOptions(merge: true));
   } catch(e)   {

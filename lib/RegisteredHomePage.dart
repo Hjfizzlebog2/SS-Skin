@@ -71,7 +71,7 @@ class RegisteredHomePage extends StatelessWidget {
             ),
             Material(
               elevation: Constants.pfpElevation,
-            shape: const CircleBorder(),
+            shape: CircleBorder(),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Image.asset(
                 'assets/images/NewHome.png',

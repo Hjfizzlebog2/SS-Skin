@@ -62,20 +62,22 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                   shrinkWrap: true,
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: (BuildContext context, int index) {
+
                     return ListTile(
                       contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
                       + snapshot.data?.docs[index]["Date"] + "\n" +
                           (double.parse(snapshot.data?.docs[index]["Probability"])).toStringAsFixed(2) + "%", //Made it so that it shows to 2 decimal points
-                      style: const TextStyle(
+
+                        style: const TextStyle(
                         color: textColor,
                       ),
                       ),
                       leading: Material(
+
                         elevation: Constants.buttonElevation,
                         child: Image.network(
-                          snapshot.data?.docs[index]["url"],
-                          fit: BoxFit.fill),)
+                          snapshot.data?.docs[index]["url"], fit: BoxFit.fill),)
                     );
                   });
             } else if (snapshot.connectionState == ConnectionState.none) {
@@ -90,6 +92,6 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
 
   Future<QuerySnapshot> getImages() {
     return fb.collection("results").doc(RegisteredHomePage.user.user?.uid)
-        .collection('case').get();
+        .collection('case').orderBy('DateTime', descending: true).get();
   }
 }
