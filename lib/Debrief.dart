@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Constants.dart' as Constants;
+import 'Constants.dart';
 import 'WhatNow.dart';
 
 
@@ -12,7 +12,8 @@ class ThatMeans extends StatelessWidget {
     required this.scan,
   }) : super(key: key);
 
-  static const screenColor = Constants.Constants.amber;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -35,24 +36,22 @@ class ThatMeans extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                   child: const Text(
-                      '\n\n\n\nUnderstanding Your Scan',
+                      '\n\n\n\nUnderstanding Your Scan\n',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 34
+                          fontWeight: FontWeight.w600,
+                          fontSize: 30
                       )
                   )
               ),
               Container(
                 alignment: Alignment.topCenter,
-
                 padding: const EdgeInsets.fromLTRB(30, 15, 15, 20),
                 child: Column(
-                  children: <Widget>[
-                    Container(
-                    child: const Text(
-                      "If your percentage was above 75% or otherwise worried you, "
+                  children: const <Widget>[
+                    Text(
+                      "If your percentage was above 75%, "
                           "we recommend checking out our further info on Melanoma.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -60,7 +59,6 @@ class ThatMeans extends StatelessWidget {
                         fontSize: 25,
                         color: textColor,
                       ),
-                    ),
                     ),
 
 
@@ -74,7 +72,7 @@ class ThatMeans extends StatelessWidget {
                 child: const Text(
                   'Tap to Continue',
                   style: TextStyle(
-                      // fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                       fontSize: 18,
                       color: textColor
                   ),
@@ -84,7 +82,7 @@ class ThatMeans extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
                 child: const Text(
-                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for an official medical diagnosis. Be advised that scans may be affected by lighting and image quality.',
+                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis.\nConsult a dermatologist for an official diagnosis.',
                   style: TextStyle(fontSize: 14, color: textColor),
                 ),
               ),

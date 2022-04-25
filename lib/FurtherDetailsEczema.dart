@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/NextStepsMelanoma.dart';
-
 import 'RegisteredHomePage.dart';
 
 class FurtherDetailsEczema extends StatelessWidget {

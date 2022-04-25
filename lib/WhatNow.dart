@@ -1,12 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/FurtherDetailsMelanoma.dart';
-import 'package:ss_skin_project/NextStepsMelanoma.dart';
-import 'package:ss_skin_project/PhotoSubmission.dart';
+import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
-
-import 'Constants.dart' as Constants;
+import 'Constants.dart';
 import 'LogHistory.dart';
 import 'RegisteredHomePage.dart';
 
@@ -18,11 +15,11 @@ class WhatNow extends StatelessWidget {
 
   final rng = Random();
   // A list of different things to say
-  final List<String> list = ["Where to now?", "So what's next?", "Where to next?",];
+  final List<String> list = ["Where To Now?", "So What's Next?", "Where To Next?"];
 
-  static const screenColor = Constants.Constants.purple;//Constants.Constants.mint;
-  static const buttonColor = Constants.Constants.purpleAccent;//Constants.Constants.mintAccent;
-  static const textColor = Colors.black87;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +31,16 @@ class WhatNow extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  // fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
+            backgroundColor: screenColor,
             automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -68,10 +65,10 @@ class WhatNow extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  list[rng.nextInt(3)],
+                  list[rng.nextInt(3)] + '\n',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      //fontWeight: FontWeight.bold,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600,
                       fontSize: 34,
                       color: textColor
                   ),
@@ -86,17 +83,17 @@ class WhatNow extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const PhotoSubmission()),
+                      MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: Constants.Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next,
                   color: textColor),
                   label: const Text(
-                      'Scan again',
+                      'Scan Again',
                       style: TextStyle(
                           color: textColor,
                           // fontWeight: FontWeight.bold,
@@ -113,16 +110,16 @@ class WhatNow extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LogHistory()),
+                      MaterialPageRoute(builder: (context) => const LogHistory()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: Constants.Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
-                      'See past scans',
+                      'See Previous Scans',
                       style: TextStyle(
                         color: textColor,
                           // fontWeight: FontWeight.bold,
@@ -143,12 +140,12 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: Constants.Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
-                      'Find nearby doctors',
+                      'Find Nearby Doctors',
                       style: TextStyle(
                         color: textColor,
                           // fontWeight: FontWeight.bold,
@@ -169,17 +166,17 @@ class WhatNow extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    elevation: Constants.Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                       primary: buttonColor
                   ),
                   icon: const Icon(Icons.navigate_next, color: textColor),
                   label: const Text(
-                      'Read more about melanoma',
+                      'More About Melanoma',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: textColor,
                           // fontWeight: FontWeight.bold,
-                          fontSize: 18
+                          fontSize: 17
                       )
                   ),
                 ),

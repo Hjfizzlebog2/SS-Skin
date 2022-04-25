@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'Constants.dart';
 import 'RegisteredHomePage.dart';
 
@@ -35,9 +34,10 @@ class NearbyDermatologists extends StatefulWidget {
   final double long;
 
 
-  static const backgroundColor = Constants.mint;
-  static const buttonColor =  Constants.mintAccent;
-  static const textColor = Colors.black87;
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
+  static const textColor = Colors.black;
+
 
   const NearbyDermatologists({
     Key? key,
@@ -90,15 +90,15 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
           ),
           title: const Text('Skin Safety Scanner',
               style: TextStyle(
-                // fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 color: NearbyDermatologists.textColor,
               )
           ),
           centerTitle: true,
-          backgroundColor: NearbyDermatologists.buttonColor,
+          backgroundColor: NearbyDermatologists.backgroundColor,
             actions: <Widget> [
               Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -132,35 +132,33 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
                                     borderRadius: BorderRadius.circular(10)
                                   ),
                                   color: NearbyDermatologists.buttonColor,
-                                  child: Container(
-                                    child: Column(
-                                      children: <Widget>[ Padding(
-                                        padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-                                        child: Text(
-                                            snapshot.data!.results[index]['name'],
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                color: NearbyDermatologists.textColor,
-                                                // fontWeight: FontWeight.bold,
-                                                fontSize: 25
-                                            )
-                                        )
-                                      ),
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-                                            child: Text(
-                                                snapshot.data!.results[index]['formatted_address'],
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    color: NearbyDermatologists.textColor,
-                                                    // fontWeight: FontWeight.bold,
-                                                    fontSize: 20
-                                                )
-                                            )
-                                        )
-                                        ,
-                                      ]
-                                    )
+                                  child: Column(
+                                    children: <Widget>[ Padding(
+                                      padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                                      child: Text(
+                                          snapshot.data!.results[index]['name'],
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: NearbyDermatologists.textColor,
+                                              // fontWeight: FontWeight.bold,
+                                              fontSize: 25
+                                          )
+                                      )
+                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                          child: Text(
+                                              snapshot.data!.results[index]['formatted_address'],
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  color: NearbyDermatologists.textColor,
+                                                  // fontWeight: FontWeight.bold,
+                                                  fontSize: 20
+                                              )
+                                          )
+                                      )
+                                      ,
+                                    ]
                                   )
                               ),
                             )

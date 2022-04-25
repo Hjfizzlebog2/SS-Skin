@@ -18,7 +18,7 @@ class FurtherDetailsPsoriasis extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  RegisteredHomePage()),
+                    MaterialPageRoute(builder: (context) => RegisteredHomePage()),
                   );
                 },
                 child: const Text(

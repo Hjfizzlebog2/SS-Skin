@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:ss_skin_project/GeneratedReport.dart';
-import 'package:ss_skin_project/Questionnaire.dart';
-import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'package:ss_skin_project/ZipCodeCollection.dart';
 import 'Constants.dart';
 import 'LogInScreen.dart';
-import 'SeeResults.dart';
-import 'WhatNow.dart';
 
 class TitleSplashScreen extends StatelessWidget {
   const TitleSplashScreen({Key? key}) : super(key: key);
@@ -31,11 +25,11 @@ class TitleSplashScreen extends StatelessWidget {
         ),
         home: SplashScreen(
           seconds: 5,
-          navigateAfterSeconds: LogInScreen(),
+          navigateAfterSeconds: const LogInScreen(),
           title: const Text(
             '\nSkin Safety Scanner',
             style: TextStyle(
-                // fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 fontSize: 34,
                 color: Colors.black
             ),
@@ -47,7 +41,7 @@ class TitleSplashScreen extends StatelessWidget {
           loadingText: const Text("Loading"),
           photoSize: 150.0,
           loaderColor: Colors.black,
-          backgroundColor: Colors.cyan[600],
+          backgroundColor: Constants.cyan2,
         )
     );
   }

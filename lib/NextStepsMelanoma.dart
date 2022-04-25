@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
-
 import 'Constants.dart';
 
 class NextStepsMelanoma extends StatelessWidget {
   const NextStepsMelanoma({Key? key}) : super(key: key);
 
-  static const screenColor = Constants.cyan2;//Constants.red;
-  static const buttonColor = Constants.cyan2Accent;//Constants.redAccent;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -21,16 +20,16 @@ class NextStepsMelanoma extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
+            backgroundColor: screenColor,
             // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -54,10 +53,10 @@ class NextStepsMelanoma extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
                   child: const Text(
-                      'Signs of Melanoma',
+                      'Signs of Melanoma\n',
                       style: TextStyle(
                         color: textColor,
-                          // fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 34
                       )
                   )
@@ -69,9 +68,9 @@ class NextStepsMelanoma extends StatelessWidget {
                     'See a doctor if you...',
                     style: TextStyle(
                       color: textColor,
-                        // fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                         fontSize: 20,
-                        // decoration: TextDecoration.underline
+                        decoration: TextDecoration.underline
                     ),
                   )
               ),
