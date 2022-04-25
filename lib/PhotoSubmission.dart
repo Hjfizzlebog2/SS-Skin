@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'Constants.dart';
 import 'SeeResults.dart';
 import 'VertexReport.dart';
@@ -36,6 +35,7 @@ class PhotoSubmission extends StatefulWidget {
 
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
+  String time = '';
 
   static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
   static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
@@ -186,7 +186,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    String endpoint = '7848340387344154624';
+    String endpoint = '1065919348524187648';
     Uri url = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/'
         'locations/us-central1/endpoints/' + endpoint + ':predict');
 
@@ -240,9 +240,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
     // reportMap = TitleSplashScreen.reportMap;
     //This should be commented out or removed when endpoint is deployed
-    
+    var time = "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
+
     try {
-      uploadImage(bytes);
+      uploadImage(bytes, time);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -251,7 +252,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => SeeResults(scan: reportMap,
-            q1: widget.q1, q2: widget.q2, q3: widget.q3)),
+            q1: widget.q1, q2: widget.q2, q3: widget.q3, time: time)),
       );
     }
     // Navigator.push(

@@ -8,6 +8,8 @@ class SeeResults extends StatelessWidget {
   final String q1;
   final String q2;
   final bool q3;
+  final String time;
+
   final rng = Random();
   // A list of different things to say
   final List<String> list = ["The Scan Is Complete", "Your Picture Has Been Evaluated",
@@ -22,7 +24,8 @@ class SeeResults extends StatelessWidget {
     required this.scan,
     required this.q1,
     required this.q2,
-    required this.q3
+    required this.q3,
+    required this.time
   }) : super(key: key);
 
 
@@ -37,7 +40,7 @@ class SeeResults extends StatelessWidget {
           Navigator.push(
             context,
               MaterialPageRoute(builder: (context) => GeneratedReport(scan: scan,
-                q1: q1, q2: q2, q3: q3,))
+                q1: q1, q2: q2, q3: q3, time: time))
           );
         },
         child: Column(
