@@ -51,7 +51,8 @@ class ScreeningBreakdown extends StatelessWidget {
                 // Survey, Snap, Stats
                   '• The screening starts with a brief\n   questionnaire \n\n'
                       '• Next you\'ll snap a photo of your mole \n\n'
-              '• Then your photo will be scanned and a report\n   will be available to you within seconds\n\n',
+              '• Then your photo will be scanned and a report\n  '
+                      ' will be available to you within seconds\n\n',
                 style: TextStyle(fontSize: 17, color: textColor),
               ),
             ),
@@ -84,7 +85,8 @@ class ScreeningBreakdown extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
               child: const Text(
-                    'Skin Safety Scanner is not intended for self-diagnosis. Please consult a dermatologist for medical diagnosis. \n\n',
+                    'Skin Safety Scanner is not intended for self-diagnosis. '
+                        'Please consult a dermatologist for medical diagnosis. \n\n',
                 style: TextStyle(
                     fontSize: 14,
                     color: textColor),
@@ -101,8 +103,10 @@ Modified Questionnaire 1
 
 '• The screening starts with a brief optional survey \n\n'
                     '• You'll next snap a photo of your skin condition\n\n' //said "analyzation" before
-                    '• Finally, your photo will be analyzed and a similarity report will be available within seconds.\n\n'
-                    '• Not intended for self-diagnosis. Please consult a dermatologist an official diagnosis. \n\n'
+                    '• Finally, your photo will be analyzed and a similarity report
+                    will be available within seconds.\n\n'
+                    '• Not intended for self-diagnosis. Please consult a dermatologist
+                    an official diagnosis. \n\n'
 Finally, your photo will be analyzed and a similarity report will be available within seconds.
 Within seconds you'll have a report of how similar your photo is to positive test cases
 You will have a similarity report of your photo within seconds

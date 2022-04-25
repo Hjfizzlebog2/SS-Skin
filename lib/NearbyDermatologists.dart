@@ -10,8 +10,10 @@ import 'RegisteredHomePage.dart';
 
 // In Safari, the below returns locations we need
 // Places
-// https://maps.googleapis.com/maps/api/place/textsearch/json?query=dermatologists&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
-// https://maps.googleapis.com/maps/api/place/textsearch/json?query=dermatologists&location=33.9289%2C117.4259&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
+// https://maps.googleapis.com/maps/api/place/textsearch/json?
+// query=dermatologists&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
+// https://maps.googleapis.com/maps/api/place/textsearch/json?
+// query=dermatologists&location=33.9289%2C117.4259&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
 // ^The second URL uses the location of CBU as an argument
 // CBU Lat/Long: 33.9289° N, 117.4259° W
 
@@ -66,8 +68,11 @@ class _NearbyDermatologistsState extends State<NearbyDermatologists> {
     String latString = lat.toString();
     String longString = long.toString();
 
-    String createdURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=dermatologists&location=' + latString + '%2C' + longString + '&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y';
-    // String url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=dermatologists&location=33.9289%2C117.4259&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y';
+    String createdURL = 'https://maps.googleapis.com/maps/api/place/textsearch/'
+        'json?query=dermatologists&location=' + latString + '%2C' + longString
+        + '&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y';
+    // String url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?
+    // query=dermatologists&location=33.9289%2C117.4259&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y';
     final response = await http.get(Uri.parse(
         createdURL));
 

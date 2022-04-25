@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
+import 'package:extension_google_sign_in_as_googleapis_auth/'
+    'extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:ss_skin_project/ReviewPhotoScreen.dart';
 import 'Constants.dart';
 import 'SeeResults.dart';
 import 'VertexReport.dart';
@@ -44,7 +44,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: screenColor,
+        backgroundColor: screenColor,
         appBar: AppBar(
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
@@ -54,9 +54,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
             ),
             centerTitle: true,
             backgroundColor: screenColor,
-          iconTheme: const IconThemeData(
-            color:textColor,
-          )
+            iconTheme: const IconThemeData(
+              color:textColor,
+            )
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +94,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: Constants.buttonElevation,
-                    primary: buttonColor,
+                  primary: buttonColor,
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
@@ -116,14 +116,14 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
                   processImage('gallery');
                 },
                 style: ElevatedButton.styleFrom(
-                    elevation: Constants.buttonElevation,
-                    primary: buttonColor,
+                  elevation: Constants.buttonElevation,
+                  primary: buttonColor,
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'Choose From Gallery',
                     style: TextStyle(
-                      color: textColor,
+                        color: textColor,
                         // fontWeight: FontWeight.bold,
                         fontSize: 18
                     )
@@ -173,7 +173,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       }
     } else {
       final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50
+          source: ImageSource.gallery, imageQuality: 50
       );
 
       if (pickedFile != null) {
@@ -187,7 +187,8 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     String img64 = base64Encode(bytes);
 
     String endpoint = '7848340387344154624';
-    Uri url = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
+    Uri url = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/'
+        'locations/us-central1/endpoints/' + endpoint + ':predict');
 
     Map<String, String> headers = {
       "Accept": "application/json"
@@ -237,14 +238,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
      */
 
     //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
-
-    DateTime now = DateTime.now();
-    var date = DateFormat("dd-MM-yyy").format(now);
-    var time =
-        "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
     // reportMap = TitleSplashScreen.reportMap;
     //This should be commented out or removed when endpoint is deployed
-
+    
     try {
       uploadImage(bytes);
     } catch (e) {
@@ -252,15 +248,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         print(e);
       }
     } finally {
-      enterResults("Melanoma", date, time, (reportMap.entries
-          .elementAt(0)
-          .value * 100).toString());
       Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) =>
-                SeeResults(scan: reportMap,
-                    q1: widget.q1, q2: widget.q2, q3: widget.q3)),
+        MaterialPageRoute(builder: (context) => SeeResults(scan: reportMap,
+            q1: widget.q1, q2: widget.q2, q3: widget.q3)),
       );
     }
     // Navigator.push(
