@@ -9,13 +9,15 @@ class GeneratedReport extends StatefulWidget {
   final String q1;
   final String q2;
   final bool q3;
+  final String time;
 
   const GeneratedReport({
         Key? key,
     required this.scan,
     required this.q1,
     required this.q2,
-    required this.q3
+    required this.q3,
+    required this.time
   }) : super(key: key);
 
 
@@ -28,6 +30,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
   get q1 => widget.q1;
   get q2 => widget.q2;
   get q3 => widget.q3;
+  get time => widget.time;
   //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
   static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
@@ -44,7 +47,6 @@ class _GeneratedReportState extends State<GeneratedReport> {
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     var date = DateFormat("dd-MM-yyy").format(now);
-    var time = "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
 
     double percentage = (mapList[0].value * 100); // Melanoma percentage
     String percentageString = '';
@@ -82,9 +84,11 @@ class _GeneratedReportState extends State<GeneratedReport> {
     percentageString = percentage.toStringAsFixed(2);
 
     if (percentage > 99.0) {
-      percentageString = '> 99';
+      percentage = 99.0;
+      percentageString = '99.9';
     } else if (percentage < 1.0) {
-      percentageString = '< 1';
+      percentage = 1.0;
+      percentageString = '0.1';
     }
 
     enterResults("Melanoma", date, time, percentageString);

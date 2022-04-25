@@ -101,18 +101,16 @@ Future enterResults( String condition, String date, String time, String probabil
     }
   }
 }
-Future uploadImage(final bytes) async {
+Future<String> uploadImage(final bytes, String time) async {
   String? userId = RegisteredHomePage.user.user?.uid;
 
   DateTime now = DateTime.now();
   var date = DateFormat("dd-MM-yyy").format(now);
-  var time = "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
 
   var ref = FirebaseStorage.instanceFor(
       bucket: 'gs://skin-safety-scanner/').ref().child("$userId//$date$time");
-  TaskSnapshot snapshot = await ref.putData(bytes);
-  final url = await snapshot.ref.getDownloadURL();
-  return url;
+  await ref.putData(bytes);
+  return time;
 }
 
 Future<bool> resetPassword(TextEditingController emailController) async {
