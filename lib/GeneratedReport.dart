@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'Constants.dart';
-import 'FurtherDetailsMelanoma.dart';
-import 'RegisteredHomePage.dart';
 import 'Debrief.dart';
 
 class GeneratedReport extends StatefulWidget {
   final Map scan;
-  // var _list = _scan.values.toList(); // <- Doesn't work
-  
+  final String q1;
+  final String q2;
+  final bool q3;
+
   const GeneratedReport({
         Key? key,
     required this.scan,
+    required this.q1,
+    required this.q2,
+    required this.q3
   }) : super(key: key);
 
 
@@ -20,10 +23,13 @@ class GeneratedReport extends StatefulWidget {
 
 class _GeneratedReportState extends State<GeneratedReport> {
   get mapList => widget.scan.entries.toList();
+  get q1 => widget.q1;
+  get q2 => widget.q2;
+  get q3 => widget.q3;
   //Above, I am declaring a variable named mapList which turns the Map (called scan) into a usable list
 
-  static const backgroundColor = Constants.amber;
-  static const buttonColor = Constants.amberAccent;
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
   static const percentageColor = Colors.black;
 
@@ -35,10 +41,45 @@ class _GeneratedReportState extends State<GeneratedReport> {
   @override
   Widget build(BuildContext context) {
 
-    String percentage = (mapList[0].value * 100).toStringAsFixed(2); // Melanoma percentage
+    double percentage = (mapList[0].value * 100); // Melanoma percentage
+    String percentageString = '';
     String condition = mapList[0].key; // Melanoma
     //(mapList[1].value * 100).toStringAsFixed(3) // Not_Melanoma Percentage (Ex: 92.783%)
     //mapList[1].key // "Not_Melanoma"
+
+    if (q1.toString() == '18-29') {
+      if (q2.toString() == 'Male') {
+        percentage -= 6;
+      } else {
+        percentage -= 3;
+      }
+    } else if (q1 == '30-49') {
+      if (q2.toString() == 'Male') {
+        percentage -= 3;
+      }
+    } else if (q1 == '50-69') {
+      if (q2.toString() == 'Male') {
+        percentage += 4;
+      } else {
+        percentage += 2;
+      }
+    } else if (q1 == '70+') {
+      if (q2.toString() == 'Male') {
+        percentage += 6;
+      } else {
+        percentage += 3;
+      }
+    }
+    if (q3) {
+      percentage += 8;
+    }
+
+    if (percentage > 99.0) {
+      percentageString = '>99';
+    } else if (percentage < 1.0) {
+      percentageString = '<1';
+    }
+      percentageString = percentage.toStringAsFixed(2);
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -101,10 +142,10 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.fromLTRB(15, 30, 15, 15),
                   child: Text(
-                      percentage + '%',
+                      percentageString + '%',
                       style: const TextStyle(
                           color: percentageColor,
-                          // fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 35
                       )
                   )

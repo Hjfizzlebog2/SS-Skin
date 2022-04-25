@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'Constants.dart';
 import 'Questionnaire.dart';
-import 'RegisteredHomePage.dart';
 
 // class for the screening breakdown screen
 class ScreeningBreakdown extends StatelessWidget {
   const ScreeningBreakdown({Key? key}) : super(key: key);
   static const bulletPointInsets = 25;
 
-  static const screenColor = Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
-
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +21,13 @@ class ScreeningBreakdown extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
-            actions: <Widget> [
-              Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => RegisteredHomePage())
-                        );
-                      },
-                      child: const Icon(
-                        Icons.home,
-                        color: textColor,
-                      )
-                  )
-              )
-            ]
+            backgroundColor: screenColor,
+            automaticallyImplyLeading: false,
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,10 +37,10 @@ class ScreeningBreakdown extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(15),
               child: const Text(
-                "\n\nLet's Break it Down",
+                "\n\nLet's Break it Down\n",
                 style: TextStyle(
                   color: textColor,
-                    // fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.bold,
                     fontSize: 34
                 ),
               ),
@@ -67,9 +49,9 @@ class ScreeningBreakdown extends StatelessWidget {
               padding: const EdgeInsets.all(18),
               child: const Text(
                 // Survey, Snap, Stats
-                  '• The screening starts with a brief survey \n\n'
-                      '• Next you\'ll snap a photo of your mole \n\n' //said "analyzation" before
-              '• Then your photo will be scanned and a report\n   will be available to you in seconds\n',
+                  '• The screening starts with a brief\n   questionnaire \n\n'
+                      '• Next you\'ll snap a photo of your mole \n\n'
+              '• Then your photo will be scanned and a report\n   will be available to you within seconds\n\n',
                 style: TextStyle(fontSize: 17, color: textColor),
               ),
             ),

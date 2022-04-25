@@ -1,37 +1,28 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
-
-import 'package:cache_manager/cache_manager.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ss_skin_project/RegisteredHomePage.dart';
-import 'package:cache_manager/cache_manager.dart';
 import 'package:ss_skin_project/dbOperations.dart';
-
 import 'Constants.dart';
 import 'GeneratedReport.dart';
-import 'TitleSplashScreen.dart';
+import 'SeeResults.dart';
 
 class ReviewPhotoScreen extends StatelessWidget {
-  ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, {Key? key})
-      : super(key: key);
-  final File imageFile;
+
   final String imagePath;
+  final File imageFile;
+  final String q1;
+  final String q2;
+  final bool q3;
   bool isLoading = false;
   var progress;
-  Map reportMap = TitleSplashScreen.reportMap;
+  Map reportMap;
 
-  static const screenColor = Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, this.q1, this.q2, this.q3, {Key? key})
+      : super(key: key);
+
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -41,6 +32,7 @@ class ReviewPhotoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Skin Safety Scanner',
         style: TextStyle(
+          fontWeight: FontWeight.w600,
           color: textColor,
           )
         ),
@@ -48,7 +40,7 @@ class ReviewPhotoScreen extends StatelessWidget {
           color: textColor,
         ),
         centerTitle: true,
-        backgroundColor: buttonColor,
+        backgroundColor: screenColor,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -69,38 +61,31 @@ class ReviewPhotoScreen extends StatelessWidget {
                   child: const Text(
                     "Save Image",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 26, color: textColor),
+                    style: TextStyle(fontSize: 22, color: textColor),
                   ),
                 ),
                 onPressed: () async {
                   isLoading = true;
 
-                  String? userId = RegisteredHomePage.user.user?.uid;
-
-                  final bytes = imageFile.readAsBytesSync();
                   DateTime now = DateTime.now();
                   var date = DateFormat("dd-MM-yyy").format(now);
-                  var time =
-                      "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
-                  reportMap = TitleSplashScreen.reportMap;
+                  // reportMap = TitleSplashScreen.reportMap;
                   //This should be commented out or removed when endpoint is deployed
 
-                  String url = "";
                   try {
-                      url = uploadImage(bytes) as String;
                   } catch (e) {
-                    print(e);
+                    if (kDebugMode) {
+                      print(e);
+                    }
                   } finally {
-
-                    enterResults("Melanoma", date, time, (reportMap.entries.elementAt(0).value * 100).toString());
+                    enterResults("Melanoma", date, (reportMap.entries.elementAt(0).value * 100).toString());
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => GeneratedReport(scan: reportMap)),
+                          builder: (context) => SeeResults(scan: reportMap,
+                              q1: q1, q2: q2, q3: q3)),
                     );
                   }
-
-
                 },
                 style: ElevatedButton.styleFrom(
                     primary: buttonColor,

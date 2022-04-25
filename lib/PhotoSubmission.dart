@@ -19,7 +19,13 @@ final GoogleSignIn _googleSignIn = GoogleSignIn(
 
 // class for the photo submission screen
 class PhotoSubmission extends StatefulWidget {
-  const PhotoSubmission({Key? key}) : super(key: key);
+
+  final String q1;
+  final String q2;
+  final bool q3;
+
+  const PhotoSubmission(this.q1, this.q2, this.q3, {Key? key})
+      : super(key: key);
 
   @override
   _PhotoSubmissionState createState() => _PhotoSubmissionState();
@@ -28,8 +34,8 @@ class PhotoSubmission extends StatefulWidget {
 class _PhotoSubmissionState extends State<PhotoSubmission> {
   late File imageFile;
 
-  static const screenColor = Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -39,11 +45,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
         appBar: AppBar(
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
+            backgroundColor: screenColor,
           iconTheme: const IconThemeData(
             color:textColor,
           )
@@ -58,7 +65,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
               child: const Text(
                 'Let\'s Take a Photo!',
                 style: TextStyle(
-                    // fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     fontSize: 34
                 ),
               ),
@@ -176,17 +183,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     final bytes = imageFile.readAsBytesSync();
     String img64 = base64Encode(bytes);
 
-    String endpoint = '4859639084630409216';
+    String endpoint = '7848340387344154624';
     Uri url = Uri.parse('https://us-central1-aiplatform.googleapis.com/v1/projects/skin-safety-scanner/locations/us-central1/endpoints/' + endpoint + ':predict');
 
     Map<String, String> headers = {
       "Accept": "application/json"
     };
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, Map())),
-    );
 
     Map body =
     {
@@ -197,6 +199,12 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     String bodyJson = json.encode(body);
 
     var response = await httpClient?.post(url, headers: headers, body: bodyJson);
+
+    if (kDebugMode) {
+      print('\n\nresponse\n\n\n\n\n');
+      print(response?.body.toString());
+      print('\n\n\nend response\n\n\n\n\n\n');
+    }
 
     //Get JSON response to GeneratedReport Screen
 
@@ -209,10 +217,10 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
       vertexReport.predictions![0].displayNames![0] : vertexReport.predictions![0].confidences![0]
     };
     //^ The above is the definition and instantiation of a map that stores two key : value  pairs
-    // Line 180 is "Melanoma" : 0.927947293824 (an example percentage in decimal form)
-    // Line 181 is "Not_Melanoma" : 0.07205270617
+    // Line 180?? is "Melanoma" : 0.927947293824 (an example percentage in decimal form)
+    // Line 181?? is "Not_Melanoma" : 0.07205270617
     // So reportMap is just a normal map of two elements. But I do something different
-    // it on GeneratedReport to make it more usable.
+    // on GeneratedReport to make it more usable.
 
     /*
     // Use below code in case that you want to skip over the ReviewPhotoScreen
@@ -229,7 +237,9 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(imageFile.path, imageFile, reportMap)),
+      MaterialPageRoute(builder: (context) => ReviewPhotoScreen(
+          imageFile.path, imageFile, reportMap, widget.q1, widget.q2, widget.q3)
+      ),
     );
   }
 }

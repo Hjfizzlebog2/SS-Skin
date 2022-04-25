@@ -20,8 +20,8 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  static const backgroundColor = Constants.tealAccent; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
   static const clickableColor = Color(0xff1664bd); //Color(0xff1664bd)
 
@@ -32,6 +32,7 @@ class _LogInScreenState extends State<LogInScreen> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner',
               style: TextStyle(
+                fontWeight: FontWeight.w600,
                 color: textColor,
               )
           ),
@@ -39,7 +40,7 @@ class _LogInScreenState extends State<LogInScreen> {
             color: textColor,
           ),
           centerTitle: true,
-          backgroundColor: buttonColor,
+          backgroundColor: backgroundColor,
           automaticallyImplyLeading: false,
         ),
         body: Column(
@@ -50,9 +51,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: const Text(
-                  'Skin Safety Scanner',
+                  'Skin Safety Scanner\n',
                   style: TextStyle(
-                      // fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     color: textColor,
                       fontSize: 34
                   ),
@@ -66,7 +67,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 controller: emailController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  fillColor: Constants.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: textColor
+                      )
+                  ),
                   labelText: 'Email',
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -79,13 +86,19 @@ class _LogInScreenState extends State<LogInScreen> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                   color: textColor,
                 ),
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  fillColor: Constants.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: textColor
+                      )
+                  ),
                   labelText: 'Password',
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -96,7 +109,6 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
 
             TextButton(
-
               onPressed: () {
                 Navigator.push(
                   context,
@@ -108,21 +120,26 @@ class _LogInScreenState extends State<LogInScreen> {
               child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
-                    // fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                     color: clickableColor,
+                    fontSize: 16
                   )
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Container(
                 width: 120,
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                 child: ElevatedButton(
                   child: const Text(
-                      'Login',
-                    style: TextStyle(fontSize: 20, color: textColor),
+                    'Login',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: textColor,
+                        // fontWeight: FontWeight.bold
+                    ),
                   ),
                   onPressed: () {
                    // if (formKey.currentState!.validate()) {
@@ -141,14 +158,14 @@ class _LogInScreenState extends State<LogInScreen> {
               children: <Widget>[
                 const Text(
                   'Don\'t have an account?',
-                  style: TextStyle(fontSize: 17, color: textColor),
+                  style: TextStyle(fontSize: 16, color: textColor),
                 ),
                 TextButton(
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(
-                        fontSize: 17,
-                        // fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                         color: clickableColor),
                   ),
                   onPressed: () {

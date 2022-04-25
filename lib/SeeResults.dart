@@ -1,22 +1,28 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/GeneratedReport.dart';
-import 'Constants.dart' as Constants;
+import 'Constants.dart';
 
 class SeeResults extends StatelessWidget {
   final Map scan;
+  final String q1;
+  final String q2;
+  final bool q3;
   final rng = Random();
   // A list of different things to say
-  final List<String> list = ["The Results Are In", "The Scan Is Complete", "Your Picture Has Been Evaluated",
-  "Scan Completed", "Photo Analyzed"];
+  final List<String> list = ["The Scan Is Complete", "Your Picture Has Been Evaluated",
+  "Scan Completed"];
 
-  static const screenColor = Constants.Constants.amber;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   SeeResults({
     Key? key,
     required this.scan,
+    required this.q1,
+    required this.q2,
+    required this.q3
   }) : super(key: key);
 
 
@@ -30,7 +36,7 @@ class SeeResults extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-              MaterialPageRoute(builder: (context) => GeneratedReport(scan: scan))
+              MaterialPageRoute(builder: (context) => GeneratedReport(scan: scan, q1: q1, q2: q2, q3: q3,))
           );
         },
         child: Column(
@@ -42,11 +48,11 @@ class SeeResults extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child:
           Text(
-            list[rng.nextInt(5)], //list.length?
+            list[rng.nextInt(3)] + '\n', //list.length?
             textAlign: TextAlign.center,
-            style: TextStyle(
-                // fontWeight: FontWeight.bold,
-                fontSize: 34,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 34,
               color: textColor,
             ),
           ),

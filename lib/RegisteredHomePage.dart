@@ -1,15 +1,11 @@
 import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ss_skin_project/NearbyDermatologists.dart';
-import 'package:ss_skin_project/PhotoSubmission.dart';
 import 'package:ss_skin_project/ScreeningBreakdown.dart';
 import 'Constants.dart';
 import 'LogHistory.dart';
+import 'LogInScreen.dart';
 import 'ZipCodeCollection.dart';
-
-// FIXME: Renderflex overflow error, "use Expanded widget"?
 
 // class for the registered home page screen
 class RegisteredHomePage extends StatelessWidget {
@@ -19,10 +15,10 @@ class RegisteredHomePage extends StatelessWidget {
 
   final rng = Random();
   // A list of different things to say
-  final List<String> list = ["Welcome Home!", "Hey there!", "Welcome Back!"];
+  final List<String> list = ["Welcome Home!", "Welcome Back!"];
 
   static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -32,12 +28,31 @@ class RegisteredHomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner',
           style: TextStyle(
+            fontWeight: FontWeight.w600,
             color: textColor,
             )
           ),
           centerTitle: true,
-          backgroundColor: buttonColor,
-          automaticallyImplyLeading: false
+          backgroundColor: screenColor,
+          automaticallyImplyLeading: false,
+          actions: <Widget> [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LogInScreen()),
+                );
+              },
+              child: const Text(
+                  'Log out',
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18
+                  )
+              ),
+            ),
+          ]
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,9 +62,9 @@ class RegisteredHomePage extends StatelessWidget {
               alignment: Alignment.topCenter,
               padding: const EdgeInsets.all(10),
               child: Text(
-                list[rng.nextInt(3)],
-                style: TextStyle(
-                    // fontWeight: FontWeight.bold,
+                list[rng.nextInt(2)],
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600,
                     fontSize: 34
                 ),
               ),
@@ -73,7 +88,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown()),
+                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown())
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -99,7 +114,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LogHistory()),
+                    MaterialPageRoute(builder: (context) => const LogHistory()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -125,7 +140,7 @@ class RegisteredHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ZipCodeCollection()),
+                    MaterialPageRoute(builder: (context) => const ZipCodeCollection()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

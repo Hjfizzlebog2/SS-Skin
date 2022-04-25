@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/ZipCodeCollection.dart';
-
 import 'RegisteredHomePage.dart';
 
 class NextStepsEczema extends StatelessWidget {

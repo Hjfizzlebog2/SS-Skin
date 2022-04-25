@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ss_skin_project/CreateAccount.dart';
-import 'package:ss_skin_project/LogInScreen.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
 import 'package:ss_skin_project/ScreeningBreakdown.dart';
 
@@ -19,10 +16,11 @@ Future signInUser(
         .signInWithEmailAndPassword(
         email: email.text, password: password.text));
 
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => RegisteredHomePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisteredHomePage()));
   } catch (e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
   }
 }
 
@@ -51,9 +49,11 @@ Future createUser(
     docUser.set(json);
   });
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ScreeningBreakdown()));
+      MaterialPageRoute(builder: (context) => const ScreeningBreakdown()));
    } catch(e) {
-     print(e);
+     if (kDebugMode) {
+       print(e);
+     }
   //   AlertDialog(
   //     title:
   //         Text('Error Creating Account'), // To display the title it is optional
@@ -86,23 +86,25 @@ Future enterQuestionData(String age, String gender,
   await docUser.set(json);
 }
 
-Future enterResults( String condition, String date, String time, String probability) async {
+Future enterResults( String condition, String date, String probability) async {
 
   final doc = FirebaseFirestore.instance
       .collection('results')
       .doc(RegisteredHomePage.user.user?.uid)
       .collection('case').doc();
 
-  String url = 'https://firebasestorage.googleapis.com/v0/b/skin-safety-scanner/o/${RegisteredHomePage.user.user?.uid}%2F$date$time?alt=media';
+  String url = 'https://firebasestorage.googleapis.com/v0/b/skin-safety-scanner/o/${RegisteredHomePage.user.user?.uid}%2F$date?alt=media';
   final json =
   {"Condition": condition,
-    "Date" : "$date$time",
+    "Date" : date,
     "Probability" : probability,
     "url": url};
   try{
     doc.set(json, SetOptions(merge: true));
   } catch(e)   {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
   }
 
 
@@ -123,19 +125,15 @@ Future uploadImage(final bytes) async {
   final url = await snapshot.ref.getDownloadURL();
   return url;
 }
-Future getUserImages() async {
-  Image image;
-  final storeRef =
-  FirebaseStorage.instance.ref().child('$RegisteredHomePage.user/');
-  final url = storeRef.getDownloadURL();
-}
 
 Future<bool> resetPassword(TextEditingController emailController) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
     return false;
   } catch(e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
     return true;
   }
 }

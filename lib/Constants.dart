@@ -19,6 +19,9 @@ class Constants {
   static const teal = Color(0xFF46aabd);
   static const tealAccent = Color(0xFF49D3EE);
 
+  static const lightGreen = Color(0xFFAED581);
+  static const green = Color(0xFF81C784);
+
 
   static const mint = Color(0xFFA0E8AF);
   static const mintAccent = Color(0xFF63E781);
@@ -32,4 +35,6 @@ class Constants {
 
   static const purple = Color(0xFFE5A5E8);
   static const purpleAccent = Color(0xDDFD67E9);
+
+  static const white = Color(0xB3FFFFFF);
 }

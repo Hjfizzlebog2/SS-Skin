@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PastResults.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
-
 import 'Constants.dart';
 import 'RegisteredHomePage.dart';
 
 // class for the log history screen
 class LogHistory extends StatelessWidget {
-  LogHistory({Key? key}) : super(key: key);
+  const LogHistory({Key? key}) : super(key: key);
 
 
   //ORIGINAL COLOR SCHEME
@@ -19,7 +18,7 @@ class LogHistory extends StatelessWidget {
   */
 
   static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
   static const titleColor = textColor;
 
@@ -34,16 +33,16 @@ class LogHistory extends StatelessWidget {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  // fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
+            backgroundColor: screenColor,
             // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -71,7 +70,7 @@ class LogHistory extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: titleColor,
-                    // fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     fontSize: 34
                 ),
               ),

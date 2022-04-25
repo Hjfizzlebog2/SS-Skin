@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ss_skin_project/PreviousPhoto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ss_skin_project/RegisteredHomePage.dart';
-
 import 'Constants.dart';
 
 
@@ -18,7 +17,7 @@ class _PastResultsState extends State<PastResults> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan2Accent;// Constants.cyan; // Constants.cyan;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
 
   @override
@@ -31,16 +30,16 @@ class _PastResultsState extends State<PastResults> {
             ),
             title: const Text('Skin Safety Scanner',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   color: textColor,
                 )
             ),
             centerTitle: true,
-            backgroundColor: buttonColor,
+            backgroundColor: backgroundColor,
             // automaticallyImplyLeading: false, //Maybe delete me
             actions: <Widget> [
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: const EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -66,7 +65,7 @@ class _PastResultsState extends State<PastResults> {
               child: const Text(
                 'Past Results',
                 style: TextStyle(
-                    // fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     fontSize: 34
                 ),
               ),
@@ -100,14 +99,19 @@ class _PastResultsState extends State<PastResults> {
             Container(
                 padding: const EdgeInsets.all(5),
                 width: 180,
-                child: TextButton(
-                  child: const Text(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.navigate_next, color: textColor),
+                  label: const Text(
                       'View Photos',
                       style: TextStyle(
                         color: textColor,
-                          fontWeight: FontWeight.bold,
+                          // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      elevation: Constants.buttonElevation,
+                      primary: buttonColor
                   ),
                   onPressed: (){
                     Navigator.push(
@@ -133,7 +137,7 @@ class _PastResultsState extends State<PastResults> {
               title: Text("\nDate: " + doc["Date"] + "\n\n"
                   + "Condition: " + doc["Condition"] + "\n\n" +
                   "Probability: " + double.parse(doc["Probability"]).toStringAsFixed(2) + "%\n", // Made it so that probability shows to 2 decimal points
-                style: TextStyle(
+                style: const TextStyle(
                   color: textColor,
                 ),
               ),

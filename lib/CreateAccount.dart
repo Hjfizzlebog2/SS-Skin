@@ -19,9 +19,10 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController(), TextEditingController()];
   final formKey = GlobalKey<FormState>();
 
-  static const backgroundColor = Constants.tealAccent; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const backgroundColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +34,12 @@ class _CreateAccountState extends State<CreateAccount> {
       appBar: AppBar(
         title: const Text('Skin Safety Scanner',
         style: TextStyle(
-            color: textColor,
+          fontWeight: FontWeight.w600,
+          color: textColor,
         )),
         centerTitle: true,
-        backgroundColor: Colors.cyan[600],
-        iconTheme: IconThemeData(
+        backgroundColor: backgroundColor,
+        iconTheme: const IconThemeData(
           color: textColor,
         )
       ),
@@ -51,7 +53,7 @@ class _CreateAccountState extends State<CreateAccount> {
             child: const Text(
               'Create Account',
               style: TextStyle(
-                  // fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 34
               ),
             ),
@@ -63,7 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: TextField(
+                  child: TextFormField(
                     //TO DELETE
                     onChanged: (text) async {
                       try {
@@ -77,22 +79,32 @@ class _CreateAccountState extends State<CreateAccount> {
                     controller: controller.elementAt(0),
                     maxLength: 20,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                      fillColor: Constants.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: textColor
+                          )
+                      ),
                       labelText: 'First Name',
-                      hintText: 'Enter your First Name',
                     ),
                   ),
                 ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: TextField(
+                  child: TextFormField(
                     controller: controller.elementAt(1),
                     maxLength: 20,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                      fillColor: Constants.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: textColor
+                          )
+                      ),
                       labelText: 'Last Name',
-                      hintText: 'Enter Your Last Name',
                     ),
                   ),
                 ),
@@ -104,10 +116,14 @@ class _CreateAccountState extends State<CreateAccount> {
                     maxLength: 40,
                     textInputAction: TextInputAction.next,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                      fillColor: Constants.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: textColor
+                          )
+                      ),
                       labelText: 'Email',
-                      hintText: 'Enter Your Email',
-                      //errorText: 'Enter a valid email',
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (email) => email != null &&
@@ -123,10 +139,14 @@ class _CreateAccountState extends State<CreateAccount> {
                     maxLength: 20,
                     obscureText: true,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                      fillColor: Constants.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: textColor
+                        )
+                      ),
                       labelText: 'Password',
-                      hintText: 'Enter a Password',
-                      //errorText: 'Enter min. 6 characters'
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => value != null && value.length < 6
@@ -163,7 +183,7 @@ class _CreateAccountState extends State<CreateAccount> {
               label: const Text(
                   'Sign Up',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                       fontSize: 18,
                       color: textColor,
                   )

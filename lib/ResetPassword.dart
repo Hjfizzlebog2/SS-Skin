@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ss_skin_project/LogInScreen.dart';
-
 import 'Constants.dart';
 import 'dbOperations.dart';
 
@@ -17,8 +16,8 @@ class _ResetPasswordState extends State<ResetPassword> {
   final formKey = GlobalKey<FormState>();
   bool emailNotFound = false;
 
-  static const screenColor = Constants.tealAccent; //Constants.tealAccent;
-  static const buttonColor = Constants.cyan; // Constants.cyan;
+  static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
+  static const buttonColor = Constants.white;// Constants.cyan; // Constants.cyan;
   static const textColor = Colors.black;
   static const titleColor = textColor;
 
@@ -40,11 +39,12 @@ class _ResetPasswordState extends State<ResetPassword> {
         appBar: AppBar(
           title: const Text('Skin Safety Scanner',
             style: TextStyle(
+              fontWeight: FontWeight.w600,
               color: textColor,
             )
           ),
           centerTitle: true,
-          backgroundColor: buttonColor,
+          backgroundColor: screenColor,
           iconTheme: const IconThemeData(
             color: textColor,
           )
@@ -57,17 +57,39 @@ class _ResetPasswordState extends State<ResetPassword> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 30),
                 child: const Text(
-                  'Reset Password',
+                  'Reset Password\n',
                   style: TextStyle(
-                    color: titleColor,
-                      //fontWeight: FontWeight.bold,
+                      color: titleColor,
+                      fontWeight: FontWeight.w600,
                       fontSize: 34),
-                )),
+                )
+            ),
+            Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                child: const Text(
+                    "Enter below.",
+                    style: TextStyle(
+                      // fontWeight: FontWeight.bold,
+                        fontSize: 20
+                    )
+                )
+            ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                   color: textColor,
+                ),
+                decoration: const InputDecoration(
+                  fillColor: Constants.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: textColor
+                      )
+                  ),
+                  labelText: 'Email',
                 ),
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -75,10 +97,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                 validator: (value) => value != null && emailNotFound == true
                     ? 'Email not Found'
                     : null,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                ),
               ),
             ),
             Container(
