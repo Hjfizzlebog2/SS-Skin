@@ -36,7 +36,8 @@ class SeeResults extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-              MaterialPageRoute(builder: (context) => GeneratedReport(scan: scan, q1: q1, q2: q2, q3: q3,))
+              MaterialPageRoute(builder: (context) => GeneratedReport(scan: scan,
+                q1: q1, q2: q2, q3: q3,))
           );
         },
         child: Column(

@@ -23,7 +23,7 @@ class _PastResultsState extends State<PastResults> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor,
         appBar: AppBar(
             iconTheme: const IconThemeData(
               color: textColor,
@@ -78,8 +78,9 @@ class _PastResultsState extends State<PastResults> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   children: [
                     StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection("results").doc(RegisteredHomePage.user.user?.uid)
-                            .collection('case').snapshots(),
+                        stream: FirebaseFirestore.instance.collection("results")
+                            .doc(RegisteredHomePage.user.user?.uid)
+                            .collection('case').orderBy('Date', descending: true).snapshots(),
                         builder: (context, snapshot) {
                           if(!snapshot.hasData){
                             return const Text(
@@ -104,7 +105,7 @@ class _PastResultsState extends State<PastResults> {
                   label: const Text(
                       'View Photos',
                       style: TextStyle(
-                        color: textColor,
+                          color: textColor,
                           // fontWeight: FontWeight.bold,
                           fontSize: 18
                       )
@@ -134,13 +135,14 @@ class _PastResultsState extends State<PastResults> {
         itemBuilder: (context, index) {
           final doc = snapshot.docs[index];
           return ListTile(
-              title: Text("\nDate: " + doc["Date"] + "\n\n"
-                  + "Condition: " + doc["Condition"] + "\n\n" +
-                  "Probability: " + double.parse(doc["Probability"]).toStringAsFixed(2) + "%\n", // Made it so that probability shows to 2 decimal points
-                style: const TextStyle(
-                  color: textColor,
-                ),
+            title: Text("\nDate: " + doc["Date"] + "\n\n"
+                + "Condition: " + doc["Condition"] + "\n\n" +
+                "Probability: " + double.parse(doc["Probability"]).toStringAsFixed(2) + "%\n",
+              // Made it so that probability shows to 2 decimal points
+              style: const TextStyle(
+                color: textColor,
               ),
+            ),
           );
         }
     );

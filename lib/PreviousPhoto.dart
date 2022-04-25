@@ -65,8 +65,9 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                     return ListTile(
                       contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
-                      + snapshot.data?.docs[index]["Date"] + "\n" +
-                          (double.parse(snapshot.data?.docs[index]["Probability"])).toStringAsFixed(2) + "%", //Made it so that it shows to 2 decimal points
+                          + snapshot.data?.docs[index]["Date"] + "\n" +
+                          (double.parse(snapshot.data?.docs[index]["Probability"]))
+                              .toStringAsFixed(2) + "%", //Made it so that it shows to 2 decimal points
                       style: const TextStyle(
                         color: textColor,
                       ),
@@ -90,6 +91,6 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
 
   Future<QuerySnapshot> getImages() {
     return fb.collection("results").doc(RegisteredHomePage.user.user?.uid)
-        .collection('case').get();
+        .collection('case').orderBy('DateTime', descending: true).get();
   }
 }

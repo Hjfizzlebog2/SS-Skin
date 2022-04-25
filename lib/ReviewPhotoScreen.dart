@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:ss_skin_project/dbOperations.dart';
 import 'Constants.dart';
-import 'GeneratedReport.dart';
 import 'SeeResults.dart';
 
 class ReviewPhotoScreen extends StatelessWidget {
@@ -18,7 +15,8 @@ class ReviewPhotoScreen extends StatelessWidget {
   var progress;
   Map reportMap;
 
-  ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap, this.q1, this.q2, this.q3, {Key? key})
+  ReviewPhotoScreen(this.imagePath, this.imageFile, this.reportMap,
+      this.q1, this.q2, this.q3, {Key? key})
       : super(key: key);
 
   static const screenColor = Constants.cyan2;//Constants.teal; //Constants.tealAccent;
@@ -67,8 +65,6 @@ class ReviewPhotoScreen extends StatelessWidget {
                 onPressed: () async {
                   isLoading = true;
 
-                  DateTime now = DateTime.now();
-                  var date = DateFormat("dd-MM-yyy").format(now);
                   // reportMap = TitleSplashScreen.reportMap;
                   //This should be commented out or removed when endpoint is deployed
 
@@ -78,7 +74,6 @@ class ReviewPhotoScreen extends StatelessWidget {
                       print(e);
                     }
                   } finally {
-                    enterResults("Melanoma", date, (reportMap.entries.elementAt(0).value * 100).toString());
                     Navigator.push(
                       context,
                       MaterialPageRoute(

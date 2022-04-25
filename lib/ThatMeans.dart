@@ -82,7 +82,8 @@ class ThatMeans extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
                 child: const Text(
-                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis.\nConsult a dermatologist for an official diagnosis.',
+                  '\n\n\n\n\n\nSkin Safety Scanner is not intended for self-diagnosis.'
+                      '\nConsult a dermatologist for an official diagnosis.',
                   style: TextStyle(fontSize: 14, color: textColor),
                 ),
               ),

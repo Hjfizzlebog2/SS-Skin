@@ -24,35 +24,35 @@ class RegisteredHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: screenColor,
+        backgroundColor: screenColor,
         appBar: AppBar(
-          title: const Text('Skin Safety Scanner',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: textColor,
-            )
-          ),
-          centerTitle: true,
-          backgroundColor: screenColor,
-          automaticallyImplyLeading: false,
-          actions: <Widget> [
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LogInScreen()),
-                );
-              },
-              child: const Text(
-                  'Log out',
-                  style: TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18
-                  )
-              ),
+            title: const Text('Skin Safety Scanner',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: textColor,
+                )
             ),
-          ]
+            centerTitle: true,
+            backgroundColor: screenColor,
+            automaticallyImplyLeading: false,
+            actions: <Widget> [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LogInScreen()),
+                  );
+                },
+                child: const Text(
+                    'Log out',
+                    style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    )
+                ),
+              ),
+            ]
         ),
         body: Column (
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,16 +70,16 @@ class RegisteredHomePage extends StatelessWidget {
               ),
             ),
             Material(
-              elevation: Constants.pfpElevation,
-            shape: const CircleBorder(),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Image.asset(
-                'assets/images/NewHome.png',
-              height: 230,
-              width: 230,
-              fit: BoxFit.fitWidth,
-            ) ),
-           // Image.asset('assets/images/registered_homepage.jpg'),
+                elevation: Constants.pfpElevation,
+                shape: CircleBorder(),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.asset(
+                  'assets/images/NewHome.png',
+                  height: 230,
+                  width: 230,
+                  fit: BoxFit.fitWidth,
+                ) ),
+            // Image.asset('assets/images/registered_homepage.jpg'),
             Container(
               padding: const EdgeInsets.all(15),
               width: 270,
@@ -87,20 +87,20 @@ class RegisteredHomePage extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ScreeningBreakdown())
+                      context,
+                      MaterialPageRoute(builder: (context) => const ScreeningBreakdown())
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  elevation: Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                     primary: buttonColor
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'Start Scanning',
                     style: TextStyle(
-                        // fontWeight: FontWeight.bold,
-                      color: textColor,
+                      // fontWeight: FontWeight.bold,
+                        color: textColor,
                         fontSize: 18
                     )
                 ),
@@ -118,15 +118,15 @@ class RegisteredHomePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  elevation: Constants.buttonElevation,
+                    elevation: Constants.buttonElevation,
                     primary: buttonColor
                 ),
                 icon: const Icon(Icons.navigate_next, color: textColor),
                 label: const Text(
                     'See Past Scans',
                     style: TextStyle(
-                        // fontWeight: FontWeight.bold,
-                      color: textColor,
+                      // fontWeight: FontWeight.bold,
+                        color: textColor,
                         fontSize: 18
                     )
                 ),

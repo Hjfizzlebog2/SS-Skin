@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'Constants.dart';
-import 'Debrief.dart';
+import 'ThatMeans.dart';
+import 'dbOperations.dart';
 
 class GeneratedReport extends StatefulWidget {
   final Map scan;
@@ -40,6 +42,9 @@ class _GeneratedReportState extends State<GeneratedReport> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    var date = DateFormat("dd-MM-yyy").format(now);
+    var time = "-${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}";
 
     double percentage = (mapList[0].value * 100); // Melanoma percentage
     String percentageString = '';
@@ -74,12 +79,15 @@ class _GeneratedReportState extends State<GeneratedReport> {
       percentage += 8;
     }
 
+    percentageString = percentage.toStringAsFixed(2);
+
     if (percentage > 99.0) {
-      percentageString = '>99';
+      percentageString = '> 99';
     } else if (percentage < 1.0) {
-      percentageString = '<1';
+      percentageString = '< 1';
     }
-      percentageString = percentage.toStringAsFixed(2);
+
+    enterResults("Melanoma", date, time, percentageString);
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -121,7 +129,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   MaterialPageRoute(builder: (context) => ThatMeans(scan: widget.scan))
               );
             },
-          child: Column(
+            child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -130,6 +138,7 @@ class _GeneratedReportState extends State<GeneratedReport> {
                   padding: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                   child: const Text(
                       'Your image displayed',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                           color: textColor,
                           //fontWeight: FontWeight.bold,
@@ -196,4 +205,3 @@ class _GeneratedReportState extends State<GeneratedReport> {
                 ),
               ),
             */
-

@@ -7,7 +7,8 @@ import 'Constants.dart';
 import 'RegisteredHomePage.dart';
 
 //Example Geocoding get request (For CBUs postal code of 92504)
-// https://maps.googleapis.com/maps/api/geocode/json?address=92504&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
+// https://maps.googleapis.com/maps/api/geocode/json?
+// address=92504&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y
 
 class ZipCodeCollection extends StatefulWidget {
   const ZipCodeCollection({Key? key}) : super(key: key);
@@ -118,7 +119,8 @@ class _ZipCodeCollectionState extends State<ZipCodeCollection> {
                       //STEP 1: Get data from text field [DONE]
                       String zip = _zipcodeTEC.text;
                       //STEP 2: Fetch data with get request [DONE]
-                      String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
+                      String createdURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
+                          + zip + "&key=AIzaSyBOywn96D8KYek0-xghDDDGB7rF1rrMn8Y";
                       final response = await http.get(Uri.parse(createdURL));
                       // final response2 = await http.post(Uri.parse())
 
