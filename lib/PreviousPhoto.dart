@@ -62,6 +62,7 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                   shrinkWrap: true,
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: (BuildContext context, int index) {
+
                     return ListTile(
                       contentPadding: const EdgeInsets.all(8.0),
                       title: Text(snapshot.data?.docs[index]["Condition"] + "\n"
@@ -73,10 +74,10 @@ class _PreviousPhotoState extends State<PreviousPhoto> {
                       ),
                       ),
                       leading: Material(
+
                         elevation: Constants.buttonElevation,
                         child: Image.network(
-                          snapshot.data?.docs[index]["url"],
-                          fit: BoxFit.fill),)
+                          snapshot.data?.docs[index]["url"], fit: BoxFit.fill),)
                     );
                   });
             } else if (snapshot.connectionState == ConnectionState.none) {

@@ -240,7 +240,7 @@ class _PhotoSubmissionState extends State<PhotoSubmission> {
     //STEP 4: Map gets passed to ReviewPhotoScreen, and then on to GeneratedReport
     // reportMap = TitleSplashScreen.reportMap;
     //This should be commented out or removed when endpoint is deployed
-
+    
     try {
       uploadImage(bytes);
     } catch (e) {
